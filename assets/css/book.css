@@ -1,0 +1,397 @@
+/* ==========================================================================
+   Gramatica română — print stylesheet
+   --------------------------------------------------------------------------
+   Trim size : 4.25in x 6.875in  (Lulu "Pocketbook")
+   Binding   : coil — needs a generous inner margin, mirrored left/right.
+   Margins   : top .34  bottom .38  inner .56  outer .28  (inches)
+               Lulu safety: >=0.5in from the punched edge, >=0.25in elsewhere.
+
+   Changing trim size: edit the @page blocks below. Values there are literal
+   on purpose — paged.js resolves @page before custom properties are computed,
+   so var() is not reliable inside @page.
+   ========================================================================== */
+
+/* ---------- fonts ---------------------------------------------------- */
+/* Vendored by scripts/fetch-fonts.sh from Adobe upstream. Full Latin coverage
+   in one file per face, so nothing can silently fall back mid-word. */
+
+@font-face {
+  font-family: "Source Serif"; font-style: normal; font-weight: 400;
+  src: url("/fonts/source-serif-regular.woff2") format("woff2");
+  font-display: block;
+}
+@font-face {
+  font-family: "Source Serif"; font-style: italic; font-weight: 400;
+  src: url("/fonts/source-serif-italic.woff2") format("woff2");
+  font-display: block;
+}
+@font-face {
+  font-family: "Source Serif"; font-style: normal; font-weight: 600;
+  src: url("/fonts/source-serif-semibold.woff2") format("woff2");
+  font-display: block;
+}
+@font-face {
+  font-family: "Source Serif"; font-style: normal; font-weight: 700;
+  src: url("/fonts/source-serif-bold.woff2") format("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Source Sans"; font-style: normal; font-weight: 400;
+  src: url("/fonts/source-sans-regular.woff2") format("woff2");
+  font-display: block;
+}
+@font-face {
+  font-family: "Source Sans"; font-style: normal; font-weight: 600;
+  src: url("/fonts/source-sans-semibold.woff2") format("woff2");
+  font-display: block;
+}
+@font-face {
+  font-family: "Source Sans"; font-style: normal; font-weight: 700;
+  src: url("/fonts/source-sans-bold.woff2") format("woff2");
+  font-display: block;
+}
+
+/* ---------- design tokens -------------------------------------------- */
+
+:root {
+  --serif: "Source Serif", Georgia, serif;
+  --sans: "Source Sans", "Helvetica Neue", sans-serif;
+
+  --ink: #000;
+  --ink-soft: #333;         /* glosses, notes */
+  --rule: #000;
+  --rule-hair: #999;
+  --shade: #ededed;         /* table zebra / header fill */
+
+  --size-body: 8.3pt;
+  --lead-body: 10.8pt;
+  --size-table: 7.4pt;
+  --lead-table: 9.4pt;
+  --size-note: 7.3pt;
+}
+
+/* ---------- page geometry -------------------------------------------- */
+
+/* Do not add `marks` or `bleed` here: paged.js reacts to either by growing the
+   sheet by 6mm on every edge, and the interior needs no bleed. */
+@page {
+  size: 4.25in 6.875in;
+  margin: 0.34in 0.28in 0.38in 0.56in;
+}
+
+/* recto (right-hand page): binding on the left */
+@page :right {
+  margin-left: 0.56in;
+  margin-right: 0.28in;
+  @top-right {
+    content: string(runhead);
+    font: 400 6.6pt/1 "Source Sans", sans-serif;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #444;
+    vertical-align: bottom;
+    padding-bottom: 3pt;
+  }
+  @bottom-right {
+    content: counter(page);
+    font: 600 7.4pt/1 "Source Sans", sans-serif;
+    vertical-align: top;
+    padding-top: 5pt;
+  }
+}
+
+/* verso (left-hand page): binding on the right */
+@page :left {
+  margin-left: 0.28in;
+  margin-right: 0.56in;
+  @top-left {
+    content: string(runhead);
+    font: 400 6.6pt/1 "Source Sans", sans-serif;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #444;
+    vertical-align: bottom;
+    padding-bottom: 3pt;
+  }
+  @bottom-left {
+    content: counter(page);
+    font: 600 7.4pt/1 "Source Sans", sans-serif;
+    vertical-align: top;
+    padding-top: 5pt;
+  }
+}
+
+/* front matter: no folio, no running head */
+@page frontmatter {
+  @top-left { content: none; }
+  @top-right { content: none; }
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+
+/* ---------- base ------------------------------------------------------ */
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--serif);
+  font-size: var(--size-body);
+  line-height: var(--lead-body);
+  color: var(--ink);
+  margin: 0;
+  hyphens: none;
+  text-align: left;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+p { margin: 0 0 3.5pt; }
+p + p { text-indent: 0; }
+
+/* ---------- front matter ---------------------------------------------- */
+
+.titlepage {
+  page: frontmatter;
+  break-after: page;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.booktitle {
+  font-family: var(--sans);
+  font-size: 20pt;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin: 0 0 4pt;
+  padding: 0;
+  border: 0;
+}
+.booksub {
+  font-family: var(--sans);
+  font-size: 9pt;
+  font-weight: 400;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 26pt;
+}
+.bookedition {
+  font-size: 7.5pt;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.toc {
+  page: frontmatter;
+  break-after: page;
+}
+.toc h1 {
+  font-family: var(--sans);
+  font-size: 11pt;
+  font-weight: 700;
+  margin: 0 0 8pt;
+  padding: 0 0 3pt;
+  border-bottom: 1pt solid var(--rule);
+  string-set: none;
+}
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: toc;
+}
+.toc li {
+  counter-increment: toc;
+  margin: 0 0 4.5pt;
+  font-family: var(--sans);
+  font-size: 8.4pt;
+  line-height: 1.25;
+  display: flex;
+  align-items: baseline;
+}
+.toc li::before {
+  content: counter(toc) ".";
+  flex: 0 0 15pt;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.toc a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  flex: 1;
+  gap: 3pt;
+}
+.toc .dots {
+  flex: 1;
+  border-bottom: .5pt dotted #aaa;
+  position: relative;
+  top: -1.5pt;
+}
+/* paged.js resolves the destination page of the #anchor */
+.toc a::after {
+  content: target-counter(attr(href), page);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- chapters -------------------------------------------------- */
+
+.chapter {
+  break-before: page;
+  counter-reset: sec;
+}
+
+.chapter > h1 {
+  string-set: runhead content(text);
+  font-family: var(--sans);
+  font-size: 12pt;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  margin: 0 0 7pt;
+  padding: 0 0 3pt;
+  border-bottom: 1.6pt solid var(--rule);
+}
+
+h2 {
+  font-family: var(--sans);
+  font-size: 8.9pt;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 7pt 0 3pt;
+  padding-bottom: 1.5pt;
+  border-bottom: .4pt solid var(--rule-hair);
+  break-after: avoid;
+}
+h2:first-child { margin-top: 0; }
+
+h3 {
+  font-family: var(--sans);
+  font-size: 8pt;
+  font-weight: 600;
+  margin: 5pt 0 2pt;
+  color: var(--ink);
+  break-after: avoid;
+}
+
+/* ---------- lists ----------------------------------------------------- */
+
+ul, ol {
+  margin: 0 0 4pt;
+  padding-left: 11pt;
+}
+li { margin-bottom: 1.5pt; }
+li > ul, li > ol { margin-top: 1.5pt; }
+
+/* ---------- tables ---------------------------------------------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--size-table);
+  line-height: var(--lead-table);
+  margin: 0 0 4.5pt;
+  /* Most tables here are short. Keeping them whole beats a repeated header,
+     which paged.js does not reliably re-emit after a break. */
+  break-inside: avoid;
+}
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+table.long { break-inside: auto; }   /* opt in for tables taller than a page */
+
+/* The irregular-verb list is the only table in the book taller than a page. */
+#verbe-neregulate table {
+  break-inside: auto;
+  font-size: 6.9pt;
+  line-height: 9.2pt;
+}
+#verbe-neregulate td:first-child { font-weight: 600; }
+
+th {
+  font-family: var(--sans);
+  font-size: 6.8pt;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--ink-soft);
+  padding: 2pt 3pt 1.5pt 0;
+  border-bottom: .7pt solid var(--rule);
+  vertical-align: bottom;
+}
+td {
+  padding: 1.6pt 3pt 1.6pt 0;
+  border-bottom: .3pt solid #ccc;
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+td:last-child, th:last-child { padding-right: 0; }
+
+/* first column of a paradigm table = the person/form label, set in sans */
+table.paradigm td:first-child,
+table.forms td:first-child {
+  font-family: var(--sans);
+  font-size: 6.9pt;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  padding-top: 2.2pt;
+}
+
+/* ---------- inline conventions ---------------------------------------- */
+
+/* forme, cuvinte-cheie */
+strong, b { font-weight: 600; }
+
+/* exemple în propoziție */
+em, i { font-style: italic; color: var(--ink-soft); }
+
+/* the changing part of a form: endings, infixes, auxiliaries */
+.e { font-weight: 700; }
+
+code, kbd {
+  font-family: var(--sans);
+  font-size: 7.2pt;
+  background: var(--shade);
+  padding: 0 2pt;
+  border-radius: 2pt;
+}
+
+/* ---------- callouts -------------------------------------------------- */
+
+blockquote {
+  margin: 4pt 0;
+  padding: 3pt 4pt 3pt 5pt;
+  border-left: 2pt solid var(--rule);
+  background: var(--shade);
+  font-size: var(--size-note);
+  line-height: 9.6pt;
+  break-inside: avoid;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+hr {
+  border: 0;
+  border-top: .4pt solid var(--rule-hair);
+  margin: 7pt 0;
+}
+
+/* ---------- widow / orphan control ------------------------------------ */
+
+p, li { orphans: 2; widows: 2; }
+
+/* ---------- screen preview (paged.js in the browser) ------------------ */
+
+@media screen {
+  body { background: #6b6b6b; }
+  .pagedjs_pages { padding: 20px 0; }
+  .pagedjs_page {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .45);
+    margin: 0 auto 14px;
+  }
+}

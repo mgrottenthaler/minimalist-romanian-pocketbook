@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<title>{{ site.Title }} — {{ site.Params.subtitle }}</title>
+{{ $css := resources.Get "css/book.css" | resources.Minify }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+</head>
+<body>
+
+<section class="titlepage">
+  <h1 class="booktitle">{{ site.Title }}</h1>
+  <p class="booksub">{{ site.Params.subtitle }}</p>
+  <p class="bookedition">{{ site.Params.edition }}</p>
+</section>
+
+{{ $chapters := where site.RegularPages "Section" "chapters" }}
+{{ $chapters = sort $chapters "Weight" }}
+
+<nav class="toc">
+  <h1>Cuprins</h1>
+  <ol>
+    {{ range $chapters }}
+    <li><a href="#{{ .File.BaseFileName | anchorize }}">{{ .Title }}<span class="dots"></span></a></li>
+    {{ end }}
+  </ol>
+</nav>
+
+{{ range $chapters }}
+<section class="chapter" id="{{ .File.BaseFileName | anchorize }}">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+</section>
+{{ end }}
+
+<script src="{{ "vendor/pagedjs/paged.polyfill.js" | relURL }}"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+baseURL = "/"
+locale = "ro"
+title = "The Minimalist Romanian Pocketbook"
+
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT", "section", "404"]
+
+# The book is a single HTML document assembled by layouts/home.html and paged
+# into a PDF by paged.js. Chapters stay in site.RegularPages (list = always) so
+# the layout can gather them, but never get an output file of their own.
+[[cascade]]
+  [cascade.target]
+    path = "/chapters/**"
+  [cascade.build]
+    render = "never"
+    list = "always"
+
+[params]
+  subtitle = "gramatică esențială"
+  edition = "Ediția I"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.goldmark.extensions.typographer]
+    disable = true
+  [markup.goldmark.parser]
+    autoHeadingID = true
+    [markup.goldmark.parser.attribute]
+      block = true
+      title = true
+
+[build]
+  writeStats = false

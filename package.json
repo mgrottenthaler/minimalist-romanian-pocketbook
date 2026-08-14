@@ -1,0 +1,13 @@
+{
+  "name": "romanian-grammar-pocketbook",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "hugo --cleanDestinationDir && node scripts/build-pdf.mjs",
+    "serve": "hugo server --disableFastRender"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "puppeteer-core": "^24.0.0"
+  }
+}
