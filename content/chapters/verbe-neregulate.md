@@ -5,9 +5,9 @@ weight: 110
 
 Din aceste cinci coloane se obține tot restul paradigmei.
 
-> **Persoana 3 plural**: identică cu persoana 1 singular la conjugările II, III și IV fără sufix (*merg → merg*); identică cu persoana 3 singular la conjugarea I și la verbele cu sufix (*mănâncă → mănâncă*). Excepții: *a avea* → **au**, *a vrea* → **vor**, *a fi* → **sunt**.
+> **Persoana 3 plural**: identică cu persoana 1 singular la conjugările II, III și IV fără sufix (*merg → merg*, *sunt → sunt*); identică cu persoana 3 singular la conjugarea I și la verbele cu sufix (*mănâncă → mănâncă*). Excepții: *a avea* → **au**, *a vrea* → **vor**.
 >
-> **Mai-mult-ca-perfectul** se face din participiu: *-t* → *-sem* (*făcut → făcusem*), *-s* → *-esem* (*mers → mersesem*).
+> **Mai-mult-ca-perfectul** se face din participiu: *-at/-ut/-it/-ât* → *-sem* (*făcut → făcusem*), *-s* → *-esem* (*mers → mersesem*). Neregulate: *rupt* → **rupsesem**, *copt* → **copsesem**, *a da* → **dădusem**, *a sta* → **stătusem**.
 
 | Infinitiv | Prez. 1 sg. | Prez. 3 sg. | Conjunctiv 3 | Participiu |
 |---|---|---|---|---|
@@ -16,6 +16,7 @@ Din aceste cinci coloane se obține tot restul paradigmei.
 | a alege | aleg | alege | să aleagă | ales |
 | a apărea | apar | apare | să apară | apărut |
 | a aprinde | aprind | aprinde | să aprindă | aprins |
+| a arde | ard | arde | să ardă | ars |
 | a atinge | ating | atinge | să atingă | atins |
 | a auzi | aud | aude | să audă | auzit |
 | a avea | am | are | să aibă | avut |
@@ -26,8 +27,10 @@ Din aceste cinci coloane se obține tot restul paradigmei.
 | a coace | coc | coace | să coacă | copt |
 | a crede | cred | crede | să creadă | crezut |
 | a crește | cresc | crește | să crească | crescut |
+| a cunoaște | cunosc | cunoaște | să cunoască | cunoscut |
 | a da | dau | dă | să dea | dat |
 | a deschide | deschid | deschide | să deschidă | deschis |
+| a dispărea | dispar | dispare | să dispară | dispărut |
 | a dormi | dorm | doarme | să doarmă | dormit |
 | a duce | duc | duce | să ducă | dus |
 | a face | fac | face | să facă | făcut |
@@ -43,6 +46,7 @@ Din aceste cinci coloane se obține tot restul paradigmei.
 | a muri | mor | moare | să moară | murit |
 | a naște | nasc | naște | să nască | născut |
 | a oferi | ofer | oferă | să ofere | oferit |
+| a părea | par | pare | să pară | părut |
 | a pierde | pierd | pierde | să piardă | pierdut |
 | a plăcea | plac | place | să placă | plăcut |
 | a plânge | plâng | plânge | să plângă | plâns |
@@ -52,13 +56,16 @@ Din aceste cinci coloane se obține tot restul paradigmei.
 | a răspunde | răspund | răspunde | să răspundă | răspuns |
 | a râde | râd | râde | să râdă | râs |
 | a rupe | rup | rupe | să rupă | rupt |
+| a sări | sar | sare | să sară | sărit |
 | a scoate | scot | scoate | să scoată | scos |
 | a scrie | scriu | scrie | să scrie | scris |
+| a simți | simt | simte | să simtă | simțit |
 | a spune | spun | spune | să spună | spus |
 | a sta | stau | stă | să stea | stat |
 | a strânge | strâng | strânge | să strângă | strâns |
 | a ști | știu | știe | să știe | știut |
 | a tăia | tai | taie | să taie | tăiat |
+| a trebui | — | trebuie | să trebuiască | trebuit |
 | a trece | trec | trece | să treacă | trecut |
 | a trimite | trimit | trimite | să trimită | trimis |
 | a ține | țin | ține | să țină | ținut |
@@ -68,3 +75,5 @@ Din aceste cinci coloane se obține tot restul paradigmei.
 | a vinde | vând | vinde | să vândă | vândut |
 | a vrea | vreau | vrea | să vrea | vrut |
 | a zice | zic | zice | să zică | zis |
+
+> **a trebui** este defectiv: are numai persoana 3 singular. *trebuie să plec*, *trebuia să plec*, *va trebui să plec*, *ar fi trebuit să plec*. Cu dativul înseamnă „a avea nevoie de”: *îmi **trebuie** doi lei*, *ne **trebuiau** bani*.

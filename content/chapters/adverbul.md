@@ -5,12 +5,14 @@ weight: 120
 
 ## Formare
 
-Adverbul de mod este, de regulă, **identic cu adjectivul masculin singular**. Nu există un sufix de tip *-mente*.
+Adverbul de mod este, de regulă, **identic cu adjectivul masculin singular**. Nu există un sufix general de tip *-mente*.
 
 - *un cântec **frumos*** → *cântă **frumos***
 - *un răspuns **rapid*** → *răspunde **rapid***
 
 Neregulate: **bun → bine**, **rău → rău** sau **prost**.
+
+Singurul sufix adverbial productiv este **-ește**, mai ales pentru limbi și pentru maniere: *vorbește român**ește***, *se poartă prieten**ește***, *bărbăt**ește***.
 
 ## Comparația
 

@@ -22,7 +22,7 @@ This README is in English because it documents the repo, not the book.
 | Margins | top .34 / bottom .38 / **inner .56** / outer .28 in, mirrored |
 | Body face | Source Serif 4 **SmText** (OFL), 8.3 pt / 10.8 pt |
 | Display face | Source Sans 3 (OFL) |
-| Extent | **38 pages** incl. front matter and one blank leaf |
+| Extent | **40 pages** incl. front matter and one blank leaf |
 
 The inner margin is deliberately oversized: coil binding punches holes through
 the gutter, and Lulu asks for ≥ 0.5 in of clearance from the punched edge.
@@ -30,7 +30,9 @@ Margins mirror between recto and verso via `@page :left` / `@page :right`.
 
 Both fonts are OFL-licensed and vendored into `static/fonts/` by
 `scripts/fetch-fonts.sh`, which pulls Adobe's upstream releases and subsets them
-with `fonttools`. Re-run it to refresh them.
+with `fonttools`. Re-run it to refresh them. It also fetches each family's
+`LICENSE.md` alongside the subsets — OFL 1.1 requires the licence to travel with
+redistributed fonts, and these are redistributed in this repo.
 
 Two things drove the font choice. They render **ș** and **ț** with a proper comma
 below rather than a cedilla (ş/ţ), which a large share of screen fonts get wrong
@@ -64,7 +66,10 @@ make clean
 
 `make pdf` prints the extent and the measured trim size, appends a blank leaf if
 the count came out odd, and snaps every page box to exactly 4.25 × 6.875 in
-(Chromium's px→pt rounding otherwise lands a fraction of a point off).
+(Chromium's px→pt rounding otherwise lands a fraction of a point off). It fails
+the build on two conditions rather than warning: a rendered trim more than a
+point off the intended one, and any face that is not embedded or that is a
+system fallback.
 
 Requires `hugo` (extended), Node, and a Chromium binary. The build script finds
 Chromium automatically; override with `CHROME_PATH=/path/to/chrome`.
@@ -75,7 +80,7 @@ Chromium automatically; override with `CHROME_PATH=/path/to/chrome`.
 content/chapters/*.md    one file per chapter, ordered by `weight`
 layouts/home.html        assembles the whole book into one document
 assets/css/book.css      page geometry, typography, tables
-static/fonts/            vendored OFL woff2 subsets (see scripts/fetch-fonts.sh)
+static/fonts/            vendored OFL woff2 subsets + OFL-*.txt (see scripts/fetch-fonts.sh)
 static/vendor/pagedjs/   vendored paged.js polyfill
 scripts/build-pdf.mjs    serves public/, waits for pagination, prints PDF
 scripts/fetch-fonts.sh   downloads + subsets the fonts from Adobe upstream
@@ -86,31 +91,32 @@ scripts/fetch-fonts.sh   downloads + subsets the fonts from Adobe upstream
 ## Contents
 
 Fifteen chapters, weights in steps of 10 so chapters can be inserted between.
-Page counts are the actual extent of the current build.
+Page counts are the actual extent of the current build, read off the generated
+table of contents.
 
 | # | Chapter | pp. |
 |---|---|---|
 | 1 | Substantivul — gen, plural, alternanțe, cazuri, vocativ | 3 |
 | 2 | Articolul — nehotărât, hotărât enclitic, posesiv, demonstrativ | 2 |
 | 3 | Adjectivul — clase de forme, poziție, comparație | 2 |
-| 4 | Pronumele — personal, clitice, reflexiv, posesiv, demonstrativ, relativ | 3 |
+| 4 | Pronumele — personal, clitice, reflexiv, posesiv, demonstrativ, relativ | 4 |
 | 5 | Numeralul — cardinal, ordinal, `de` după 20, ora | 2 |
 | 6 | Verbul: indicativ prezent — 4 conjugări, sufixele -ez / -esc / -ăsc | 3 |
-| 7 | Verbul: timpurile trecutului — imperfect, perfect compus, m.m.c.p. | 2 |
+| 7 | Verbul: timpurile trecutului — imperfect, perfect compus, m.m.c.p. | 3 |
 | 8 | Verbul: viitorul — cele patru registre | 2 |
 | 9 | Conjunctivul, condiționalul, imperativul | 3 |
 | 10 | Forme nepersonale și diateze — infinitiv, participiu, gerunziu, supin | 2 |
-| 11 | Verbe neregulate — tabel de 57 de verbe | 2 |
+| 11 | Verbe neregulate — tabel de 64 de verbe | 3 |
 | 12 | Adverbul — formare, comparație, poziție | 2 |
 | 13 | Prepoziția și cazul — Ac / G / D | 2 |
 | 14 | Sintaxa propoziției — topică, negație, `pe`, dublare clitică | 2 |
 | 15 | Registru și forme omise | 2 |
 
 Plus a title page, a table of contents, and one blank leaf at the back:
-**38 pages** total.
+**40 pages** total.
 
 > The original target was 30. The type is already at 8.3 pt, which is about the
-> floor for comfortable reading in print, so the remaining eight pages are
+> floor for comfortable reading in print, so the remaining ten pages are
 > structural rather than typographic: every chapter starts on a fresh page, and
 > tables are never split across a page turn. Two levers exist if 30 matters more
 > than those properties — drop `break-before: page` on `.chapter` (≈ −6 pp, at
@@ -166,9 +172,11 @@ that a reference grammar would cover, and is omitted on purpose.
 ## Printing at Lulu
 
 1. `make pdf` → `dist/gramatica-romana-interior.pdf` (interior only). It reports
-   the extent and trim, and guarantees both.
-2. Sanity-check the fonts. Every face must be embedded (`emb yes`) and nothing
-   called Times New Roman may appear — that would mean a glyph fell back:
+   the extent and trim, and fails rather than ships if the trim is wrong.
+2. The font check runs as part of the build: every face must be embedded and no
+   system face (Times, Helvetica, Arial, …) may appear, which would mean a glyph
+   fell back. It needs `pdffonts` from poppler-utils; if that is not installed
+   the build says so and continues, and you should check by hand:
 
    ```sh
    pdffonts dist/gramatica-romana-interior.pdf
@@ -185,8 +193,8 @@ that a reference grammar would cover, and is omitted on purpose.
   path-based — checked at 600 dpi, they print as clean vector outlines — so this
   is cosmetic. If Lulu's preflight ever objects, a Ghostscript pass
   (`gs -sDEVICE=pdfwrite`) normalises them.
-- The 57-row irregular-verb table spans two pages and paged.js does not re-emit
-  the `<thead>` on the second one. Left as is: the columns are self-evident, and
+- The 64-row irregular-verb table spans three pages and paged.js does not re-emit
+  the `<thead>` on the later ones. Left as is: the columns are self-evident, and
   the alternatives are all more fragile than the problem.
 
 **Open question before ordering:** verify that Lulu offers *Coil* binding at
@@ -198,4 +206,6 @@ re-measure the extent.
 
 ## Licence
 
-Book text: to be decided. Fonts: SIL Open Font License 1.1. paged.js: MIT.
+Book text: to be decided. Fonts: SIL Open Font License 1.1 — full text shipped
+with the subsets in `static/fonts/OFL-source-serif.txt` and
+`static/fonts/OFL-source-sans.txt`. paged.js: MIT.

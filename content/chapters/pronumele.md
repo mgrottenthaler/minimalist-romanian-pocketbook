@@ -97,7 +97,12 @@ Acordul se face cu obiectul posedat: *cărțile mele*, *fratele nostru*.
 | identitate | același | aceeași | aceiași | aceleași |
 | diferențiere | celălalt | cealaltă | ceilalți | celelalte |
 
-G-D: *acestui, acestei, acestor; aceluia, aceleia, acelora*.
+G-D, după cele două serii:
+
+| | m. sg. | f. sg. | pl. |
+|---|---|---|---|
+| antepus (adjectival) | acestui, acelui | acestei, acelei | acestor, acelor |
+| postpus (pronominal) | acestuia, aceluia | acesteia, aceleia | acestora, acelora |
 
 Formele vorbite: **ăsta, asta, ăștia, astea** / **ăla, aia, ăia, alea**.
 
@@ -106,7 +111,8 @@ Formele vorbite: **ăsta, asta, ăștia, astea** / **ăla, aia, ăia, alea**.
 | Formă | Folosire |
 |---|---|
 | **care** | omul **care** vine; omul **pe care** îl văd |
-| **al cărui / a cărei / ai căror / ale căror** | omul **a cărui** casă... (articolul se acordă cu posedatul, *cărui* cu posesorul) |
+| **căruia / căreia / cărora** (D) | omul **căruia** i-am dat cartea; fetei **căreia** i-am scris |
+| **al cărui / a cărei / ai căror / ale căror** (G) | omul **a cărui** casă... (articolul se acordă cu posedatul, *cărui* cu posesorul) |
 | **cui** | **Cui** i-ai dat cartea? |
 | **cine** | numai pentru persoane, fără plural: **Cine** e? **Pe cine** vezi? |
 | **ce** | lucruri; și adjectival: **Ce** carte? |

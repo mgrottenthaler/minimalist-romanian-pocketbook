@@ -7,12 +7,15 @@ weight: 130
 
 Aproape toate prepozițiile.
 
-la, în, pe, cu, de, din, pentru, spre, către, până, fără, despre, prin, peste, sub, lângă, între, printre, dintre, după, printr-un, într-un, ca, decât.
+la, în, pe, cu, de, din, pentru, spre, către, până, fără, despre, prin, peste, sub, lângă, între, printre, dintre, după.
+
+(*ca* și *decât* introduc tot acuzativul, dar sunt conjuncții comparative, nu prepoziții. Pentru *într-un*, *dintr-un*, *printr-un*, vezi *Contragerile*, mai jos.)
 
 După o prepoziție simplă, substantivul rămâne de obicei **nearticulat**:
 
-- *merg **la școală***, *sunt **în oraș***, *plec **cu trenul***
+- *merg **la școală***, *sunt **în oraș***, *plec **la muncă***
 - dar: *merg **la școala** din colț* (determinat)
+- excepție, **cu**: *plec **cu trenul***, *scriu **cu creionul***
 
 ## Cu genitivul
 

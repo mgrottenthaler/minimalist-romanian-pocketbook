@@ -18,7 +18,7 @@ Se lipește la sfârșitul cuvântului.
 |---|---|---|---|---|
 | masc. în consoană | pom**ul** | pom**ului** | pomi**i** | pomi**lor** |
 | masc. în -e | frate**le** | frate**lui** | frați**i** | frați**lor** |
-| masc. în -ă | tatăl | tatălui | tați**i** | tați**lor** |
+| masc. în -ă | tată**l** | tată**lui** | tați**i** | tați**lor** |
 | neutru | tren**ul** | tren**ului** | trenuri**le** | trenuri**lor** |
 | fem. în -ă | cas**a** | cas**ei** | case**le** | case**lor** |
 | fem. în -e | carte**a** | cărț**ii** | cărți**le** | cărți**lor** |
@@ -35,7 +35,7 @@ Se lipește la sfârșitul cuvântului.
 | al (m./n. sg.) | un prieten **al** meu |
 | a (f. sg.) | o carte **a** ei |
 | ai (m. pl.) | doi prieteni **ai** noștri |
-| ale (f./n. pl.) | ideile **ale** căror... / cărți **ale** lui |
+| ale (f./n. pl.) | cărți **ale** lui / omul **ale** cărui idei... |
 
 Se folosește când între posedat și posesor se intercalează ceva, sau când posedatul e nearticulat:
 
@@ -54,7 +54,7 @@ Se folosește când între posedat și posesor se intercalează ceva, sau când 
 
 După prepoziție simplă, substantivul rămâne de obicei nearticulat:
 
-- merg **la școală**, sunt **în oraș**, plec **cu trenul**
+- merg **la școală**, sunt **în oraș**, plec **la muncă**
 - dar: merg **la școala** din colț (determinat)
 
-Excepție: **cu** cere frecvent forma articulată — *cu mașina*, *cu autobuzul*.
+Excepție: **cu** cere frecvent forma articulată — *cu trenul*, *cu mașina*, *cu autobuzul*.

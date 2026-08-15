@@ -48,6 +48,21 @@ Este timpul trecut obișnuit al limbii vorbite: acoperă și *I sang*, și *I ha
 | am văzut-**o** | *o* stă întotdeauna după participiu |
 | **nu** l-am văzut | negația precedă tot grupul |
 
+### Verbele reflexive
+
+Cliticul reflexiv se lipește de auxiliar, la fel ca celelalte.
+
+| | a se duce | a-și aminti |
+|---|---|---|
+| eu | **m-am** dus | **mi-am** amintit |
+| tu | **te-ai** dus | **ți-ai** amintit |
+| el / ea | **s-a** dus | **și-a** amintit |
+| noi | **ne-am** dus | **ne-am** amintit |
+| voi | **v-ați** dus | **v-ați** amintit |
+| ei / ele | **s-au** dus | **și-au** amintit |
+
+La negativ: *nu **m-am** dus*, *nu **și-a** amintit*.
+
 ## Mai-mult-ca-perfectul
 
 O singură formă, fără auxiliar.
@@ -65,8 +80,10 @@ Radicalul se obține din participiu:
 
 | Participiu în | Se face | Exemple |
 |---|---|---|
-| **-t** | se scoate *-t*, se adaugă *-sem* | cânta**t** → cântasem; văzu**t** → văzusem; făcu**t** → făcusem; dormi**t** → dormisem |
+| **-at, -ut, -it, -ât** | se scoate *-t*, se adaugă *-sem* | cânta**t** → cântasem; văzu**t** → văzusem; dormi**t** → dormisem; coborâ**t** → coborâsem |
 | **-s** | se adaugă *-esem* | mer**s** → mersesem; scri**s** → scrisesem; pu**s** → pusesem |
+
+> Regula nu acoperă participiile scurte în **-t** ale conjugării III: *rupt* → **rupsesem**, *copt* → **copsesem**, *fript* → **fripsesem** (ca la *-s*). Neregulate și: *a da* → **dădusem**, *a sta* → **stătusem**.
 
 **a fi**: fusesem, fuseseși, fusese, fuseserăm, fuseserăți, fuseseră.
 

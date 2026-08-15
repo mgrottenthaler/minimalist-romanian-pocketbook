@@ -11,6 +11,7 @@
 
 import http from "node:http";
 import fs from "node:fs";
+import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer-core";
@@ -45,7 +46,7 @@ function serve(dir) {
     let rel = decodeURIComponent(new URL(req.url, "http://x").pathname);
     if (rel.endsWith("/")) rel += "index.html";
     const file = path.join(dir, rel);
-    if (!file.startsWith(dir) || !fs.existsSync(file)) {
+    if (!file.startsWith(dir + path.sep) || !fs.existsSync(file)) {
       res.writeHead(404).end("not found");
       return;
     }
@@ -71,32 +72,38 @@ const browser = await puppeteer.launch({
   executablePath: CHROME,
   args: ["--no-sandbox", "--font-render-hinting=none"],
 });
-const page = await browser.newPage();
 
-page.on("console", (m) => {
-  if (m.type() === "error") console.error("  [page]", m.text());
-});
+// Pagination is the step that fails when a CSS change breaks paged.js, and it
+// fails by timing out. Without the finally, that throw leaks a Chromium process
+// and leaves the server holding the event loop open.
+try {
+  const page = await browser.newPage();
 
-// paged.js calls PagedConfig.after() once pagination is complete.
-await page.evaluateOnNewDocument(() => {
-  window.PagedConfig = { auto: true, after: () => { window.__PAGED_DONE = true; } };
-});
+  page.on("console", (m) => {
+    if (m.type() === "error") console.error("  [page]", m.text());
+  });
 
-await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: "networkidle0" });
-await page.evaluate(() => document.fonts.ready);
-await page.waitForFunction(() => window.__PAGED_DONE === true, { timeout: 120000 });
+  // paged.js calls PagedConfig.after() once pagination is complete.
+  await page.evaluateOnNewDocument(() => {
+    window.PagedConfig = { auto: true, after: () => { window.__PAGED_DONE = true; } };
+  });
 
-fs.mkdirSync(path.dirname(OUT), { recursive: true });
-await page.pdf({
-  path: OUT,
-  printBackground: true,
-  preferCSSPageSize: true,
-  displayHeaderFooter: false,
-  timeout: 120000,
-});
+  await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: "networkidle0" });
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForFunction(() => window.__PAGED_DONE === true, { timeout: 120000 });
 
-await browser.close();
-server.close();
+  fs.mkdirSync(path.dirname(OUT), { recursive: true });
+  await page.pdf({
+    path: OUT,
+    printBackground: true,
+    preferCSSPageSize: true,
+    displayHeaderFooter: false,
+    timeout: 120000,
+  });
+} finally {
+  await browser.close();
+  server.close();
+}
 
 // A printed leaf is two pages, so the interior extent must be even. paged.js
 // will not emit a trailing empty page, so the blank leaf is appended to the
@@ -106,12 +113,16 @@ const doc = await PDFDocument.load(fs.readFileSync(OUT));
 const target = { w: TRIM.w * 72, h: TRIM.h * 72 };
 const rendered = doc.getPage(0).getSize();
 const drift = Math.max(Math.abs(rendered.width - target.w), Math.abs(rendered.height - target.h));
+// Fail rather than snap: forcing the box to the target when the layout came out
+// at a different size produces a correctly-sized PDF with cropped or offset
+// content, which looks fine in a viewer and is wrong at the printer.
 if (drift > 1) {
   console.error(
     `  ! Rendered trim ${(rendered.width / 72).toFixed(3)} × ${(rendered.height / 72).toFixed(3)} in` +
       ` differs from the intended ${TRIM.w} × ${TRIM.h} in.` +
       `\n    Check the @page rule in assets/css/book.css, and that it declares no bleed or marks.`,
   );
+  process.exit(1);
 }
 
 const padded = doc.getPageCount() % 2 !== 0;
@@ -124,3 +135,23 @@ const kb = (fs.statSync(OUT).size / 1024).toFixed(0);
 console.log(`\n  ${path.relative(ROOT, OUT)}`);
 console.log(`  ${doc.getPageCount()} pages · ${TRIM.w} × ${TRIM.h} in · ${kb} KB`);
 if (padded) console.log("  one blank leaf appended to reach an even count");
+
+// The whole font-vendoring pipeline exists to stop a glyph falling back to a
+// system face mid-word. That failure is invisible on screen, so assert it here
+// rather than leaving it to a manual check before ordering.
+const fonts = spawnSync("pdffonts", [OUT], { encoding: "utf8" });
+if (fonts.error) {
+  console.log("  fonts unchecked — pdffonts not installed (poppler-utils)");
+} else {
+  const rows = fonts.stdout.split("\n").slice(2).filter((l) => l.trim());
+  const unembedded = rows.filter((l) => / no +(yes|no) +(yes|no) /.test(l));
+  const fallback = rows.filter((l) => /Times|Helvetica|Courier|Arial|DejaVu|Liberation/i.test(l));
+  if (unembedded.length || fallback.length) {
+    console.error("\n  ! Font check failed:");
+    for (const l of unembedded) console.error(`    not embedded: ${l.trim().split(/\s+/)[0]}`);
+    for (const l of fallback) console.error(`    system fallback: ${l.trim().split(/\s+/)[0]}`);
+    console.error("    A glyph is missing from the subsets — see scripts/fetch-fonts.sh.");
+    process.exit(1);
+  }
+  console.log(`  ${rows.length} faces, all embedded, no system fallback`);
+}

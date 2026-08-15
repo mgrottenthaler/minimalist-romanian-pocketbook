@@ -14,6 +14,13 @@ weight: 30
 
 Alternanțele fonetice de la substantiv se aplică identic: *frumos → frumoasă, frumoși, frumoase*; *lung → lungă, lungi, lungi*.
 
+Două clase productive au trei forme, dar cu schimbare de radical:
+
+| Tip | m. sg. | f. sg. | m. pl. | f. pl. |
+|---|---|---|---|---|
+| -esc | român**esc** | român**ească** | român**ești** | român**ești** |
+| -iu | aur**iu** | aur**ie** | aur**ii** | aur**ii** |
+
 ## Poziția
 
 Locul obișnuit este **după** substantiv. Înaintea substantivului, adjectivul capătă valoare afectivă sau stilistică, iar articolul se mută pe el:
@@ -40,7 +47,7 @@ Adjectivul urmează forma substantivului:
 
 Superlativ absolut expresiv, în vorbire: *grozav de bun*, *nemaipomenit de bun*, *bun de tot*.
 
-> Neregulate: **bun → mai bun**, dar și *cel mai bun*. Româna nu are forme sintetice de tipul „melior”: comparativul e întotdeauna analitic, cu **mai**.
+> Fără forme sintetice: româna nu are un tip „melior”. Comparativul se face **întotdeauna** analitic, cu **mai** — inclusiv la *bun*: **mai bun**, **cel mai bun**. Nu există excepții de învățat.
 
 ## Adjective pronominale
 

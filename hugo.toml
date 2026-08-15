@@ -1,5 +1,6 @@
 baseURL = "/"
-locale = "ro"
+languageCode = "ro"
+defaultContentLanguage = "ro"
 title = "The Minimalist Romanian Pocketbook"
 
 disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT", "section", "404"]

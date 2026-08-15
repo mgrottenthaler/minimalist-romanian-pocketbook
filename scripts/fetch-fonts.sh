@@ -42,6 +42,18 @@ rm -f "$OUT"/*.woff2
 SERIF="$TMP/serif/source-serif-${SERIF_VER}_WOFF2/TTF"
 SANS="$TMP/sans/WOFF2/TTF"
 
+# OFL 1.1 requires the licence to travel with the fonts, and these subsets are
+# redistributed in this repo. The OFL body is identical for both families but
+# the copyright line is not, so both are kept.
+echo "→ licences"
+licence () {  # licence <repo> <output-name>
+  curl -sSL -o "$OUT/$2" "https://raw.githubusercontent.com/adobe-fonts/$1/release/LICENSE.md"
+  test -s "$OUT/$2" || { echo "   ! could not fetch the $1 licence" >&2; exit 1; }
+  printf '   %-40s %s\n' "$2" "$(du -h "$OUT/$2" | cut -f1)"
+}
+licence source-serif OFL-source-serif.txt
+licence source-sans  OFL-source-sans.txt
+
 echo "→ subsetting"
 subset "$SERIF/SourceSerif4SmText-Regular.ttf.woff2"  source-serif-regular.woff2
 subset "$SERIF/SourceSerif4SmText-It.ttf.woff2"       source-serif-italic.woff2

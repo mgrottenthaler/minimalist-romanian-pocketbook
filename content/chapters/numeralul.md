@@ -24,14 +24,14 @@ Se acordă în gen numai **unu / una** și **doi / două**, inclusiv în compuse
 
 ## Legătura cu substantivul: `de`
 
-Substantivul se leagă prin **de**, cu excepția numerelor care se termină în 1–19.
+Substantivul se leagă prin **de**, cu excepția numerelor ale căror **ultime două cifre** sunt 1–19. Contează grupul final, nu ultima cifră: *douăzeci și unu* se termină în *1*, dar are nevoie de **de**.
 
 | Fără `de` | Cu `de` |
 |---|---|
 | cinci lei | douăzeci **de** lei |
 | nouăsprezece ani | douăzeci și cinci **de** ani |
 | o sută cinci lei | o sută **de** lei |
-| două mii optsprezece lei | o sută treizeci **de** lei |
+| două mii optsprezece lei | douăzeci și unu **de** ani |
 
 ## Ordinalele
 

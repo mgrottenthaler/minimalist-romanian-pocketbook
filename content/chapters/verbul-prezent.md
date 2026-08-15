@@ -49,6 +49,21 @@ La aceste două conjugări, **persoana 3 plural este identică cu persoana 1 sin
 | voi | dorm**iți** | cit**iți** | cobor**âți** | hotăr**âți** |
 | ei / ele | dorm | cit**esc** | coboar**ă** | hotăr**ăsc** |
 
+## Auxiliarele: a fi, a avea, a vrea
+
+Cele trei verbe de care atârnă restul sistemului. Se învață integral.
+
+| | a fi | a avea | a vrea |
+|---|---|---|---|
+| eu | **sunt** | **am** | **vreau** |
+| tu | **ești** | **ai** | **vrei** |
+| el / ea | **este**, **e** | **are** | **vrea** |
+| noi | **suntem** | **avem** | **vrem** |
+| voi | **sunteți** | **aveți** | **vreți** |
+| ei / ele | **sunt** | **au** | **vor** |
+
+> Formele de auxiliar **nu** sunt aceleași cu cele de verb plin. La perfectul compus, *a avea* se scurtează și persoana 3 este ***a***, nu *are*: *el **a** cântat*. La viitor, *a vrea* dă *voi, vei, va, vom, veți, vor*.
+
 ## Sufixele -ez, -esc, -ăsc
 
 Nu există regulă: sufixul se învață odată cu verbul.
@@ -69,7 +84,7 @@ Apar la persoanele unde accentul cade pe radical.
 |---|---|
 | o → oa | dorm → d**oa**rme, zbor → zb**oa**ră |
 | e → ea | plec → pl**ea**că, leg → l**ea**gă |
-| a → ă | (la *noi*, *voi*) cânt → c**â**ntăm |
+| ă → â | (la *noi*, *voi*) m**ă**nânc → m**â**ncăm |
 | d → z | vă**d** → ve**z**i |
 | t → ț | cân**t** → cân**ț**i, ara**t** → ara**ț**i |
 | s → ș | co**s** → co**ș**i |

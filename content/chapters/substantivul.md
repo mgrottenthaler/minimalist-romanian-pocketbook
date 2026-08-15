@@ -35,8 +35,8 @@ Neutrul nu are formă proprie: e masculin la singular și feminin la plural.
 | -ă | **-i** | ușă → uș**i** |
 | -e | **-i** | carte → cărț**i** |
 | -ea | **-ele** | stea → st**ele**, cafea → caf**ele** |
-| -ie (accentuat) | **-ii** | câmpie → câmp**ii** |
-| -ie (neaccentuat) | **-i** | femeie → feme**i** |
+| -ie (*i* vocalic) | **-ii** | câm-pi-e → câmp**ii** |
+| -ie (*i* semivocalic) | **-i** | fe-mei-e → feme**i** |
 
 ### Neutru
 
@@ -45,10 +45,11 @@ Neutrul nu are formă proprie: e masculin la singular și feminin la plural.
 | consoană | **-uri** | tren → tren**uri** |
 | consoană | **-e** | scaun → scaun**e** |
 | -u | **-uri** | lucru → lucr**uri** |
+| -u | **-e** | exemplu → exempl**e** |
 | -iu | **-ii** | studiu → stud**ii** |
 | -ou | **-ouri** | birou → biro**uri** |
 
-> Nu există regulă pentru **-uri** față de **-e** la neutru. Se învață cu cuvântul.
+> Nu există regulă pentru **-uri** față de **-e** la neutru, nici după consoană, nici după *-u*. Se învață cu cuvântul: *tren**uri*** dar *scaun**e***; *lucr**uri*** dar *exempl**e***.
 
 ## Alternanțe fonetice
 
@@ -86,11 +87,23 @@ Cinci cazuri, dar numai trei forme distincte: **N-Ac**, **G-D**, **V**.
 
 > La feminin singular, forma de **G-D nearticulat este identică cu pluralul**: *o carte* → *unei cărți*; *o floare* → *unei flori*.
 
+### G-D cu `lui`
+
+Numele proprii și termenii de rudenie folosiți ca nume nu primesc terminație: G-D se face cu **lui** antepus, invariabil, la ambele genuri.
+
+| | |
+|---|---|
+| nume masculin | cartea **lui** Ion, îi dau **lui** Ion |
+| nume feminin | cartea **lui** Maria (și: cartea Mari**ei**) |
+| rudenie ca nume | mașina **lui** tata, i-am spus **lui** mama |
+
+La feminin sunt corecte amândouă: *lui Maria* în vorbire, *Mariei* în scris îngrijit. La masculin, numai *lui Ion*.
+
 ## Vocativul
 
 | Formă | Folosire |
 |---|---|
-| -e (m. sg.) | Ioan**e**! domn**e**! băiet**e**! |
+| -e (m. sg.) | Ioan**e**! băiet**e**! frat**e**! |
 | -ule (m. sg.) | băiat**ule**! prieten**ule**! |
 | -o (f. sg.) | Mari**o**! fat**o**! doamn**o**! |
 | -lor (pl.) | domni**lor**! copii**lor**! |

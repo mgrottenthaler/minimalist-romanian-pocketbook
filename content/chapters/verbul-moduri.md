@@ -26,7 +26,7 @@ Neregulate: *să fiu / să fie*, *să am / să aibă*, *să dau / să dea*, *să
 
 **să fi** + participiu, identic la toate persoanele: *să fi cântat*, *să fi mers*.
 
-*Ar fi trebuit **să fi plecat** mai devreme.*
+*Sper **să fi înțeles**.* — *Îmi pare rău că nu ai venit; ar fi trebuit **să fi insistat**.*
 
 ### Unde apare conjunctivul
 
@@ -63,17 +63,22 @@ Auxiliar + infinitivul fără *a*.
 
 ### Fraza condițională
 
-Ambele propoziții stau la condițional:
+La condiția **ireală sau ipotetică**, ambele propoziții stau la condițional — spre deosebire de engleză sau franceză, care pun un trecut în *dacă*:
 
 - *Dacă **aș avea** timp, **aș veni**.*
 - *Dacă **aș fi știut**, **aș fi venit**.*
+
+La condiția **reală**, ambele stau la indicativ:
+
+- *Dacă **am** timp, **vin**.*
+- *Dacă **plouă**, **rămânem** acasă.*
 
 ## Imperativul
 
 | | Afirmativ | Negativ |
 |---|---|---|
-| 2 sg., conj. I | cânt**ă**! *(= pers. 3 sg.)* | **nu** cânta! *(= infinitiv)* |
-| 2 sg., celelalte | merg**i**! dorm**i**! cit**ește**! *(= pers. 2 sg.)* | nu merge! nu dormi! nu citi! |
+| 2 sg., conj. I și verbele cu sufix | cânt**ă**! lucr**ează**! cit**ește**! vorb**ește**! *(= pers. 3 sg.)* | **nu** cânta! *(= infinitiv)* nu citi! |
+| 2 sg., celelalte | merg**i**! dorm**i**! vez**i**! *(= pers. 2 sg.)* | nu merge! nu dormi! nu vedea! |
 | 2 pl., toate | cânt**ați**! merg**eți**! *(= pers. 2 pl.)* | nu cântați! nu mergeți! |
 
 Negativul de la persoana 2 singular este **întotdeauna infinitivul fără *a***. Aceasta este singura neregularitate reală a imperativului.
