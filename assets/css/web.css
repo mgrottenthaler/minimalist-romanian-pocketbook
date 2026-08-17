@@ -1,0 +1,277 @@
+/* ==========================================================================
+   Gramatica română — website stylesheet
+   --------------------------------------------------------------------------
+   This is what a browser shows by default: a single scrolling page, not the
+   paginated book. It is deliberately kept separate from book.css (the print
+   stylesheet) rather than sharing rules behind @media print/screen, because
+   paged.js physically rebuilds the DOM when it runs and needs a stylesheet
+   with page geometry, not web layout. See layouts/home.html for the toggle.
+
+   The <link> for this file carries data-pagedjs-ignore, so paged.js's own
+   stylesheet pass (used only when generating the PDF) never processes it —
+   see the removeStyles() filter in static/vendor/pagedjs/paged.polyfill.js.
+   ========================================================================== */
+
+:root {
+  --serif: "Source Serif", Georgia, serif;
+  --sans: "Source Sans", "Helvetica Neue", sans-serif;
+
+  --bg: #fbfaf8;
+  --surface: #fff;
+  --ink: #1b1a17;
+  --ink-soft: #5b574e;
+  --ink-faint: #8a8578;
+  --accent: #9a3324;
+  --rule: #e4dfd4;
+  --rule-strong: #d8d1c2;
+  --shade: #f3efe6;
+  --code-bg: #efe9db;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161513;
+    --surface: #1d1c19;
+    --ink: #ece7dc;
+    --ink-soft: #b9b3a3;
+    --ink-faint: #847e6f;
+    --accent: #e08669;
+    --rule: #322f29;
+    --rule-strong: #3c3931;
+    --shade: #211f1b;
+    --code-bg: #262319;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 6rem;
+}
+
+a { color: var(--accent); }
+a:not(:hover) { text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+
+/* ---------- hero / title page ------------------------------------------ */
+
+.titlepage {
+  padding: 4.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2.5rem;
+}
+.booktitle {
+  font-family: var(--sans);
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.15;
+  margin: 0 0 .6rem;
+}
+.booksub {
+  font-family: var(--sans);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 .5rem;
+}
+.bookedition {
+  font-family: var(--sans);
+  font-size: .85rem;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ---------- table of contents ------------------------------------------ */
+
+.toc {
+  margin-bottom: 3rem;
+}
+.toc h1 {
+  font-family: var(--sans);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 1rem;
+}
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: toc;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: .35rem 1.5rem;
+}
+.toc li { counter-increment: toc; }
+.toc a {
+  display: flex;
+  gap: .55rem;
+  align-items: baseline;
+  padding: .3rem 0;
+  font-family: var(--sans);
+  font-size: .95rem;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.toc a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--rule-strong);
+}
+.toc a::before {
+  content: counter(toc) ".";
+  flex: 0 0 auto;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+.toc .dots { display: none; }
+
+/* ---------- chapters ----------------------------------------------------- */
+
+.chapter {
+  padding-top: 2.75rem;
+  border-top: 1px solid var(--rule);
+}
+.chapter:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.chapter > h1 {
+  font-family: var(--sans);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  scroll-margin-top: 1.5rem;
+  margin: 0 0 1.25rem;
+}
+
+h2 {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  scroll-margin-top: 1.5rem;
+  margin: 2rem 0 .75rem;
+}
+h2:first-child { margin-top: 0; }
+
+h3 {
+  font-family: var(--sans);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin: 1.4rem 0 .5rem;
+}
+
+p { margin: 0 0 .9rem; }
+
+.chapter-top {
+  display: inline-block;
+  margin-top: 1.75rem;
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--ink-faint);
+  text-decoration: none;
+}
+.chapter-top:hover { color: var(--accent); }
+
+/* ---------- lists --------------------------------------------------------- */
+
+ul, ol {
+  margin: 0 0 .9rem;
+  padding-left: 1.3rem;
+}
+li { margin-bottom: .25rem; }
+li > ul, li > ol { margin-top: .25rem; }
+
+/* ---------- tables --------------------------------------------------------- */
+
+table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: .92rem;
+  margin: 0 0 1.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+thead { display: table-header-group; }
+th {
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--ink-faint);
+  padding: .4rem .9rem .4rem 0;
+  border-bottom: 1px solid var(--rule-strong);
+  white-space: nowrap;
+}
+td {
+  padding: .4rem .9rem .4rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+td:last-child, th:last-child { padding-right: 0; }
+
+/* ---------- inline conventions --------------------------------------------- */
+
+strong, b { font-weight: 700; }
+em, i { font-style: italic; color: var(--ink-soft); }
+.e { font-weight: 700; color: var(--accent); }
+
+code, kbd {
+  font-family: var(--sans);
+  font-size: .85em;
+  background: var(--code-bg);
+  padding: .1em .35em;
+  border-radius: 4px;
+}
+
+/* ---------- callouts -------------------------------------------------------- */
+
+blockquote {
+  margin: 1.1rem 0;
+  padding: .75rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--shade);
+  border-radius: 0 6px 6px 0;
+  font-size: .92rem;
+  color: var(--ink-soft);
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2rem 0;
+}
+
+/* ---------- small screens --------------------------------------------------- */
+
+@media (max-width: 30rem) {
+  .page { padding: 0 1.1rem 4rem; }
+  .titlepage { padding-top: 3rem; }
+  .toc ol { grid-template-columns: 1fr; }
+}

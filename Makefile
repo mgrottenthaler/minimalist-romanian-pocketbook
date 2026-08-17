@@ -5,7 +5,9 @@ pdf:
 	hugo --cleanDestinationDir
 	node scripts/build-pdf.mjs
 
-# Live preview in the browser, paginated by paged.js exactly as it will print
+# Live preview in the browser as a normal website (assets/css/web.css).
+# Add ?print to the URL to see the paginated book layout instead, exactly as
+# it will print (assets/css/book.css + paged.js).
 serve:
 	hugo server --disableFastRender
 

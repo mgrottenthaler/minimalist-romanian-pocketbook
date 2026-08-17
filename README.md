@@ -51,15 +51,19 @@ content/*.md  ──hugo──>  public/index.html  ──paged.js──>  pagin
 ```
 
 Hugo assembles every chapter into **one** HTML document (`layouts/home.html`);
-chapter pages are never rendered individually. paged.js then does what Chrome's
-print engine cannot: mirrored margins, running heads, folios, and a table of
-contents with real page numbers (`target-counter`).
+chapter pages are never rendered individually. That document ships two
+stylesheets and picks one: a normal `web.css` for browsing, and `book.css` +
+paged.js for the printed layout, which does what Chrome's print engine
+cannot — mirrored margins, running heads, folios, and a table of contents
+with real page numbers (`target-counter`). A plain visit gets the website;
+appending `?print` to the URL (or building the PDF) switches to the
+paginated book preview.
 
 ### Build
 
 ```sh
 make pdf      # hugo + chromium → dist/gramatica-romana-interior.pdf
-make serve    # live preview, paginated exactly as it prints
+make serve    # live preview as a website; add ?print for the paginated book
 make fonts    # re-vendor the fonts from upstream
 make clean
 ```
@@ -79,7 +83,9 @@ Chromium automatically; override with `CHROME_PATH=/path/to/chrome`.
 ```
 content/chapters/*.md    one file per chapter, ordered by `weight`
 layouts/home.html        assembles the whole book into one document
-assets/css/book.css      page geometry, typography, tables
+assets/css/fonts.css     @font-face rules, shared by book.css and web.css
+assets/css/web.css       the website: normal layout, loaded by default
+assets/css/book.css      the printed book: page geometry, typography, tables
 static/fonts/            vendored OFL woff2 subsets + OFL-*.txt (see scripts/fetch-fonts.sh)
 static/vendor/pagedjs/   vendored paged.js polyfill
 scripts/build-pdf.mjs    serves public/, waits for pagination, prints PDF

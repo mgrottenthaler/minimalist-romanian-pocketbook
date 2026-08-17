@@ -2,12 +2,33 @@
 <html lang="ro">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
 <title>{{ site.Title }} — {{ site.Params.subtitle }}</title>
-{{ $css := resources.Get "css/book.css" | resources.Minify }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{ $fonts := resources.Get "css/fonts.css" | resources.Minify }}
+{{ $web := resources.Get "css/web.css" | resources.Minify }}
+{{ $book := resources.Get "css/book.css" | resources.Minify }}
+<link rel="stylesheet" href="{{ $fonts.RelPermalink }}">
+<link rel="stylesheet" id="web-css" href="{{ $web.RelPermalink }}" data-pagedjs-ignore>
+<link rel="stylesheet" id="book-css" href="{{ $book.RelPermalink }}" media="not all">
+<script>
+  // Default is the website: a normal scrolling page, styled by web.css.
+  // Book mode (paged.js pagination + book.css) is opt-in — either visit
+  // with ?print, or scripts/build-pdf.mjs sets PagedConfig.auto = true
+  // itself before this script runs. The two stylesheets are mutually
+  // exclusive: paged.js clones the live DOM into its paginated output, so
+  // web.css must be fully disabled in book mode or its rules cascade
+  // straight onto the paginated pages alongside book.css.
+  window.PagedConfig = window.PagedConfig || { auto: new URLSearchParams(location.search).has("print") };
+  if (window.PagedConfig.auto) {
+    document.getElementById("web-css").media = "not all";
+    document.getElementById("book-css").media = "all";
+  }
+</script>
 </head>
 <body>
+
+<div class="page">
 
 <section class="titlepage">
   <h1 class="booktitle">{{ site.Title }}</h1>
@@ -18,7 +39,7 @@
 {{ $chapters := where site.RegularPages "Section" "chapters" }}
 {{ $chapters = sort $chapters "Weight" }}
 
-<nav class="toc">
+<nav class="toc" id="toc">
   <h1>Cuprins</h1>
   <ol>
     {{ range $chapters }}
@@ -31,8 +52,11 @@
 <section class="chapter" id="{{ .File.BaseFileName | anchorize }}">
   <h1>{{ .Title }}</h1>
   {{ .Content }}
+  <a class="chapter-top" href="#toc">↑ Cuprins</a>
 </section>
 {{ end }}
+
+</div>
 
 <script src="{{ "vendor/pagedjs/paged.polyfill.js" | relURL }}"></script>
 </body>
