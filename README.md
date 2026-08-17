@@ -99,11 +99,11 @@ table of contents.
 | 1 | Substantivul — gen, plural, alternanțe, cazuri, vocativ | 3 |
 | 2 | Articolul — nehotărât, hotărât enclitic, posesiv, demonstrativ | 2 |
 | 3 | Adjectivul — clase de forme, poziție, comparație | 2 |
-| 4 | Pronumele — personal, clitice, reflexiv, posesiv, demonstrativ, relativ | 4 |
+| 4 | Pronumele — personal, adresare, clitice, reflexiv, posesiv, demonstrativ, relativ | 5 |
 | 5 | Numeralul — cardinal, ordinal, `de` după 20, ora | 2 |
 | 6 | Verbul: indicativ prezent — 4 conjugări, sufixele -ez / -esc / -ăsc | 3 |
 | 7 | Verbul: timpurile trecutului — imperfect, perfect compus, m.m.c.p. | 3 |
-| 8 | Verbul: viitorul — cele patru registre | 2 |
+| 8 | Verbul: viitorul — literar, curent, prezent cu valoare de viitor | 1 |
 | 9 | Conjunctivul, condiționalul, imperativul | 3 |
 | 10 | Forme nepersonale și diateze — infinitiv, participiu, gerunziu, supin | 2 |
 | 11 | Verbe neregulate — tabel de 64 de verbe | 3 |
@@ -141,6 +141,8 @@ that a reference grammar would cover, and is omitted on purpose.
 | Omitted | Why |
 |---|---|
 | Perfectul simplu (*cântai, cântă*) | Literary narrative and spoken Oltenia only. You will read it, never say it. Mentioned in ch. 15 as recognition-only. |
+| Viitorul cu *am să* (*am să cânt*) | Overlaps with *o să* in meaning and register; markedly less frequent. One line in ch. 15. |
+| Viitorul popular (*oi cânta*) | Regional, distinct paradigm from *o să* (no *să*, different *o*). Rare outside rural/regional speech. One line in ch. 15. |
 | Viitorul anterior (*voi fi cântat*) | Effectively extinct outside formal writing. |
 | Modul prezumtiv (*o fi cântând*) | Genuinely used for hedging, but marginal enough to cost more space than it returns. One line in ch. 15. |
 | Infinitivul lung as a verb form (*cântare*) | Survives only as a noun. Noun use is covered; verbal use is not. |
@@ -158,7 +160,7 @@ that a reference grammar would cover, and is omitted on purpose.
 | Archaic vocative (*Doamne*, *frate*) beyond the common forms | Covered only where still productive. |
 | Historical orthography (*sînt* vs. *sunt*, î/â rules) | Current DOOM² spelling throughout, no rule history. |
 | Rare collective numerals (*câteșitrei*) | Not worth the line. |
-| *Dânsul* as a politeness form | Regional and contested; one line in ch. 15. |
+| *Dânsul* as a politeness form | Contested register in Romania; a plain 3rd-person pronoun in Moldova, not politeness. One row + note in ch. 15. |
 
 **Included even though it is arguably marginal**
 

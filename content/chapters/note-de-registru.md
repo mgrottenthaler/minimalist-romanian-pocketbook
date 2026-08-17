@@ -3,17 +3,6 @@ title: "Registru și forme omise"
 weight: 150
 ---
 
-## Adresarea
-
-| Formă | Verbul la | Folosire |
-|---|---|---|
-| **tu** | pers. 2 sg. | familiar |
-| **dumneavoastră** | pers. 2 **pl.** | politețe standard, și pentru o singură persoană |
-| **dumneata** | pers. 2 **sg.** | politețe scăzută, uneori condescendentă |
-| **dumnealui, dumneaei, dumnealor** | pers. 3 | politețe, persoana absentă |
-
-**dânsul, dânsa** înseamnă *el / ea* cu o nuanță de politețe. În Moldova este pur și simplu forma curentă pentru *el / ea*. În scrisul standard se evită.
-
 ## Aceeași idee, patru registre
 
 | | Scris / formal | Vorbit standard | Familiar | Popular |
@@ -42,6 +31,14 @@ Timp narativ literar. În Oltenia și în sud-vest este însă viu, cu sensul de
 ### Mai-mult-ca-perfectul — inclus
 
 Este singurul timp „greu” păstrat în carte, pentru că este curent în vorbire. Vezi capitolul despre trecut.
+
+### Viitorul cu *am să*
+
+*am să cânt, ai să cânți, are să cânte...* — variantă a viitorului vorbit, cu *a avea* în loc de *o*. Mult mai rară decât *o să*, cu care se suprapune ca sens; nu adaugă destul cât să merite un capitol separat.
+
+### Viitorul popular
+
+**oi, ăi / ei, o, om, ăți / eți, or** + infinitiv: *oi cânta*, *o veni*. Nu se confundă cu *o să* — nu are *să*, iar *o* de aici e alt cuvânt. Regional și rar auzit în vorbirea standard; adaugă adesea o nuanță de îndoială: *O veni el cândva.*
 
 ### Viitorul anterior
 

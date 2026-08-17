@@ -31,6 +31,16 @@ weight: 40
 
 Forma accentuată se folosește pentru contrast sau după prepoziție: *pe mine*, *cu tine*, *mie mi-a spus*.
 
+## Adresarea
+
+| Formă | Verbul la | Folosire |
+|---|---|---|
+| **tu** | pers. 2 sg. | familiar |
+| **dumneavoastră** | pers. 2 **pl.** | politețe standard, și pentru o singură persoană |
+| **dumneata** | pers. 2 **sg.** | politețe scăzută, uneori condescendentă |
+| **dumnealui, dumneaei, dumnealor** | pers. 3 | politețe, persoana absentă |
+| **dânsul, dânsa, dânșii, dânsele** | pers. 3 | politețe, dar evitat în scrisul standard; în R. Moldova e formă **neutră**, curentă, fără nuanță de politețe |
+
 ## Poziția cliticelor
 
 Înaintea verbului, în mod normal; după verb la imperativ afirmativ și la gerunziu.
