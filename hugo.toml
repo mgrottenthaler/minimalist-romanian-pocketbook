@@ -1,5 +1,5 @@
 baseURL = "/"
-languageCode = "ro"
+locale = "ro"
 defaultContentLanguage = "ro"
 title = "The Minimalist Romanian Pocketbook"
 
