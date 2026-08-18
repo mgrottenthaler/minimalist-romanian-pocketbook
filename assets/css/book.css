@@ -63,7 +63,11 @@
     content: counter(page);
     font: 600 7.4pt/1 "Source Sans", sans-serif;
     vertical-align: top;
-    padding-top: 5pt;
+    /* 2pt, not 5: at 5pt the folio's ink sat 0.24in from the trim edge, inside
+       the 0.25in Lulu draws as its safety line. Moving it up 3pt puts it at
+       0.28in and still leaves 0.22in of white above it on the fullest page
+       (p28). Only the @bottom margin box moves, so pagination is untouched. */
+    padding-top: 2pt;
   }
 }
 
@@ -84,7 +88,11 @@
     content: counter(page);
     font: 600 7.4pt/1 "Source Sans", sans-serif;
     vertical-align: top;
-    padding-top: 5pt;
+    /* 2pt, not 5: at 5pt the folio's ink sat 0.24in from the trim edge, inside
+       the 0.25in Lulu draws as its safety line. Moving it up 3pt puts it at
+       0.28in and still leaves 0.22in of white above it on the fullest page
+       (p28). Only the @bottom margin box moves, so pagination is untouched. */
+    padding-top: 2pt;
   }
 }
 
