@@ -1,0 +1,28 @@
+{
+  // Live preview of the book. `make serve` is the single definition of how the
+  // dev server runs — this task only wraps it so it is one keystroke in VS Code
+  // (Terminal > Run Task, or Ctrl+Shift+B for the default build task).
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "hugo: serve",
+      "type": "shell",
+      "command": "make serve",
+      "group": { "kind": "build", "isDefault": true },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "book: build PDFs",
+      "type": "shell",
+      "command": "make pdf",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

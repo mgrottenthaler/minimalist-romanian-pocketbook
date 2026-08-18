@@ -1,0 +1,312 @@
+/* ==========================================================================
+   Gramatica română — cover stylesheet
+   --------------------------------------------------------------------------
+   One sheet, printed outside-up, back cover left and front cover right:
+
+       |<---------------------- 8.75in ---------------------->|
+       | .125 |          4.25in        ||        4.25in       | .125 |   bleed
+       |      |        back cover      ||     front cover     |      |
+                                       ^^
+                                  coil punched here
+
+   Trim   4.25 x 6.875in per half (same Pocketbook trim as the interior).
+   Bleed  0.125in on all four outside edges  -> sheet 8.75 x 7.125in.
+   Safety 0.25in in from trim on the outside edges;
+          0.5in either side of the centre seam, because coil punches through
+          both covers there — the same clearance the interior's inner margin
+          buys (see assets/css/book.css).
+
+   Unlike the interior this page is NOT paginated by paged.js: it is exactly
+   one page, so Chromium prints it directly (scripts/build-cover.mjs) and the
+   @page size below is the whole sheet.
+
+   COLOUR IS DELIBERATE HERE. The interior is black and white because Lulu
+   bills colour across every page of it; the cover is printed in full colour
+   whatever the interior is, at no extra cost. See "Print decisions" in the
+   README.
+   ========================================================================== */
+
+/* Font faces live in assets/css/fonts.css, shared with book.css and web.css. */
+
+:root {
+  --serif: "Source Serif", Georgia, serif;
+  --sans: "Source Sans", "Helvetica Neue", sans-serif;
+
+  --cream: #fbf7ee;         /* the 60# cream stock, roughly */
+  --ink: #1b1a17;
+  --ink-soft: #5b574e;
+  --faint: #8a8578;
+  --red: #9a3324;           /* the website's accent, carried onto the cover */
+  --red-deep: #7d2a1e;
+  --rule: #e0d9ca;
+
+  /* geometry */
+  --bleed: 0.125in;
+  --safe: 0.25in;           /* Lulu's minimum from trim, outside edges */
+  --edge: 0.44in;           /* what the artwork actually uses: bleed + .315 */
+  --coil: 0.5in;            /* from the seam — Lulu's punch clearance */
+}
+
+@page {
+  size: 8.75in 7.125in;     /* 2 x 4.25 trim + 0.125 bleed all round */
+  margin: 0;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--cream);
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  /* Backgrounds are the design here, not decoration Chromium may drop. */
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  font-variant-numeric: lining-nums;
+}
+
+.spread {
+  position: relative;
+  width: 8.75in;
+  height: 7.125in;
+  display: flex;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.half {
+  position: relative;
+  width: 4.375in;           /* 4.25 trim + 0.125 bleed on the outside edge */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Outer edge = bleed + safety; inner edge = coil clearance from the seam. */
+.back  { padding: 0.5in var(--coil) 0.44in var(--edge); }
+.front { padding: 0 var(--edge) 0.44in var(--coil); }
+
+/* ---------- front cover ------------------------------------------------ */
+
+/* The red field bleeds off three edges, so it is pulled out of the padded
+   column and re-padded itself. */
+.front .band {
+  margin: 0 calc(-1 * var(--edge)) 0 calc(-1 * var(--coil));
+  padding: 0.62in var(--edge) 0.34in var(--coil);
+  background: var(--red);
+  color: var(--cream);
+}
+
+.front .kicker {
+  margin: 0 0 0.16in;
+  font-size: 7.6pt;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--cream) 78%, var(--red));
+}
+
+.title {
+  margin: 0;
+  font-size: 30pt;
+  line-height: 1.06;
+  font-weight: 700;
+  letter-spacing: -.015em;
+  text-wrap: balance;
+}
+
+.front .face {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Auto margins top and bottom: the specimen sits in the optical centre of
+   whatever the red field leaves, while .version stays on the foot. */
+.specimen-block { margin: auto 0; }
+
+/* The book's convention in one word: stem plain, ending picked out. */
+.specimen {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 27pt;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+.specimen .e { font-weight: 700; color: var(--red); }
+
+.specimen-caption {
+  margin: 0.07in 0 0;
+  font-size: 6.8pt;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.version {
+  margin: 0;                /* the foot of the face; .specimen-block centres */
+  padding-top: 0.14in;
+  border-top: 0.8pt solid var(--rule);
+  align-self: stretch;
+  font-size: 7.6pt;
+  font-weight: 600;
+  letter-spacing: .05em;
+  color: var(--ink-soft);
+}
+.version .sep { color: var(--faint); padding: 0 .18em; }
+
+/* ---------- back cover -------------------------------------------------- */
+
+.back .kicker {
+  margin: 0 0 0.16in;
+  padding-bottom: 0.09in;
+  border-bottom: 1.6pt solid var(--red);
+  font-size: 7.6pt;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.blurb {
+  margin: 0 0 0.3in;
+  text-wrap: pretty;        /* no one-word last line on a three-line blurb */
+  font-family: var(--serif);
+  font-size: 9.6pt;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.label {
+  margin: 0 0 0.12in;
+  font-size: 6.8pt;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* Fifteen chapters in two columns — the cover doubles as the contents. */
+.chapters {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ch;
+  columns: 2;
+  column-gap: 0.2in;
+  font-size: 7.8pt;
+  line-height: 1.3;
+}
+.chapters li {
+  counter-increment: ch;
+  break-inside: avoid;
+  margin: 0 0 0.09in;
+  padding-left: 0.22in;
+  text-indent: -0.22in;
+  color: var(--ink-soft);
+}
+.chapters li::before {
+  content: counter(ch) ".";
+  display: inline-block;
+  width: 0.22in;
+  text-indent: 0;
+  font-weight: 700;
+  color: var(--red);
+}
+
+/* The premise, stated as a boundary: what the book leaves out. */
+.omits {
+  margin: auto 0 0.24in;    /* takes up the slack above the colophon */
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 8.4pt;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.colophon {
+  padding-top: 0.12in;
+  border-top: 0.8pt solid var(--rule);
+}
+
+.legend {
+  margin: 0 0 0.1in;
+  font-size: 6.6pt;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.legend strong { font-weight: 700; color: var(--ink); }
+.legend em { font-family: var(--serif); font-style: italic; }
+.legend .chip {
+  background: #efe9db;
+  padding: 0 .35em;
+  border-left: 1.6pt solid var(--red);
+}
+
+.imprint {
+  margin: 0;
+  font-size: 6.4pt;
+  line-height: 1.55;
+  letter-spacing: .04em;
+  color: var(--faint);
+}
+.imprint span { display: block; }
+
+/* ---------- preview guides (?guides, screen only) ----------------------- */
+
+.guides { display: none; }
+
+body.show-guides .guides {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+body.show-guides .guides span {
+  position: absolute;
+  display: block;
+}
+/* trim */
+body.show-guides .g-trim {
+  inset: var(--bleed);
+  outline: 0.5pt solid #d33;
+}
+/* safety, outside edges */
+body.show-guides .g-safe {
+  inset: calc(var(--bleed) + var(--safe));
+  outline: 0.5pt dashed #39c;
+}
+/* coil keep-out: 0.5in either side of the seam */
+body.show-guides .g-coil {
+  top: 0;
+  bottom: 0;
+  left: calc(4.375in - var(--coil));
+  width: calc(2 * var(--coil));
+  background: rgba(255, 140, 0, .18);
+}
+/* the seam itself */
+body.show-guides .g-seam {
+  top: 0;
+  bottom: 0;
+  left: 4.375in;
+  border-left: 0.5pt dashed #333;
+}
+
+/* ---------- screen preview --------------------------------------------- */
+
+@media screen {
+  html { background: #6b6b6b; }
+  body {
+    background: #6b6b6b;
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+  }
+  .spread { box-shadow: 0 2px 14px rgba(0, 0, 0, .45); }
+}

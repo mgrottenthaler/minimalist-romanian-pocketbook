@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "hugo --cleanDestinationDir && node scripts/build-pdf.mjs",
-    "serve": "hugo server --disableFastRender"
+    "build": "hugo --cleanDestinationDir && node scripts/build-pdf.mjs && node scripts/build-cover.mjs",
+    "serve": "hugo server --disableFastRender --baseURL http://localhost:1313/"
   },
   "dependencies": {
     "pdf-lib": "^1.17.1",

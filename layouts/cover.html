@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>{{ site.Title }} — copertă</title>
+{{ $fonts := resources.Get "css/fonts.css" | resources.Minify }}
+{{ $cover := resources.Get "css/cover.css" | resources.Minify }}
+<link rel="stylesheet" href="{{ $fonts.RelPermalink }}">
+<link rel="stylesheet" href="{{ $cover.RelPermalink }}">
+</head>
+{{/* The version is read straight from VERSION, the same file release.py bumps
+     and tags, so a cover built from a tagged tree cannot disagree with the
+     release it ships in. */}}
+{{ $version := readFile "VERSION" | strings.TrimSpace }}
+{{ $chapters := sort (where site.RegularPages "Section" "chapters") "Weight" }}
+<body>
+
+<!-- One sheet, printed outside-up: back cover left, front cover right, coil
+     punched down the middle. Geometry and safety zones: assets/css/cover.css. -->
+<div class="spread">
+
+  <!-- ---------- back cover ------------------------------------------- -->
+  <section class="half back">
+    <p class="kicker">{{ site.Params.subtitle }}</p>
+
+    <p class="blurb">{{ site.Params.blurb }}</p>
+
+    <h2 class="label">Cuprins</h2>
+    <ol class="chapters">
+      {{ range $chapters }}<li>{{ .Title }}</li>
+      {{ end }}
+    </ol>
+
+    <p class="omits">{{ site.Params.omits }}</p>
+
+    <div class="colophon">
+      <p class="legend">
+        <strong>aldin</strong> — terminația &nbsp;·&nbsp;
+        <em>cursiv</em> — exemple &nbsp;·&nbsp;
+        <span class="chip">casetă</span> — excepții
+      </p>
+      <p class="imprint">
+        <span>{{ len $chapters }} capitole · format de buzunar · legare spiral</span>
+        <span>{{ site.Params.repo }}</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ---------- front cover ------------------------------------------ -->
+  <section class="half front">
+    <div class="band">
+      <p class="kicker">{{ site.Params.subtitle }}</p>
+      <h1 class="title">{{ site.Title }}</h1>
+    </div>
+
+    <div class="face">
+      <!-- The book's whole convention in one word: the stem plain, the ending
+           that carries the grammar picked out. -->
+      <div class="specimen-block">
+        <p class="specimen">cânt<span class="e">ăm</span></p>
+        <p class="specimen-caption">indicativ prezent · pers. 1 pl.</p>
+      </div>
+
+      <p class="version">{{ site.Params.edition }} <span class="sep">·</span> v{{ $version }}</p>
+    </div>
+  </section>
+
+  <!-- Preview-only overlay: add ?guides to the URL to see bleed, trim and the
+       coil-punch keep-out either side of the seam. Never printed — the PDF
+       build loads the page without the query string. -->
+  <div class="guides" aria-hidden="true">
+    <span class="g-trim"></span>
+    <span class="g-safe"></span>
+    <span class="g-coil"></span>
+    <span class="g-seam"></span>
+  </div>
+
+</div>
+
+<script>
+  if (new URLSearchParams(location.search).has("guides")) {
+    document.body.classList.add("show-guides");
+  }
+</script>
+</body>
+</html>

@@ -1,9 +1,10 @@
 name: Build PDF
 
 # Same toolchain as `make pdf` (see README): hugo assembles content into
-# public/index.html, scripts/build-pdf.mjs paginates it with paged.js and
-# prints it with headless Chromium. Fonts are vendored in static/fonts/, so
-# fetch-fonts.sh does not need to run here.
+# public/index.html and public/cover/index.html, scripts/build-pdf.mjs
+# paginates the interior with paged.js and prints it with headless Chromium,
+# and scripts/build-cover.mjs prints the cover sheet. Fonts are vendored in
+# static/fonts/, so fetch-fonts.sh does not need to run here.
 on:
   push:
     tags:
@@ -41,18 +42,22 @@ jobs:
         id: chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Build PDF
+      - name: Build PDFs
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
         run: npm run build
 
-      - name: Upload build artifact
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: gramatica-romana-interior
-          path: dist/gramatica-romana-interior.pdf
+          name: gramatica-romana
+          path: dist/*.pdf
 
-      - name: Attach PDF to GitHub Release
+      # Interior and cover are two separate uploads at Lulu, so they ship as
+      # two separate release assets.
+      - name: Attach PDFs to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/gramatica-romana-interior.pdf
+          files: |
+            dist/gramatica-romana-interior.pdf
+            dist/gramatica-romana-cover.pdf
