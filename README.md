@@ -22,7 +22,7 @@ This README is in English because it documents the repo, not the book.
 | Margins | top .34 / bottom .38 / **inner .56** / outer .28 in, mirrored |
 | Body face | Source Serif 4 **SmText** (OFL), 8.3 pt / 10.8 pt |
 | Display face | Source Sans 3 (OFL) |
-| Extent | **40 pages** incl. front matter and one blank leaf |
+| Extent | **38 pages** incl. the contents page |
 
 The inner margin is deliberately oversized: coil binding punches holes through
 the gutter, and Lulu asks for ≥ 0.5 in of clearance from the punched edge.
@@ -42,6 +42,56 @@ optical size, drawn for small text — the right cut for an 8.3 pt body.
 Do not swap in the `@fontsource` builds: their subsets omit `U+2192 →`, which
 this book uses on nearly every page, so every arrow silently falls back to Times
 New Roman. The `pdffonts` check below exists to catch exactly that.
+
+## Print decisions
+
+Settled against Lulu's live product data (checked 2026-08-18). Everything here
+is a choice, not a constraint, so the reasoning is written down rather than left
+implicit in `book.css`.
+
+| Decision | Why | Cost of the alternative |
+|---|---|---|
+| **Pocketbook** 4.25 × 6.875 in | It is a pocketbook. Coil *is* offered at this trim — 2–470 pages — so nothing forces a larger size. | A5 or US Trade would take the same content in fewer pages, and stop fitting in a pocket. |
+| **Coil** binding | A reference gets consulted one-handed, held open at one table. Coil lies flat; perfect binding at 40 pages does not. | Coil is **not eligible for Lulu retail distribution** — only perfect bound is. This book is print-for-self / direct sale, so that is not a loss here, but it does mean an ISBN listing would require re-binding as perfect bound (32-page minimum, which 40 clears). |
+| **Standard B&W** interior, 60# cream uncoated | Cheapest option, and the book is pure type — bold, italic and a shaded box carry every distinction it makes. Cream is easier on the eye at 8.3 pt than white. | Colour costs more, and is billed across the **whole** book, not per coloured page. See the table below. |
+| **Inner margin .56 in** | Coil punches through the gutter; Lulu asks ≥ 0.5 in clearance from the punched edge. | Text destroyed by the punch, or unreadable in the gutter. |
+
+Print cost per copy, Pocketbook / 40 pp / coil / glossy cover, from Lulu's
+pricing calculator in EUR on 2026-08-18:
+
+| Interior | Paper | Cost |
+|---|---|---|
+| **Standard B&W** | 60# cream uncoated | **€6.17** |
+| Premium B&W | 60# cream uncoated | €6.65 |
+| Standard Colour | 60# white uncoated | €6.94 |
+| Standard Colour | 80# coated white | €7.17 |
+| Premium Colour | 60# white uncoated | €9.42 |
+| Premium Colour | 80# coated white | €9.94 |
+
+Two things make colour worse than the +€0.77 headline suggests: it is charged on
+every page whether or not that page has any colour, and it is not offered on
+cream stock at all, so choosing colour also means giving up the cream paper.
+Hence: **black and white**, and the design must carry its distinctions with
+weight, shape and shading rather than hue.
+
+To re-check any of this without an account — Lulu's product catalogue is a
+public GraphQL endpoint. `podPackages` returns every valid combination of trim,
+binding, ink, paper and finish, with page-count limits and retail eligibility:
+
+```sh
+curl -sG https://api.lulu.com/graphql/ \
+  --data-urlencode 'operationName=podPackages' \
+  --data-urlencode 'variables={"printableType":"BOOK"}' \
+  --data-urlencode 'query=query podPackages($printableType: PrintableTypeEnum) {
+    podPackages(printableType: $printableType) {
+      id distributionEligible minPages maxPages interiorInkColor printQuality
+      trimSize { key } bindingType { key } } }' |
+  python3 -m json.tool | grep -A2 '"0425X0687\.[A-Z]*\.[A-Z]*\.CO\.'
+```
+
+Package ids read `TRIM.INK.QUALITY.BINDING.PAPER.FINISH` — ours is
+`0425X0687.BW.STD.CO.060UC444.GXX`. Prices are not in that endpoint; they come
+from the calculator at <https://www.lulu.com/pricing>.
 
 ## Toolchain
 
@@ -118,11 +168,13 @@ table of contents.
 | 14 | Sintaxa propoziției — topică, negație, `pe`, dublare clitică | 2 |
 | 15 | Registru și forme omise | 2 |
 
-Plus a title page, a table of contents, and one blank leaf at the back:
-**40 pages** total.
+Plus the table of contents on page 1: **38 pages** total. The book has no
+title page — it would only repeat the cover, which carries the same title and
+subtitle and has no publisher or imprint to add. `layouts/home.html` drops the
+`.titlepage` section from the DOM in book mode; the website still shows it.
 
 > The original target was 30. The type is already at 8.3 pt, which is about the
-> floor for comfortable reading in print, so the remaining ten pages are
+> floor for comfortable reading in print, so the remaining eight pages are
 > structural rather than typographic: every chapter starts on a fresh page, and
 > tables are never split across a page turn. Two levers exist if 30 matters more
 > than those properties — drop `break-before: page` on `.chapter` (≈ −6 pp, at
@@ -205,12 +257,10 @@ that a reference grammar would cover, and is omitted on purpose.
   the `<thead>` on the later ones. Left as is: the columns are self-evident, and
   the alternatives are all more fragile than the problem.
 
-**Open question before ordering:** verify that Lulu offers *Coil* binding at
-*Pocketbook* trim. Lulu's binding options vary by size, and coil is offered on a
-narrower set than perfect binding. If Pocketbook is not available with coil, the
-nearest fallbacks are A5 (5.83 × 8.27 in) or US Trade (6 × 9 in) — change the
-`@page` blocks at the top of `assets/css/book.css` and nothing else, then
-re-measure the extent.
+Coil at Pocketbook trim is confirmed available, 2–470 pages — see **Print
+decisions** above. Should that ever change, the nearest fallbacks are A5
+(5.83 × 8.27 in) or US Trade (6 × 9 in): change the `@page` blocks at the top of
+`assets/css/book.css` and nothing else, then re-measure the extent.
 
 ## Licence
 
