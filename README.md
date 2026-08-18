@@ -22,7 +22,7 @@ This README is in English because it documents the repo, not the book.
 | Margins | top .34 / bottom .38 / **inner .56** / outer .28 in, mirrored |
 | Body face | Source Serif 4 **SmText** (OFL), 8.3 pt / 10.8 pt |
 | Display face | Source Sans 3 (OFL) |
-| Extent | **38 pages** incl. the contents page |
+| Extent | **38 pages** — 37 of content incl. the contents page, plus a blank leaf to reach an even count |
 
 The inner margin is deliberately oversized: coil binding punches holes through
 the gutter, and Lulu asks for ≥ 0.5 in of clearance from the punched edge.
@@ -166,20 +166,30 @@ table of contents.
 | 12 | Adverbul — formare, comparație, poziție | 2 |
 | 13 | Prepoziția și cazul — Ac / G / D | 2 |
 | 14 | Sintaxa propoziției — topică, negație, `pe`, dublare clitică | 2 |
-| 15 | Registru și forme omise | 2 |
+| 15 | Ortografie, registru și forme rare | 1 |
 
-Plus the table of contents on page 1: **38 pages** total. The book has no
-title page — it would only repeat the cover, which carries the same title and
-subtitle and has no publisher or imprint to add. `layouts/home.html` drops the
+Plus the table of contents on page 1: **37 pages** of content, and the build
+appends one blank leaf for an even **38**. The book has no title page — it would
+only repeat the cover, which carries the same title and subtitle and has no
+publisher or imprint to add. `layouts/home.html` drops the
 `.titlepage` section from the DOM in book mode; the website still shows it.
 
-> The original target was 30. The type is already at 8.3 pt, which is about the
-> floor for comfortable reading in print, so the remaining eight pages are
-> structural rather than typographic: every chapter starts on a fresh page, and
-> tables are never split across a page turn. Two levers exist if 30 matters more
-> than those properties — drop `break-before: page` on `.chapter` (≈ −6 pp, at
-> the cost of findability), or relax `break-inside: avoid` on `table` (≈ −3 pp,
-> at the cost of paradigms splitting across a page turn with no repeated header).
+Two layout rules set the extent, and both are deliberate: every chapter starts
+on a fresh page (`break-before: page` on `.chapter`), and no table is split
+across a page turn (`break-inside: avoid` on `table`). Measured against the
+current build:
+
+| Relaxed | Extent | What it costs |
+|---|---|---|
+| — (as built) | **38 pp** | |
+| `break-before` on `.chapter` | 32 pp | Chapters start mid-page; findability goes with it. |
+| `break-inside` on `table` | 36 pp | Paradigms split across a page turn, and paged.js does not re-emit the header row. |
+| both | 30 pp | Both of the above. |
+
+Eight pages of whitespace is the right trade for a book you open at one page and
+consult, so it stays as built. But that is where the pages are if the extent
+ever has to come down: the type is already at 8.3 pt, about the floor for
+comfortable reading in print, so there is nothing to win typographically.
 
 ### Typographic conventions
 
@@ -199,11 +209,11 @@ that a reference grammar would cover, and is omitted on purpose.
 | Omitted | Why |
 |---|---|
 | Perfectul simplu (*cântai, cântă*) | Literary narrative and spoken Oltenia only. You will read it, never say it. Mentioned in ch. 15 as recognition-only. |
-| Viitorul cu *am să* (*am să cânt*) | Overlaps with *o să* in meaning and register; markedly less frequent. One line in ch. 15. |
+| Viitorul cu *am să* (*am să cânt*) | Overlaps with *o să* in meaning and register; markedly less frequent. One cell in the register table in ch. 15. |
 | Viitorul popular (*oi cânta*) | Regional, distinct paradigm from *o să* (no *să*, different *o*). Rare outside rural/regional speech. One line in ch. 15. |
 | Viitorul anterior (*voi fi cântat*) | Effectively extinct outside formal writing. |
 | Modul prezumtiv (*o fi cântând*) | Genuinely used for hedging, but marginal enough to cost more space than it returns. One line in ch. 15. |
-| Infinitivul lung as a verb form (*cântare*) | Survives only as a noun. Noun use is covered; verbal use is not. |
+| Infinitivul lung as a verb form (*cântare*) | Survives only as a noun. Noun use is covered; verbal use is not mentioned at all. |
 | Optativ/condițional perfect drills | The form (*aș fi cântat*) is given once; usage is left to the reader. |
 
 **Everything else**
@@ -215,10 +225,10 @@ that a reference grammar would cover, and is omitted on purpose.
 | Vocabulary, thematic word lists | Different book. |
 | Exercises | Different book. |
 | Regional morphology (Moldovan, Banat, Ardeal) | Standard literary Romanian only. |
-| Archaic vocative (*Doamne*, *frate*) beyond the common forms | Covered only where still productive. |
-| Historical orthography (*sînt* vs. *sunt*, î/â rules) | Current DOOM² spelling throughout, no rule history. |
+| Archaic vocative (*Doamne*, *frate*) beyond the common forms | Covered only where still productive — the live endings are in ch. 1. |
+| Historical orthography (*sînt* vs. *sunt*) | Current DOOM² spelling throughout, no rule history. The rules in force are stated in ch. 15. |
 | Rare collective numerals (*câteșitrei*) | Not worth the line. |
-| *Dânsul* as a politeness form | Contested register in Romania; a plain 3rd-person pronoun in Moldova, not politeness. One row + note in ch. 15. |
+| *Dânsul* as a politeness form | Contested register in Romania; a plain 3rd-person pronoun in Moldova, not politeness. One row + note in ch. 4. |
 
 **Included even though it is arguably marginal**
 
