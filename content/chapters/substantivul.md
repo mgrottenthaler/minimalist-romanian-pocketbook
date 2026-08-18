@@ -87,7 +87,7 @@ Cinci cazuri, dar numai trei forme distincte: **N-Ac**, **G-D**, **V**.
 
 > La feminin singular, forma de **G-D nearticulat este identică cu pluralul**: *o carte* → *unei cărți*; *o floare* → *unei flori*.
 
-### G-D cu `lui`
+### G-D cu *lui*
 
 Numele proprii și termenii de rudenie folosiți ca nume nu primesc terminație: G-D se face cu **lui** antepus, invariabil, la ambele genuri.
 

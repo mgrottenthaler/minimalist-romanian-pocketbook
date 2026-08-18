@@ -10,7 +10,8 @@ weight: 30
 | patru | bun | bun**ă** | bun**i** | bun**e** |
 | trei | mic | mic**ă** | mic**i** | mic**i** |
 | două | mare | mare | mar**i** | mar**i** |
-| una | gri, roz, maro, bej, kaki | | | |
+
+O singură formă, invariabilă: *gri, roz, maro, bej, kaki*.
 
 Alternanțele fonetice de la substantiv se aplică identic: *frumos → frumoasă, frumoși, frumoase*; *lung → lungă, lungi, lungi*.
 

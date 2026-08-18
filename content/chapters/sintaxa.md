@@ -33,11 +33,11 @@ Fără inversiune și fără auxiliar. Întrebarea totală se marchează numai p
 
 Răspunsuri: **da**, **nu**, și **ba da / ba nu** pentru a contrazice o întrebare negativă — *Nu vii? — **Ba da**, vin.*
 
-## Complementul direct cu `pe`
+## Complementul direct cu *pe* {.may-break}
 
 **pe** este obligatoriu înaintea complementului direct care denumește o **persoană determinată**, precum și înaintea pronumelor.
 
-| Cu `pe` | Fără `pe` |
+| Cu *pe* | Fără *pe* |
 |---|---|
 | Îl văd **pe** Ion. | Văd o fată. |
 | O cunosc **pe** sora ta. | Caut un medic. |

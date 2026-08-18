@@ -20,7 +20,7 @@ Auxiliar + **infinitivul fără *a***.
 
 Registru: scris, presă, texte oficiale, discurs formal.
 
-## 2. Viitorul curent: `o să` + conjunctiv
+## 2. Viitorul curent: *o să* + conjunctiv
 
 **o să** este invariabil; se schimbă numai verbul.
 

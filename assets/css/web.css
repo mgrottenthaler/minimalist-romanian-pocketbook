@@ -241,6 +241,9 @@ strong, b { font-weight: 700; }
 em, i { font-style: italic; color: var(--ink-soft); }
 .e { font-weight: 700; color: var(--accent); }
 
+/* keeps an affix from breaking after its leading hyphen — see book.css */
+.nb { white-space: nowrap; }
+
 code, kbd {
   font-family: var(--sans);
   font-size: .85em;

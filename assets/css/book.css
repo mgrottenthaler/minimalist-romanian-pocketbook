@@ -88,6 +88,10 @@
   }
 }
 
+/* Chapter openings: no running head — see layouts/home.html, which tags the
+   page. The folio stays; only the repeated title goes. */
+.pagedjs_page.chapter-open [class*="pagedjs_margin-top"] { display: none; }
+
 /* front matter: no folio, no running head */
 @page frontmatter {
   @top-left { content: none; }
@@ -265,16 +269,23 @@ th {
   text-transform: uppercase;
   text-align: left;
   color: var(--ink-soft);
-  padding: 2pt 3pt 1.5pt 0;
+  padding: 2pt 8pt 1.5pt 0;
   border-bottom: .7pt solid var(--rule);
   vertical-align: bottom;
 }
 td {
-  padding: 1.6pt 3pt 1.6pt 0;
+  padding: 1.6pt 8pt 1.6pt 0;
   border-bottom: .3pt solid #ccc;
   vertical-align: top;
 }
 tr:last-child td { border-bottom: none; }
+
+/* Many tables here carry no column labels at all (`| | |` in the markdown).
+   An empty header cell would still reserve a full line, leaving a blank band
+   between the table's top rule and its first row. Zero it out. Where only the
+   corner cell is empty — the usual paradigm table — the row still takes its
+   height from the labelled cells, so this changes nothing there. */
+th:empty { padding-top: 0; padding-bottom: 0; line-height: 0; font-size: 0; }
 td:last-child, th:last-child { padding-right: 0; }
 
 /* first column of a paradigm table = the person/form label, set in sans */
@@ -297,6 +308,11 @@ em, i { font-style: italic; color: var(--ink-soft); }
 
 /* the changing part of a form: endings, infixes, auxiliaries */
 .e { font-weight: 700; }
+
+/* Endings are written with a leading hyphen, and a line may break straight
+   after it — leaving a dangling dash at the margin and the ending orphaned on
+   the next line. Wrap such a run to keep it whole. */
+.nb { white-space: nowrap; }
 
 code, kbd {
   font-family: var(--sans);
@@ -328,6 +344,19 @@ hr {
 /* ---------- widow / orphan control ------------------------------------ */
 
 p, li { orphans: 2; widows: 2; }
+
+/* A heading already refuses to break away from what follows it, but almost
+   every table here is introduced by a one-line paragraph sitting between the
+   two. Without this the table breaks to the next page and leaves the heading
+   and its lead-in stranded at the foot of the previous one. */
+p:has(+ table), p:has(+ ul), p:has(+ ol) { break-after: avoid; }
+
+/* …except where holding them together costs more than it saves. Marked with
+   {.may-break} on the heading in the markdown; there is one, in ch. 14, where
+   the rule above pushed three lines past the end of the chapter and left a
+   lone note box on a page of its own. That table announces itself in its own
+   column labels, so it can start a page without its heading. */
+.may-break + p { break-after: auto; }
 
 /* ---------- screen preview (paged.js in the browser) ------------------ */
 

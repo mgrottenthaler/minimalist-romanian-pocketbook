@@ -18,7 +18,7 @@ weight: 90
 | IV, -î | coboară | să cob**oare** |
 | IV, -ăsc | hotărăște | să hotăr**ască** |
 
-Regula scurtă: conjugarea I face **-e**, toate celelalte fac **-ă** (sau **-ească / -ască** când verbul are sufix).
+Regula scurtă: conjugarea I face **-e**, toate celelalte fac **-ă** (sau <span class="nb">**-ească / -ască**</span> când verbul are sufix).
 
 Neregulate: *să fiu / să fie*, *să am / să aibă*, *să dau / să dea*, *să stau / să stea*, *să iau / să ia*, *să beau / să bea*, *să vreau / să vrea*, *să știu / să știe*.
 
@@ -77,16 +77,17 @@ La condiția **reală**, ambele stau la indicativ:
 
 | | Afirmativ | Negativ |
 |---|---|---|
-| 2 sg., conj. I și verbele cu sufix | cânt**ă**! lucr**ează**! cit**ește**! vorb**ește**! *(= pers. 3 sg.)* | **nu** cânta! *(= infinitiv)* nu citi! |
-| 2 sg., celelalte | merg**i**! dorm**i**! vez**i**! *(= pers. 2 sg.)* | nu merge! nu dormi! nu vedea! |
-| 2 pl., toate | cânt**ați**! merg**eți**! *(= pers. 2 pl.)* | nu cântați! nu mergeți! |
+| 2 sg., conj. I și verbele cu sufix | cânt**ă**! lucr**ează**! cit**ește**! vorb**ește**!<br>*(= pers. 3 sg.)* | nu cânta! nu citi!<br>*(= infinitiv fără a)* |
+| 2 sg., celelalte | merg**i**! dorm**i**! vez**i**!<br>*(= pers. 2 sg.)* | nu merge! nu dormi!<br>nu vedea! |
+| 2 pl., toate | cânt**ați**! merg**eți**!<br>*(= pers. 2 pl.)* | nu cântați! nu mergeți! |
 
 Negativul de la persoana 2 singular este **întotdeauna infinitivul fără *a***. Aceasta este singura neregularitate reală a imperativului.
 
 ### Imperative neregulate, persoana 2 sg.
 
-| a fi | **fii!** | a face | **fă!** |
+| | | | |
 |---|---|---|---|
+| a fi | **fii!** | a face | **fă!** |
 | a avea | **ai!** | a zice | **zi!** |
 | a da | **dă!** | a spune | **spune!** |
 | a sta | **stai!** | a veni | **vino!** |

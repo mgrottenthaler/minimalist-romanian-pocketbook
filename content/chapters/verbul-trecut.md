@@ -80,8 +80,8 @@ Radicalul se obține din participiu:
 
 | Participiu în | Se face | Exemple |
 |---|---|---|
-| **-at, -ut, -it, -ât** | se scoate *-t*, se adaugă *-sem* | cânta**t** → cântasem; văzu**t** → văzusem; dormi**t** → dormisem; coborâ**t** → coborâsem |
-| **-s** | se adaugă *-esem* | mer**s** → mersesem; scri**s** → scrisesem; pu**s** → pusesem |
+| **-at, -ut, -it, -ât** | se scoate *-t*, se adaugă <span class="nb">*-sem*</span> | cânta**t** → cântasem; văzu**t** → văzusem; dormi**t** → dormisem; coborâ**t** → coborâsem |
+| **-s** | se adaugă <span class="nb">*-esem*</span> | mer**s** → mersesem; scri**s** → scrisesem; pu**s** → pusesem |
 
 > Regula nu acoperă participiile scurte în **-t** ale conjugării III: *rupt* → **rupsesem**, *copt* → **copsesem**, *fript* → **fripsesem** (ca la *-s*). Neregulate și: *a da* → **dădusem**, *a sta* → **stătusem**.
 
