@@ -60,6 +60,28 @@
   --code-bg: #262319;
 }
 
+/* Printing this scrolling page directly (not via ?print, which swaps in
+   book.css) should stay legible even when the page is in dark mode: browsers
+   drop background colors on print by default, and dark-mode ink would then
+   be near-white text on white paper. Match the dark selectors' specificity
+   and come after them in source order so light always wins for print. */
+@media print {
+  :root,
+  :root[data-theme="dark"],
+  :root:not([data-theme="light"]) {
+    --bg: #fbfaf8;
+    --surface: #fff;
+    --ink: #1b1a17;
+    --ink-soft: #5b574e;
+    --ink-faint: #8a8578;
+    --accent: #1a56a0;
+    --rule: #e4dfd4;
+    --rule-strong: #d8d1c2;
+    --shade: #f3efe6;
+    --code-bg: #efe9db;
+  }
+}
+
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
