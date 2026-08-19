@@ -25,7 +25,15 @@
 
 /* ---------- design tokens -------------------------------------------- */
 
+/* Paged.js's CSS processor drops any @media screen block wholesale before
+   it applies book.css (verified: the block below at "screen preview" never
+   actually reaches the page) — so it can't be trusted to keep this page out
+   of the OS/browser's dark mode. color-scheme is a plain declaration, not
+   inside a media query, so it survives that processing and always wins:
+   the print page must render light no matter what the reader's system
+   prefers, or the forced-black ink below reads as black-on-black. */
 :root {
+  color-scheme: light;
   --serif: "Source Serif", Georgia, serif;
   --sans: "Source Sans", "Helvetica Neue", sans-serif;
 
@@ -130,6 +138,7 @@ body {
   font-size: var(--size-body);
   line-height: var(--lead-body);
   color: var(--ink);
+  background: #fff;
   margin: 0;
   hyphens: none;
   text-align: left;
