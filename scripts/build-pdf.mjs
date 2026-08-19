@@ -26,6 +26,14 @@ const OUT = path.join(DIST, "gramatica-romana-interior.pdf");
 // and a mismatch larger than rounding is reported rather than silently fixed.
 const TRIM = { w: 4.25, h: 6.875 };
 
+// Lulu requires every interior page submitted at trim + 0.125in bleed on all
+// four sides — even when nothing in the design actually bleeds — to absorb
+// trim variance during manufacturing. Same margin build-cover.mjs already
+// bakes into the cover sheet. The content itself stays laid out at TRIM (no
+// bleed-aware design in book.css); this just pads blank margin around it and
+// marks the true trim with a TrimBox, same as a hand-built press PDF would.
+const BLEED = 0.125;
+
 requireInputs("index.html");
 
 const server = await serve(PUBLIC);
@@ -89,14 +97,39 @@ if (drift > 1) {
 }
 
 const padded = doc.getPageCount() % 2 !== 0;
-if (padded) doc.addPage([target.w, target.h]);
 
-for (const p of doc.getPages()) p.setSize(target.w, target.h);
+const bleedPt = BLEED * 72;
+const sheet = { w: target.w + bleedPt * 2, h: target.h + bleedPt * 2 };
+
+// Snap each rendered page to the exact trim, then grow it into the bled sheet
+// and shift the content into the middle of that growth. setSize alone would
+// leave the content flush with the sheet's lower-left corner and grow every
+// box that currently matches MediaBox — including TrimBox — which is the
+// opposite of what a bleed margin means, so the boxes are set explicitly.
+for (const p of doc.getPages()) {
+  p.setSize(target.w, target.h);
+  p.setMediaBox(0, 0, sheet.w, sheet.h);
+  p.setCropBox(0, 0, sheet.w, sheet.h);
+  p.setBleedBox(0, 0, sheet.w, sheet.h);
+  p.setTrimBox(bleedPt, bleedPt, target.w, target.h);
+  p.setArtBox(bleedPt, bleedPt, target.w, target.h);
+  p.translateContent(bleedPt, bleedPt);
+}
+
+if (padded) {
+  const blank = doc.addPage([sheet.w, sheet.h]);
+  blank.setTrimBox(bleedPt, bleedPt, target.w, target.h);
+  blank.setArtBox(bleedPt, bleedPt, target.w, target.h);
+}
+
 fs.writeFileSync(OUT, await doc.save());
 
 const kb = (fs.statSync(OUT).size / 1024).toFixed(0);
 console.log(`\n  ${path.relative(ROOT, OUT)}`);
-console.log(`  ${doc.getPageCount()} pages · ${TRIM.w} × ${TRIM.h} in · ${kb} KB`);
+console.log(
+  `  ${doc.getPageCount()} pages · ${TRIM.w} × ${TRIM.h} in trim` +
+    ` (${sheet.w / 72} × ${sheet.h / 72} in incl. ${BLEED} in bleed) · ${kb} KB`,
+);
 if (padded) console.log("  one blank leaf appended to reach an even count");
 
 checkFonts(OUT);
