@@ -184,6 +184,19 @@ scripts/fetch-fonts.sh   downloads + subsets the fonts from Adobe upstream
 VERSION                  MAJOR.MINOR, bumped by release.py, printed on the cover
 ```
 
+### Website
+
+`romanian.grottenthaler.eu` serves `public/` — the scrolling reading copy
+(`web.css`), not the paginated PDF — from a Cloudflare Worker with static
+assets, defined in `wrangler.jsonc`. Deployed the same way as
+`grottenthaler.eu`: Cloudflare's git integration (Workers Builds) rebuilds
+and redeploys on every push to `main`, configured in the dashboard rather
+than a workflow file here. Build command is `hugo --cleanDestinationDir`
+only — not `npm run build`, which also drives the Puppeteer/Chromium PDF
+pipeline that has no reason to run for a site deploy and isn't available in
+Cloudflare's build image anyway. The custom domain route is provisioned by
+`wrangler deploy` itself from `wrangler.jsonc`.
+
 ---
 
 ## Contents
