@@ -28,8 +28,13 @@
   --code-bg: #efe9db;
 }
 
+/* Dark tokens apply either when the OS/browser prefers dark and the toggle
+   hasn't overridden it to light, or when the toggle has explicitly set dark
+   regardless of OS preference. The toggle's early inline script (see
+   layouts/home.html) sets [data-theme] before first paint, so there's no
+   flash. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #161513;
     --surface: #1d1c19;
     --ink: #ece7dc;
@@ -41,6 +46,18 @@
     --shade: #211f1b;
     --code-bg: #262319;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #161513;
+  --surface: #1d1c19;
+  --ink: #ece7dc;
+  --ink-soft: #b9b3a3;
+  --ink-faint: #847e6f;
+  --accent: #6fa8e0;
+  --rule: #322f29;
+  --rule-strong: #3c3931;
+  --shade: #211f1b;
+  --code-bg: #262319;
 }
 
 * { box-sizing: border-box; }
@@ -71,30 +88,33 @@ a:not(:hover) { text-decoration-color: color-mix(in srgb, var(--accent) 45%, tra
 .site-header {
   display: flex;
   align-items: center;
-  gap: .6rem;
+  justify-content: space-between;
+  gap: 1rem;
   padding: 1.5rem 0 0;
-}
-.home-mark {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-weight: 700;
-  font-size: .95rem;
-  color: var(--accent);
-  width: 1.75rem;
-  height: 1.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--rule-strong);
-  border-radius: 6px;
-  text-decoration: none;
-  flex: none;
-}
-.home-mark:hover { border-color: var(--accent); }
-.site-header span {
-  font-family: var(--sans);
-  font-size: .8rem;
+  font-size: .85rem;
   color: var(--ink-faint);
 }
+.site-header a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-header a:hover { text-decoration: underline; }
+.site-header .path-sep { color: var(--ink-faint); }
+
+.theme-toggle {
+  font-family: inherit;
+  font-size: .78rem;
+  color: var(--ink-faint);
+  background: none;
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  padding: .2rem .55rem;
+  cursor: pointer;
+  flex: none;
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--accent); }
 
 /* ---------- hero / title page ------------------------------------------ */
 
@@ -143,12 +163,6 @@ a:not(:hover) { text-decoration-color: color-mix(in srgb, var(--accent) 45%, tra
 }
 .site-note p + p {
   margin-top: .4rem;
-}
-.site-note code {
-  font-family: monospace;
-  background: var(--code-bg);
-  padding: .05rem .3rem;
-  border-radius: .2rem;
 }
 
 /* ---------- table of contents ------------------------------------------ */

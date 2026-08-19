@@ -3,6 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<script>
+  // Runs before any stylesheet paints, so an explicit override (set by the
+  // theme-toggle button below) never flashes the OS-preferred theme first.
+  (function () {
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -50,8 +61,8 @@
 <div class="page">
 
 <div class="site-header">
-  <a href="https://grottenthaler.eu/" class="home-mark" aria-label="grottenthaler.eu">~</a>
-  <span>grottenthaler.eu</span>
+  <span><a href="https://grottenthaler.eu/" aria-label="grottenthaler.eu">~</a><span class="path-sep">/</span>minimalist-romanian-pocketbook</span>
+  <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Comută tema"></button>
 </div>
 
 <section class="titlepage">
@@ -61,7 +72,7 @@
 </section>
 
 <section class="site-note">
-  <p>Asta e ediția web, cu derulare — nu machetarea de tipar. Pentru pagini exact ca la tipografie, adaugă <code>?print</code> la adresă.</p>
+  <p>Asta e ediția web, cu derulare — nu machetarea de tipar. Pentru pagini exact ca la tipografie, vezi <a href="?print">versiunea de tipar</a>.</p>
   <p>PDF gata de tipar: <a href="{{ "pdf/gramatica-romana-interior.pdf" | relURL }}">interior</a> · <a href="{{ "pdf/gramatica-romana-cover.pdf" | relURL }}">copertă</a></p>
 </section>
 
@@ -88,7 +99,8 @@
 <footer class="site-footer">
   &copy; {{ now.Format "2006" }} Martin Grottenthaler &middot;
   <a href="https://grottenthaler.eu/imprint/">Imprint</a> &middot;
-  <a href="https://grottenthaler.eu/privacy/">Privacy</a>
+  <a href="https://grottenthaler.eu/privacy/">Privacy</a> &middot;
+  <a href="https://{{ site.Params.repo }}">GitHub</a>
 </footer>
 
 </div>
@@ -109,6 +121,29 @@
       el.remove();
     });
   }
+</script>
+<script>
+  (function () {
+    var btn = document.getElementById("theme-toggle");
+    if (!btn) return;
+    var media = window.matchMedia("(prefers-color-scheme: dark)");
+    function effective() {
+      var explicit = document.documentElement.getAttribute("data-theme");
+      return explicit || (media.matches ? "dark" : "light");
+    }
+    function render() {
+      var dark = effective() === "dark";
+      btn.textContent = dark ? "dark" : "light";
+      btn.setAttribute("aria-label", dark ? "Comută la tema deschisă" : "Comută la tema închisă");
+    }
+    btn.addEventListener("click", function () {
+      var next = effective() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      render();
+    });
+    render();
+  })();
 </script>
 <script src="{{ "vendor/pagedjs/paged.polyfill.js" | relURL }}"></script>
 </body>
