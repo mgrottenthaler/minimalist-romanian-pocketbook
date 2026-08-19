@@ -23,6 +23,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT", "section", "4
   omits = "Fără exerciții, fără vocabular, fără fonetică — numai formele."
   url = "https://romanian.grottenthaler.eu"
   repo = "github.com/mgrottenthaler/minimalist-romanian-pocketbook"
+  lulu = "https://www.lulu.com/shop/martin-grottenthaler/the-minimalist-romanian-pocketbook/paperback/product-v82vvpy.html"
 
 [markup]
   [markup.goldmark.renderer]

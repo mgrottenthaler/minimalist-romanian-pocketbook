@@ -38,9 +38,15 @@
   <h1 class="booktitle">{{ site.Title }}</h1>
   <p class="booksub">{{ site.Params.subtitle }}</p>
   <p class="bookedition">Versiune {{ readFile "VERSION" | strings.TrimSpace }}</p>
+  <a class="buy-button" href="{{ site.Params.lulu }}">
+    <span class="buy-ro">Comandă un exemplar tipărit</span>
+    <span class="buy-en">Order a printed copy — via Lulu</span>
+  </a>
 </section>
 
 <section class="site-note">
+  <p>Cartea e liberă la citit, descărcat și tipărit — vezi <a href="https://{{ site.Params.repo }}/blob/main/LICENSE-CONTENT">licența</a>. Prin Lulu, 2 € din preț ajung la autor.</p>
+  <p>Conținutul gramatical a fost redactat cu ajutorul inteligenței artificiale și verificat de autor înainte de publicare. Dacă găsești o greșeală, <a href="https://{{ site.Params.repo }}/issues">deschide un issue pe GitHub</a>.</p>
   <p>Asta e ediția web, cu derulare — nu machetarea de tipar. Pentru pagini exact ca la tipografie, vezi <a href="?print">versiunea de tipar</a>.</p>
   <p>PDF gata de tipar: <a href="{{ "pdf/gramatica-romana-interior.pdf" | relURL }}">interior</a> · <a href="{{ "pdf/gramatica-romana-cover.pdf" | relURL }}">copertă</a></p>
 </section>

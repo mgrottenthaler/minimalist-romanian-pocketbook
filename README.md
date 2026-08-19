@@ -5,10 +5,19 @@ formation, with as little prose as possible. Built with Hugo, paginated by
 paged.js, printed to PDF by headless Chromium, and produced as a coil-bound
 pocketbook at Lulu.
 
+Free to read, download and print — see [LICENSE-CONTENT](LICENSE-CONTENT). If
+you'd rather have a printed copy without doing it yourself, order one through
+[Lulu](https://www.lulu.com/shop/martin-grottenthaler/the-minimalist-romanian-pocketbook/paperback/product-v82vvpy.html)
+(€2 of the price goes to the author).
+
 The book itself is entirely in Romanian — headings, table labels and the few
 usage notes. It is a refresher for a reader at roughly B2, not a course: it
 assumes you know what a subjunctive is and only need to see the forms again.
 This README is in English because it documents the repo, not the book.
+
+The grammar content was drafted with AI assistance and reviewed by the
+author before publishing. If you spot an error, please
+[open an issue](https://github.com/mgrottenthaler/minimalist-romanian-pocketbook/issues).
 
 ---
 
@@ -256,14 +265,11 @@ tens of cents on an identical spec).
 ### Selling
 
 Listed on the **Lulu Bookstore** only. Lulu is the merchant — they take
-payment, quote shipping, carry VAT/refunds/reprints — for a 20% cut of gross
-profit and no distribution fees:
+payment, quote shipping, carry VAT/refunds/reprints:
 
-| List | Print | Lulu 20% | Kept per copy |
+| List | Print | Lulu | Kept per copy |
 |---|---|---|---|
-| €10 | €6.17 | €0.77 | €3.06 |
-| €12 | €6.17 | €1.17 | €4.66 |
-| €15 | €6.17 | €1.77 | €7.06 |
+| €9.09 | €6.59 | €0.50 | €2.00 |
 
 No ISBN involved or needed — Bookstore-only projects aren't offered one.
 
