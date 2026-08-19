@@ -48,47 +48,70 @@ New Roman. The `pdffonts` check below exists to catch exactly that.
 
 ## Print decisions
 
-Settled against Lulu's live product data (checked 2026-08-18). Everything here
-is a choice, not a constraint, so the reasoning is written down rather than left
-implicit in `book.css`.
+Settled against Lulu's live product data (checked 2026-08-18, prices re-checked
+2026-08-19). Everything here is a choice, not a constraint, so the reasoning is
+written down rather than left implicit in `book.css`.
 
 | Decision | Why | Cost of the alternative |
 |---|---|---|
 | **Pocketbook** 4.25 × 6.875 in | It is a pocketbook. Coil *is* offered at this trim — 2–470 pages — so nothing forces a larger size. | A5 or US Trade would take the same content in fewer pages, and stop fitting in a pocket. |
 | **Coil** binding | A reference gets consulted one-handed, held open at one table. Coil lies flat; perfect binding at 40 pages does not. | Coil is excluded from Lulu's **Global Distribution** — Amazon, Ingram, Barnes & Noble — because those retailers' requirements forbid it, not Lulu's. It sells on the Lulu Bookstore regardless, which is where this book goes; see the next row. Reaching the retail channels would mean re-binding as perfect bound (32-page minimum, which 40 clears) and taking an ISBN. |
 | **Lulu Bookstore**, not Global Distribution | Bookstore-only accepts Lulu's entire catalogue of sizes and bindings, so coil is no obstacle, and it pays better: 80 % of gross profit with no retailer wholesale discount taken off ahead of Lulu's cut. It also issues no ISBN, which is the wanted outcome rather than a limitation. | Global Distribution would force perfect binding, an ISBN, and that retailer discount. A private shop instead (own checkout → Lulu's Print API) nets ~€0.75 more per copy at a €12 list and makes us the merchant: shipping quoted per destination, refunds, and reprints when a job fails preflight. |
-| **Standard B&W** interior, 60# cream uncoated | Cheapest option, and the book is pure type — bold, italic and a shaded box carry every distinction it makes. Cream is easier on the eye at 8.3 pt than white. | Colour costs more, and is billed across the **whole** book, not per coloured page. See the table below. |
+| **Premium B&W** interior, 60# cream uncoated | In the actual project wizard (coil binding fixed), Standard and Premium B&W price identically at €6.59 — Premium is free, so take it, even though the book is pure type and would be fine on Standard. Cream stays the pick between the price-equal papers: easier on the eye at 8.3 pt than white, and uncoated avoids the glare and stiffness 80# coated adds for a photo-free book. | Colour still costs more, and is billed across the **whole** book, not per coloured page. See the table below. |
+| **Matte** cover finish | Price-equal to glossy in the project wizard. The cover (`cover.css`) is mostly cream with a red accent block, not a dark background — Lulu's own guidance pairs matte with light backgrounds and keepsake/reference books, glossy with dark backgrounds and heavy-wear items like textbooks. Matte also resists fingerprints and glare better on something picked up and consulted often. | None — free choice either way. |
 | **Inner margin .56 in** | Coil punches through the gutter; Lulu asks ≥ 0.5 in clearance from the punched edge. | Text destroyed by the punch, or unreadable in the gutter. |
 | **Top margin .38, bottom .34 — the larger one is the top** | Every edge has to clear the 0.25 in Lulu draws as its safety line, and the two margin boxes are not equally crowded: the running head is 6.6 pt of type that also has to keep 0.05 in off the text block, while the folio is one flush-set numeral. With the original .34/.38 the head's ink reached 0.213 in — inside the line — and the folio sat at 0.273 in with room to spare. Swapping the two margins moves every page's contents down 0.04 in as a block; zeroing the `@bottom-*` padding takes the folio back down. Measured off the rendered PDF, the closest ink to any trim edge is now **top .257, bottom .263, outer .273, inner .560**. | Growing the top margin instead of swapping would shorten the text block and reflow the whole book. The swap keeps the block's height at exactly 6.155 in, so pagination is bit-identical — the generated contents page proves it, every entry unchanged. |
-| **Colour cover** | Lulu prints every cover in full colour whatever the interior is — the €6.17 below already includes it. So the cover costs nothing to make in colour, and the B&W discipline that the interior needs does not apply to it. | Setting the cover in grey to match the interior would pay the colour price and take nothing in return. |
+| **Colour cover** | Lulu prints every cover in full colour whatever the interior is — the €6.59 below already includes it. So the cover costs nothing to make in colour, and the B&W discipline that the interior needs does not apply to it. | Setting the cover in grey to match the interior would pay the colour price and take nothing in return. |
 | **No spine panel** | Coil-bound covers are two punched boards, not a wrap; there is no spine to print on. The cover is one sheet with the two halves meeting at the centre. | A spine panel would print as a stripe down the middle of the back board. |
 | **No running head on a chapter's opening page** | The h1 already names the chapter 4 mm below where the head would sit, in 12 pt over a rule. Dropping it there affects 15 of the 38 pages. `layouts/home.html` tags those pages after pagination and `book.css` hides the margin box; the folio stays. | Doing it in pure CSS means a named `@page` on the h1 — and paged.js forces a break wherever the page name changes, so every chapter's body lands on a leaf of its own: **+16 pages**. |
 | **A table never breaks away from the heading and lead-in that introduce it** | `break-after: avoid` on a heading is not enough — nearly every table here has a one-line lead-in between the two, and the table would break at that seam, opening the next page with a bare grid. This cost seven pages that started with an unexplained table. | Free, except in ch. 14, where it pushed three lines past the end of the chapter and left a note box alone on a page. That one heading opts out with `{.may-break}`. |
 
-Print cost per copy, Pocketbook / 38 pp / coil / glossy cover, from Lulu's
-pricing calculator in EUR on 2026-08-18:
+Print cost per copy, Pocketbook / 38 pp / coil, checked two ways in EUR:
+
+**Lulu's project wizard** (the actual draft project, coil binding fixed,
+checked 2026-08-19) — flat **€6.59**, regardless of Standard vs Premium B&W,
+which of the three paper stocks, or which cover finish. Once coil is picked,
+none of those three axes move the price at all. Colour interiors cost more,
+though the exact figure wasn't re-checked here.
+
+**Lulu's public pricing calculator** (lulu.com/pricing, no account needed,
+checked 2026-08-18 and re-checked 2026-08-19) — disagrees, and prices the same
+spec per ink/paper combination instead of flat:
 
 | Interior | Paper | Cost |
 |---|---|---|
-| **Standard B&W** | 60# cream uncoated | **€6.17** |
-| Premium B&W | 60# cream uncoated | €6.65 |
+| **Standard B&W** | 60# cream uncoated | **€6.13** |
+| **Standard B&W** | 60# white uncoated | €6.13 |
+| Standard B&W | 80# coated white | €6.35 |
+| Premium B&W | 60# cream uncoated | €6.59 |
+| Premium B&W | 80# coated white | €6.86 |
 | Standard Colour | 60# white uncoated | €6.94 |
 | Standard Colour | 80# coated white | €7.17 |
 | Premium Colour | 60# white uncoated | €9.42 |
 | Premium Colour | 80# coated white | €9.94 |
+| Cover finish (glossy vs matte) | — | no difference, either table |
 
-Two things make colour worse than the +€0.77 headline suggests: it is charged on
-every page whether or not that page has any colour, and it is not offered on
-cream stock at all, so choosing colour also means giving up the cream paper.
-Hence: **black and white**, and the design must carry its distinctions with
-weight, shape and shading rather than hue.
+The two disagree by up to €0.46 on an identical spec (Standard B&W/cream:
+€6.13 there, €6.59 in the real project), and it isn't clear which is stale or
+why — possibly the calculator page reflects list pricing while the actual
+project wizard applies something account- or region-specific. **The project
+wizard is what actually charges at checkout, so it's the authoritative number
+for the total**; the public-calculator table above is kept because its
+*relative* shape still holds even if the absolute totals don't — colour costs
+much more than black & white, coated paper costs a little more than uncoated,
+and cream vs white uncoated never costs anything.
 
-The cover is the exception, and it is free: Lulu's calculator only ever offers a
-choice of *interior* ink — the cover is printed in colour on every package, and
-the finish (glossy / matte) is the only cover option priced. So the cover uses
-the website's accent red where the interior may not. Worth re-confirming in the
-order flow before the first print run, since it is the one claim here that comes
-from how the calculator is shaped rather than from a number read off it.
+Two things make colour worse than its headline gap over B&W suggests: it is
+charged on every page whether or not that page has any colour, and it is not
+offered on cream stock at all, so choosing colour also means giving up the
+cream paper. Hence: **black and white**, and the design must carry its
+distinctions with weight, shape and shading rather than hue.
+
+The cover is the exception, and it is free: every package prints the cover in
+full colour regardless of interior ink, and only the finish (glossy / matte) is
+a cover option at all — priced identically in both the wizard and the public
+calculator. So the cover uses the website's accent red where the interior may
+not.
 
 To re-check any of this without an account — Lulu's product catalogue is a
 public GraphQL endpoint. `podPackages` returns every valid combination of trim,
@@ -109,8 +132,9 @@ curl -sG https://api.lulu.com/graphql/ \
 Distribution only. It says nothing about the Lulu Bookstore, which takes coil.
 
 Package ids read `TRIM.INK.QUALITY.BINDING.PAPER.FINISH` — ours is
-`0425X0687.BW.STD.CO.060UC444.GXX`. Prices are not in that endpoint; they come
-from the calculator at <https://www.lulu.com/pricing>.
+`0425X0687.BW.PRE.CO.060UC444.MXX`. Prices are not in that endpoint; they come
+from the calculator at <https://www.lulu.com/pricing> — or, more reliably per
+the note above, from the project wizard itself.
 
 ## Toolchain
 

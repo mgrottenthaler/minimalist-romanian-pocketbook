@@ -3,3 +3,4 @@ resources/
 dist/
 node_modules/
 .hugo_build.lock
+.playwright-mcp/
