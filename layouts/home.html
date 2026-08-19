@@ -4,16 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<script>
-  // Runs before any stylesheet paints, so an explicit override (set by the
-  // theme-toggle button below) never flashes the OS-preferred theme first.
-  (function () {
-    try {
-      var t = localStorage.getItem("theme");
-      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-    } catch (e) {}
-  })();
-</script>
+<script src="{{ "js/theme-init.js" | relURL }}"></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -24,37 +15,15 @@
 <link rel="stylesheet" href="{{ $fonts.RelPermalink }}">
 <link rel="stylesheet" id="web-css" href="{{ $web.RelPermalink }}" data-pagedjs-ignore>
 <link rel="stylesheet" id="book-css" href="{{ $book.RelPermalink }}" media="not all">
-<script>
-  // Default is the website: a normal scrolling page, styled by web.css.
-  // Book mode (paged.js pagination + book.css) is opt-in — either visit
-  // with ?print, or scripts/build-pdf.mjs sets PagedConfig.auto = true
-  // itself before this script runs. The two stylesheets are mutually
-  // exclusive: paged.js clones the live DOM into its paginated output, so
-  // web.css must be fully disabled in book mode or its rules cascade
-  // straight onto the paginated pages alongside book.css.
-  window.PagedConfig = window.PagedConfig || { auto: new URLSearchParams(location.search).has("print") };
-
-  // A chapter's opening page already carries the chapter title, in 12pt over
-  // a rule; the running head would repeat the same words 4mm above it. Mark
-  // those pages once pagination is done and let book.css drop the head on
-  // them. It has to happen here rather than in CSS: a named @page would work,
-  // but paged.js forces a page break wherever the page name changes, which
-  // pushes every chapter's body onto a leaf of its own (+16 pages).
-  // scripts/build-pdf.mjs installs its own `after` to signal that pagination
-  // finished, so compose with whatever is already there instead of replacing.
-  var pagedAfter = window.PagedConfig.after;
-  window.PagedConfig.after = function (flow) {
-    document.querySelectorAll(".pagedjs_page").forEach(function (pg) {
-      if (pg.querySelector(".chapter > h1")) pg.classList.add("chapter-open");
-    });
-    if (pagedAfter) return pagedAfter(flow);
-  };
-
-  if (window.PagedConfig.auto) {
-    document.getElementById("web-css").media = "not all";
-    document.getElementById("book-css").media = "all";
-  }
-</script>
+{{/* Default is the website: a normal scrolling page, styled by web.css.
+     Book mode (paged.js pagination + book.css) is opt-in — either visit
+     with ?print, or scripts/build-pdf.mjs sets PagedConfig.auto = true
+     itself before this script runs. The two stylesheets are mutually
+     exclusive: paged.js clones the live DOM into its paginated output, so
+     web.css must be fully disabled in book mode or its rules cascade
+     straight onto the paginated pages alongside book.css. See
+     static/js/paged-init.js. */}}
+<script src="{{ "js/paged-init.js" | relURL }}"></script>
 </head>
 <body>
 
@@ -105,46 +74,18 @@
 
 </div>
 
-<script>
-  // The title page, the web-only instructions note, and the site
-  // header/footer (cross-link to grottenthaler.eu, imprint/privacy) are all
-  // website-only. The title page would only duplicate the cover — same
-  // title and subtitle, no publisher or imprint to carry — so the book
-  // opens straight on the contents; the note (?print, PDF download links)
-  // makes no sense once it's already printed; and the header/footer are
-  // browser chrome with nothing to say on paper. All of them have to leave
-  // the DOM rather than be hidden in book.css: paged.js lays out
-  // display:none elements all the same, which costs an empty leading (or
-  // trailing) page.
-  if (window.PagedConfig.auto) {
-    document.querySelectorAll(".titlepage, .site-note, .site-header, .site-footer").forEach(function (el) {
-      el.remove();
-    });
-  }
-</script>
-<script>
-  (function () {
-    var btn = document.getElementById("theme-toggle");
-    if (!btn) return;
-    var media = window.matchMedia("(prefers-color-scheme: dark)");
-    function effective() {
-      var explicit = document.documentElement.getAttribute("data-theme");
-      return explicit || (media.matches ? "dark" : "light");
-    }
-    function render() {
-      var dark = effective() === "dark";
-      btn.textContent = dark ? "dark" : "light";
-      btn.setAttribute("aria-label", dark ? "Comută la tema deschisă" : "Comută la tema închisă");
-    }
-    btn.addEventListener("click", function () {
-      var next = effective() === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      try { localStorage.setItem("theme", next); } catch (e) {}
-      render();
-    });
-    render();
-  })();
-</script>
+{{/* The title page, the web-only instructions note, and the site
+     header/footer (cross-link to grottenthaler.eu, imprint/privacy) are all
+     website-only. The title page would only duplicate the cover — same
+     title and subtitle, no publisher or imprint to carry — so the book
+     opens straight on the contents; the note (?print, PDF download links)
+     makes no sense once it's already printed; and the header/footer are
+     browser chrome with nothing to say on paper. All of them have to leave
+     the DOM rather than be hidden in book.css: paged.js lays out
+     display:none elements all the same, which costs an empty leading (or
+     trailing) page. See static/js/book-mode-strip.js. */}}
+<script src="{{ "js/book-mode-strip.js" | relURL }}"></script>
+<script src="{{ "js/theme-toggle.js" | relURL }}"></script>
 <script src="{{ "vendor/pagedjs/paged.polyfill.js" | relURL }}"></script>
 </body>
 </html>
