@@ -21,7 +21,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT", "section", "4
   # like the book itself; only the README is in English.
   blurb = "Paradigme, terminații și formarea timpurilor, cu cât mai puțină proză. O recapitulare pentru nivelul B2, nu un curs."
   omits = "Fără exerciții, fără vocabular, fără fonetică — numai formele."
-  url = "romanian.grottenthaler.eu"
+  url = "https://romanian.grottenthaler.eu"
   repo = "github.com/mgrottenthaler/minimalist-romanian-pocketbook"
 
 [markup]
