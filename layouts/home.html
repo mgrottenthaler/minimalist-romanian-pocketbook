@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:,">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>{{ site.Title }} — {{ site.Params.subtitle }}</title>
 {{ $fonts := resources.Get "css/fonts.css" | resources.Minify }}
 {{ $web := resources.Get "css/web.css" | resources.Minify }}
@@ -47,6 +49,11 @@
 
 <div class="page">
 
+<div class="site-header">
+  <a href="https://grottenthaler.eu/" class="home-mark" aria-label="grottenthaler.eu">~</a>
+  <span>grottenthaler.eu</span>
+</div>
+
 <section class="titlepage">
   <h1 class="booktitle">{{ site.Title }}</h1>
   <p class="booksub">{{ site.Params.subtitle }}</p>
@@ -78,18 +85,27 @@
 </section>
 {{ end }}
 
+<footer class="site-footer">
+  &copy; {{ now.Format "2006" }} Martin Grottenthaler &middot;
+  <a href="https://grottenthaler.eu/imprint/">Imprint</a> &middot;
+  <a href="https://grottenthaler.eu/privacy/">Privacy</a>
+</footer>
+
 </div>
 
 <script>
-  // The title page and the web-only instructions note are both website-only.
-  // The title page would only duplicate the cover — same title and subtitle,
-  // no publisher or imprint to carry — so the book opens straight on the
-  // contents, and the note (?print, PDF download links) makes no sense once
-  // it's already printed. Both have to leave the DOM rather than be hidden in
-  // book.css: paged.js lays out display:none elements all the same, which
-  // costs an empty leading page before the contents.
+  // The title page, the web-only instructions note, and the site
+  // header/footer (cross-link to grottenthaler.eu, imprint/privacy) are all
+  // website-only. The title page would only duplicate the cover — same
+  // title and subtitle, no publisher or imprint to carry — so the book
+  // opens straight on the contents; the note (?print, PDF download links)
+  // makes no sense once it's already printed; and the header/footer are
+  // browser chrome with nothing to say on paper. All of them have to leave
+  // the DOM rather than be hidden in book.css: paged.js lays out
+  // display:none elements all the same, which costs an empty leading (or
+  // trailing) page.
   if (window.PagedConfig.auto) {
-    document.querySelectorAll(".titlepage, .site-note").forEach(function (el) {
+    document.querySelectorAll(".titlepage, .site-note, .site-header, .site-footer").forEach(function (el) {
       el.remove();
     });
   }

@@ -21,7 +21,7 @@
   --ink: #1b1a17;
   --ink-soft: #5b574e;
   --ink-faint: #8a8578;
-  --accent: #9a3324;
+  --accent: #1a56a0;
   --rule: #e4dfd4;
   --rule-strong: #d8d1c2;
   --shade: #f3efe6;
@@ -35,7 +35,7 @@
     --ink: #ece7dc;
     --ink-soft: #b9b3a3;
     --ink-faint: #847e6f;
-    --accent: #e08669;
+    --accent: #6fa8e0;
     --rule: #322f29;
     --rule-strong: #3c3931;
     --shade: #211f1b;
@@ -65,6 +65,36 @@ body {
 
 a { color: var(--accent); }
 a:not(:hover) { text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+
+/* ---------- site header (cross-link to grottenthaler.eu) ---------------- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: 1.5rem 0 0;
+}
+.home-mark {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--accent);
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  text-decoration: none;
+  flex: none;
+}
+.home-mark:hover { border-color: var(--accent); }
+.site-header span {
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--ink-faint);
+}
 
 /* ---------- hero / title page ------------------------------------------ */
 
@@ -294,6 +324,23 @@ hr {
   border-top: 1px solid var(--rule);
   margin: 2rem 0;
 }
+
+/* ---------- site footer (imprint/privacy, on grottenthaler.eu) ---------- */
+
+.site-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  font-family: var(--sans);
+  font-size: .78rem;
+  color: var(--ink-faint);
+}
+.site-footer a {
+  color: var(--ink-faint);
+  text-decoration-color: var(--rule-strong);
+}
+.site-footer a:hover { color: var(--accent); }
 
 /* ---------- small screens --------------------------------------------------- */
 
