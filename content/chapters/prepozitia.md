@@ -11,11 +11,7 @@ la, în, pe, cu, de, din, pentru, spre, către, până, fără, despre, prin, pe
 
 (*ca* și *decât* introduc tot acuzativul, dar sunt conjuncții comparative, nu prepoziții. Pentru *într-un*, *dintr-un*, *printr-un*, vezi *Contragerile*, mai jos.)
 
-După o prepoziție simplă, substantivul rămâne de obicei **nearticulat**:
-
-- *merg **la școală***, *sunt **în oraș***, *plec **la muncă***
-- dar: *merg **la școala** din colț* (determinat)
-- excepție, **cu**: *plec **cu trenul***, *scriu **cu creionul***
+După o prepoziție simplă, substantivul rămâne de obicei **nearticulat** — vezi *Când nu se articulează*, în capitolul **Articolul**.
 
 ## Cu genitivul
 

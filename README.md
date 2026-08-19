@@ -20,7 +20,7 @@ This README is in English because it documents the repo, not the book.
 | Binding | Coil |
 | Interior | Black & white, no bleed |
 | Cover | Full colour, one sheet 8.75 × 7.125 in incl. 0.125 in bleed, no spine |
-| Margins | top .34 / bottom .38 / **inner .56** / outer .28 in, mirrored |
+| Margins | top .38 / bottom .34 / **inner .56** / outer .28 in, mirrored |
 | Body face | Source Serif 4 **SmText** (OFL), 8.3 pt / 10.8 pt |
 | Display face | Source Sans 3 (OFL) |
 | Extent | **38 pages** — 37 of content incl. the contents page, plus a blank leaf to reach an even count |
@@ -59,13 +59,13 @@ implicit in `book.css`.
 | **Lulu Bookstore**, not Global Distribution | Bookstore-only accepts Lulu's entire catalogue of sizes and bindings, so coil is no obstacle, and it pays better: 80 % of gross profit with no retailer wholesale discount taken off ahead of Lulu's cut. It also issues no ISBN, which is the wanted outcome rather than a limitation. | Global Distribution would force perfect binding, an ISBN, and that retailer discount. A private shop instead (own checkout → Lulu's Print API) nets ~€0.75 more per copy at a €12 list and makes us the merchant: shipping quoted per destination, refunds, and reprints when a job fails preflight. |
 | **Standard B&W** interior, 60# cream uncoated | Cheapest option, and the book is pure type — bold, italic and a shaded box carry every distinction it makes. Cream is easier on the eye at 8.3 pt than white. | Colour costs more, and is billed across the **whole** book, not per coloured page. See the table below. |
 | **Inner margin .56 in** | Coil punches through the gutter; Lulu asks ≥ 0.5 in clearance from the punched edge. | Text destroyed by the punch, or unreadable in the gutter. |
-| **Folio 0.28 in from the foot, running head left at 0.21 in** | Lulu's preview draws its safety line 0.5 in from trim, so both sat in the purple. The folio was the cheap one: it had 0.26 in of white above it on the fullest page (p28), so 3 pt off the `@bottom-*` padding lifted it 0.24 → 0.28 in and still leaves 0.22 in of gap. The running head has only 0.05 in of clearance to the text block — its ink reaches 0.287 in on pages whose head carries a comma-below diacritic — so the same 3 pt would have pushed it into the text. Nothing on any page is nearer the trim than 0.21 in, and the cut never reaches it. | Moving the head too would mean growing the top margin ~0.09 in, which reflows the whole book for a head that was never at risk of being cut. |
+| **Top margin .38, bottom .34 — the larger one is the top** | Every edge has to clear the 0.25 in Lulu draws as its safety line, and the two margin boxes are not equally crowded: the running head is 6.6 pt of type that also has to keep 0.05 in off the text block, while the folio is one flush-set numeral. With the original .34/.38 the head's ink reached 0.213 in — inside the line — and the folio sat at 0.273 in with room to spare. Swapping the two margins moves every page's contents down 0.04 in as a block; zeroing the `@bottom-*` padding takes the folio back down. Measured off the rendered PDF, the closest ink to any trim edge is now **top .257, bottom .263, outer .273, inner .560**. | Growing the top margin instead of swapping would shorten the text block and reflow the whole book. The swap keeps the block's height at exactly 6.155 in, so pagination is bit-identical — the generated contents page proves it, every entry unchanged. |
 | **Colour cover** | Lulu prints every cover in full colour whatever the interior is — the €6.17 below already includes it. So the cover costs nothing to make in colour, and the B&W discipline that the interior needs does not apply to it. | Setting the cover in grey to match the interior would pay the colour price and take nothing in return. |
 | **No spine panel** | Coil-bound covers are two punched boards, not a wrap; there is no spine to print on. The cover is one sheet with the two halves meeting at the centre. | A spine panel would print as a stripe down the middle of the back board. |
 | **No running head on a chapter's opening page** | The h1 already names the chapter 4 mm below where the head would sit, in 12 pt over a rule. Dropping it there affects 15 of the 38 pages. `layouts/home.html` tags those pages after pagination and `book.css` hides the margin box; the folio stays. | Doing it in pure CSS means a named `@page` on the h1 — and paged.js forces a break wherever the page name changes, so every chapter's body lands on a leaf of its own: **+16 pages**. |
 | **A table never breaks away from the heading and lead-in that introduce it** | `break-after: avoid` on a heading is not enough — nearly every table here has a one-line lead-in between the two, and the table would break at that seam, opening the next page with a bare grid. This cost seven pages that started with an unexplained table. | Free, except in ch. 14, where it pushed three lines past the end of the chapter and left a note box alone on a page. That one heading opts out with `{.may-break}`. |
 
-Print cost per copy, Pocketbook / 40 pp / coil / glossy cover, from Lulu's
+Print cost per copy, Pocketbook / 38 pp / coil / glossy cover, from Lulu's
 pricing calculator in EUR on 2026-08-18:
 
 | Interior | Paper | Cost |
@@ -363,10 +363,14 @@ decisions** above.
   middle of the sheet. If the binding ever changed to perfect bound, `SPINE` in
   `scripts/build-cover.mjs` takes the width from Lulu's template and
   `cover.css` needs a spine panel to match.
-- **Keep-out** 0.5 in either side of the centre, because the coil punches
+- **Keep-out** 0.56 in either side of the centre, because the coil punches
   through both boards there — the cover's version of the interior's fat inner
-  margin. Artwork stays 0.44 in in from the outside edges, against Lulu's
-  0.25 in minimum.
+  margin, and set to the same .56 in for the same reason. Lulu's own minimum
+  is 0.5 in; artwork at exactly 0.5 in would meet it with nothing left for
+  punch registration. Outside edges, artwork stays 0.315 in in from **trim**
+  (0.44 in from the sheet edge, which includes the 0.125 in bleed), against
+  Lulu's 0.25 in minimum. `--coil-safe` in `cover.css` keeps Lulu's 0.5 in
+  rule so the `?guides` overlay draws the rule and not our inset.
 
 `make serve` then <http://localhost:1313/cover/?guides> draws all of that over
 the artwork: trim in red, safety dashed blue, the punch keep-out shaded, the
@@ -374,12 +378,13 @@ centre dashed. The guides are preview-only — the PDF build loads the page
 without the query string, so they can never print.
 
 The front carries the title, the subtitle from `hugo.toml`, one specimen word
-(*cânt**ăm***, ending picked out in the accent red, which is the book's whole
-convention in one word), and `Ediția I · v<VERSION>` — the version read from
+(*învăț**ăm***, ending picked out in the accent red, which is the book's whole
+convention in one word), and `Versiune <VERSION>` — the version read from
 `VERSION` at build time, so a cover built from a tagged tree always matches the
 release it ships with. The back carries the blurb, the fifteen chapters
-generated from `content/chapters/`, the typographic legend and the repo. All
-the copy lives in `[params]` in `hugo.toml`.
+generated from `content/chapters/`, the typographic legend, the site
+(`romanian.grottenthaler.eu`) and the repo. All the copy lives in `[params]`
+in `hugo.toml`.
 
 ### Known quirks of the output
 
@@ -398,6 +403,13 @@ decisions** above. Should that ever change, the nearest fallbacks are A5
 
 ## Licence
 
-Book text: to be decided. Fonts: SIL Open Font License 1.1 — full text shipped
-with the subsets in `static/fonts/OFL-source-serif.txt` and
-`static/fonts/OFL-source-sans.txt`. paged.js: MIT.
+Code (`layouts/`, `assets/css/`, `scripts/`): MIT — see `LICENSE`. Book text
+and cover copy (`content/chapters/`, the copy in `hugo.toml`'s `[params]`):
+**CC BY-NC-ND 4.0** — see `LICENSE-CONTENT`. Free to copy and print for
+personal use with attribution; no unauthorised commercial resale, no
+redistributing a modified version. Buy a printed copy through the store to
+support the project.
+
+Fonts: SIL Open Font License 1.1 — full text shipped with the subsets in
+`static/fonts/OFL-source-serif.txt` and `static/fonts/OFL-source-sans.txt`.
+paged.js: MIT.

@@ -17,11 +17,11 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT", "section", "4
 
 [params]
   subtitle = "gramatică esențială"
-  edition = "Ediția I"
   # Back-cover copy and imprint line — see layouts/cover.html. In Romanian,
   # like the book itself; only the README is in English.
   blurb = "Paradigme, terminații și formarea timpurilor, cu cât mai puțină proză. O recapitulare pentru nivelul B2, nu un curs."
   omits = "Fără exerciții, fără vocabular, fără fonetică — numai formele."
+  url = "romanian.grottenthaler.eu"
   repo = "github.com/mgrottenthaler/minimalist-romanian-pocketbook"
 
 [markup]

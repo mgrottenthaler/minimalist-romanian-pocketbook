@@ -50,7 +50,7 @@
 <section class="titlepage">
   <h1 class="booktitle">{{ site.Title }}</h1>
   <p class="booksub">{{ site.Params.subtitle }}</p>
-  <p class="bookedition">{{ site.Params.edition }}</p>
+  <p class="bookedition">Versiune {{ readFile "VERSION" | strings.TrimSpace }}</p>
 </section>
 
 {{ $chapters := where site.RegularPages "Section" "chapters" }}

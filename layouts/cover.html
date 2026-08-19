@@ -42,7 +42,8 @@
         <span class="chip">casetă</span> — excepții
       </p>
       <p class="imprint">
-        <span>{{ len $chapters }} capitole · format de buzunar · legare spiral</span>
+        <span>{{ len $chapters }} capitole · format de buzunar · legare cu spirală</span>
+        <span>{{ site.Params.url }}</span>
         <span>{{ site.Params.repo }}</span>
       </p>
     </div>
@@ -59,11 +60,11 @@
       <!-- The book's whole convention in one word: the stem plain, the ending
            that carries the grammar picked out. -->
       <div class="specimen-block">
-        <p class="specimen">cânt<span class="e">ăm</span></p>
+        <p class="specimen">învăț<span class="e">ăm</span></p>
         <p class="specimen-caption">indicativ prezent · pers. 1 pl.</p>
       </div>
 
-      <p class="version">{{ site.Params.edition }} <span class="sep">·</span> v{{ $version }}</p>
+      <p class="version">Versiune {{ $version }}</p>
     </div>
   </section>
 

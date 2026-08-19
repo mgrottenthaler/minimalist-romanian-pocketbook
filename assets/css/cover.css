@@ -13,8 +13,9 @@
    Bleed  0.125in on all four outside edges  -> sheet 8.75 x 7.125in.
    Safety 0.25in in from trim on the outside edges;
           0.5in either side of the centre seam, because coil punches through
-          both covers there — the same clearance the interior's inner margin
-          buys (see assets/css/book.css).
+          both covers there. The artwork keeps 0.56in from the seam rather
+          than the bare 0.5in, so the punch has the same slack the interior's
+          inner margin gives it (see assets/css/book.css).
 
    Unlike the interior this page is NOT paginated by paged.js: it is exactly
    one page, so Chromium prints it directly (scripts/build-cover.mjs) and the
@@ -44,7 +45,8 @@
   --bleed: 0.125in;
   --safe: 0.25in;           /* Lulu's minimum from trim, outside edges */
   --edge: 0.44in;           /* what the artwork actually uses: bleed + .315 */
-  --coil: 0.5in;            /* from the seam — Lulu's punch clearance */
+  --coil-safe: 0.5in;       /* Lulu's punch clearance either side of the seam */
+  --coil: 0.56in;           /* what the artwork uses — the interior's inner margin */
 }
 
 @page {
@@ -159,7 +161,6 @@ body {
   letter-spacing: .05em;
   color: var(--ink-soft);
 }
-.version .sep { color: var(--faint); padding: 0 .18em; }
 
 /* ---------- back cover -------------------------------------------------- */
 
@@ -282,12 +283,13 @@ body.show-guides .g-safe {
   inset: calc(var(--bleed) + var(--safe));
   outline: 0.5pt dashed #39c;
 }
-/* coil keep-out: 0.5in either side of the seam */
+/* coil keep-out: Lulu's 0.5in either side of the seam — the rule, not the
+   0.56in the artwork actually keeps. */
 body.show-guides .g-coil {
   top: 0;
   bottom: 0;
-  left: calc(4.375in - var(--coil));
-  width: calc(2 * var(--coil));
+  left: calc(4.375in - var(--coil-safe));
+  width: calc(2 * var(--coil-safe));
   background: rgba(255, 140, 0, .18);
 }
 /* the seam itself */

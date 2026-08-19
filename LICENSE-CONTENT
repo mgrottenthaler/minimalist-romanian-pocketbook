@@ -1,0 +1,41 @@
+Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International
+(CC BY-NC-ND 4.0)
+
+Copyright (c) 2026 Martin Grottenthaler
+
+This license covers the book's content — the Romanian grammar text in
+content/chapters/, and the cover copy (title, subtitle, blurb, and the
+excluded-topics note) set in hugo.toml's [params] and rendered by
+layouts/cover.html and layouts/home.html. It does not cover the code that
+builds and typesets that content — see LICENSE — nor the vendored fonts in
+static/fonts/, which carry their own OFL licenses.
+
+You are free to:
+
+  - Share — copy and redistribute the material in any medium or format,
+    including printing your own copy for personal use, for any purpose other
+    than commercial resale, provided you give appropriate credit.
+
+Under the following terms:
+
+  - Attribution — You must give appropriate credit to Martin Grottenthaler,
+    provide a link to this license, and indicate if changes were made. You
+    may do so in any reasonable manner, but not in any way that suggests the
+    licensor endorses you or your use.
+
+  - NonCommercial — You may not use the material for commercial purposes,
+    including selling printed or digital copies, without the copyright
+    holder's prior permission. Printed copies purchased through the
+    author's own storefront are the supported way to get a physical copy and
+    support the project; this clause exists to prevent others from selling
+    the same content without approval.
+
+  - NoDerivatives — If you remix, transform, or build upon the material, you
+    may not distribute the modified material.
+
+No additional restrictions — You may not apply legal terms or technological
+measures that legally restrict others from doing anything the license
+permits.
+
+Full legal text: https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by-nc-nd/4.0/

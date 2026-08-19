@@ -5,7 +5,7 @@ weight: 110
 
 Din aceste cinci coloane se obține tot restul paradigmei.
 
-> **Persoana 3 plural**: identică cu persoana 1 singular la conjugările II, III și IV fără sufix (*merg → merg*, *sunt → sunt*); identică cu persoana 3 singular la conjugarea I și la verbele cu sufix (*mănâncă → mănâncă*). Excepții: *a avea* → **au**, *a vrea* → **vor**.
+> **Persoana 3 plural**: identică cu persoana 1 singular la conjugările II, III și IV (*merg → merg*, *dorm → dorm*); identică cu persoana 3 singular la conjugarea I (*mănâncă → mănâncă*). Excepții: *a avea* → **au**, *a vrea* → **vor**, *a da* → **dau**, *a sta* → **stau**, *a lua* → **iau**, *a oferi* → **oferă**.
 >
 > **Mai-mult-ca-perfectul** se face din participiu: *-at/-ut/-it/-ât* → *-sem* (*făcut → făcusem*), *-s* → *-esem* (*mers → mersesem*). Neregulate: *rupt* → **rupsesem**, *copt* → **copsesem**, *a da* → **dădusem**, *a sta* → **stătusem**.
 
@@ -76,4 +76,4 @@ Din aceste cinci coloane se obține tot restul paradigmei.
 | a vrea | vreau | vrea | să vrea | vrut |
 | a zice | zic | zice | să zică | zis |
 
-> **a trebui** este defectiv: are numai persoana 3 singular. *trebuie să plec*, *trebuia să plec*, *va trebui să plec*, *ar fi trebuit să plec*. Cu dativul înseamnă „a avea nevoie de”: *îmi **trebuie** doi lei*, *ne **trebuiau** bani*.
+> **a trebui** este defectiv: are numai persoana 3. Ca verb modal este invariabil, la singular: *trebuie să plec*, *trebuia să plec*, *va trebui să plec*, *ar fi trebuit să plec*. Cu dativul înseamnă „a avea nevoie de” și se acordă cu lucrul de care e nevoie: *îmi **trebuie** o carte*, *ne **trebuiau** bani*.

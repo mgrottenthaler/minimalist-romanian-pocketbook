@@ -42,7 +42,7 @@ Adjectivul urmează forma substantivului:
 |---|---|---|
 | comparativ superioritate | **mai** ... **decât / ca** | mai bun **decât** tine |
 | comparativ egalitate | **la fel de** ... **ca** | la fel de bun **ca** tine |
-| comparativ inferioritate | **mai puțin** ... **decât** | mai puțin bun decât tine |
+| comparativ inferioritate | **mai puțin** ... **decât** | mai puțin bun **decât** tine |
 | superlativ relativ | **cel mai** ... | **cel mai** bun din clasă |
 | superlativ absolut | **foarte / tare** ... | **foarte** bun |
 

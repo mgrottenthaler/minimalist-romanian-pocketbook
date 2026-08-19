@@ -22,7 +22,7 @@ weight: 40
 
 | | Accentuat | Neaccentuat |
 |---|---|---|
-| 1 sg. | mie | **îmi, mi, -mi** |
+| 1 sg. | mie | **îmi, mi** |
 | 2 sg. | ție | **îți, ți** |
 | 3 sg. m./f. | lui, ei | **îi, i** |
 | 1 pl. | nouă | **ne, ni** |
@@ -122,7 +122,7 @@ Formele vorbite: **ăsta, asta, ăștia, astea** / **ăla, aia, ăia, alea**.
 |---|---|
 | **care** | omul **care** vine; omul **pe care** îl văd |
 | **căruia / căreia / cărora** (D) | omul **căruia** i-am dat cartea; fetei **căreia** i-am scris |
-| **al cărui / a cărei / ai căror / ale căror** (G) | omul **a cărui** casă... (articolul se acordă cu posedatul, *cărui* cu posesorul) |
+| **al / a / ai / ale** + **cărui / cărei / căror** (G) | omul **a cărui** casă... (articolul se acordă cu posedatul, *cărui* cu posesorul) |
 | **cui** | **Cui** i-ai dat cartea? |
 | **cine** | numai pentru persoane, fără plural: **Cine** e? **Pe cine** vezi? |
 | **ce** | lucruri; și adjectival: **Ce** carte? |

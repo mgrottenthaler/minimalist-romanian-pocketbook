@@ -29,14 +29,14 @@ Folosire: acțiune neterminată sau repetată în trecut, descriere, fundal. *C�
 
 Auxiliarul **a avea** în forme scurte + participiul, invariabil.
 
-| | | |
-|---|---|---|
-| eu | **am** cântat | |
-| tu | **ai** cântat | |
-| el / ea | **a** cântat | *(nu „are”)* |
-| noi | **am** cântat | |
-| voi | **ați** cântat | |
-| ei / ele | **au** cântat | |
+| | |
+|---|---|
+| eu | **am** cântat |
+| tu | **ai** cântat |
+| el / ea | **a** cântat |
+| noi | **am** cântat |
+| voi | **ați** cântat |
+| ei / ele | **au** cântat |
 
 Este timpul trecut obișnuit al limbii vorbite: acoperă și *I sang*, și *I have sung*.
 
