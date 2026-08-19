@@ -53,6 +53,11 @@
   <p class="bookedition">Versiune {{ readFile "VERSION" | strings.TrimSpace }}</p>
 </section>
 
+<section class="site-note">
+  <p>Asta e ediția web, cu derulare — nu machetarea de tipar. Pentru pagini exact ca la tipografie, adaugă <code>?print</code> la adresă.</p>
+  <p>PDF gata de tipar: <a href="{{ "pdf/gramatica-romana-interior.pdf" | relURL }}">interior</a> · <a href="{{ "pdf/gramatica-romana-cover.pdf" | relURL }}">copertă</a></p>
+</section>
+
 {{ $chapters := where site.RegularPages "Section" "chapters" }}
 {{ $chapters = sort $chapters "Weight" }}
 
@@ -76,14 +81,17 @@
 </div>
 
 <script>
-  // The title page is website-only. In print it would only duplicate the
-  // cover — same title and subtitle, no publisher or imprint to carry — so
-  // the book opens straight on the contents. It has to leave the DOM rather
-  // than be hidden in book.css: paged.js lays out display:none elements all
-  // the same, which costs an empty leading page before the contents.
+  // The title page and the web-only instructions note are both website-only.
+  // The title page would only duplicate the cover — same title and subtitle,
+  // no publisher or imprint to carry — so the book opens straight on the
+  // contents, and the note (?print, PDF download links) makes no sense once
+  // it's already printed. Both have to leave the DOM rather than be hidden in
+  // book.css: paged.js lays out display:none elements all the same, which
+  // costs an empty leading page before the contents.
   if (window.PagedConfig.auto) {
-    var tp = document.querySelector(".titlepage");
-    if (tp) tp.remove();
+    document.querySelectorAll(".titlepage, .site-note").forEach(function (el) {
+      el.remove();
+    });
   }
 </script>
 <script src="{{ "vendor/pagedjs/paged.polyfill.js" | relURL }}"></script>

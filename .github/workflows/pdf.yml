@@ -1,10 +1,15 @@
-name: Build PDF
+name: Build PDF and deploy site
 
 # Same toolchain as `make pdf` (see README): hugo assembles content into
 # public/index.html and public/cover/index.html, scripts/build-pdf.mjs
 # paginates the interior with paged.js and prints it with headless Chromium,
 # and scripts/build-cover.mjs prints the cover sheet. Fonts are vendored in
 # static/fonts/, so fetch-fonts.sh does not need to run here.
+#
+# This also deploys romanian.grottenthaler.eu, on the same trigger: the site
+# is only meant to move when a version is actually published, not on every
+# push to main, so it rides this tag-triggered job instead of Cloudflare's
+# git integration. See "Website" in the README.
 on:
   push:
     tags:
@@ -61,3 +66,19 @@ jobs:
           files: |
             dist/gramatica-romana-interior.pdf
             dist/gramatica-romana-cover.pdf
+
+      # Also serve them from the site itself rather than pointing readers at
+      # a GitHub Release page. `npm run build` (above) already regenerated
+      # public/ via `hugo --cleanDestinationDir`, so this has to happen after
+      # it, not before.
+      - name: Copy PDFs into the site
+        run: |
+          mkdir -p public/pdf
+          cp dist/gramatica-romana-interior.pdf dist/gramatica-romana-cover.pdf public/pdf/
+
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

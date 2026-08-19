@@ -97,6 +97,30 @@ a:not(:hover) { text-decoration-color: color-mix(in srgb, var(--accent) 45%, tra
   margin: 0;
 }
 
+/* ---------- web-only instructions note ---------------------------------- */
+
+.site-note {
+  font-family: var(--sans);
+  font-size: .85rem;
+  color: var(--ink-soft);
+  background: var(--shade);
+  border-radius: .4rem;
+  padding: .9rem 1.1rem;
+  margin-bottom: 2.5rem;
+}
+.site-note p {
+  margin: 0;
+}
+.site-note p + p {
+  margin-top: .4rem;
+}
+.site-note code {
+  font-family: monospace;
+  background: var(--code-bg);
+  padding: .05rem .3rem;
+  border-radius: .2rem;
+}
+
 /* ---------- table of contents ------------------------------------------ */
 
 .toc {

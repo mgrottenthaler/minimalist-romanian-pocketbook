@@ -188,14 +188,30 @@ VERSION                  MAJOR.MINOR, bumped by release.py, printed on the cover
 
 `romanian.grottenthaler.eu` serves `public/` — the scrolling reading copy
 (`web.css`), not the paginated PDF — from a Cloudflare Worker with static
-assets, defined in `wrangler.jsonc`. Deployed the same way as
-`grottenthaler.eu`: Cloudflare's git integration (Workers Builds) rebuilds
-and redeploys on every push to `main`, configured in the dashboard rather
-than a workflow file here. Build command is `hugo --cleanDestinationDir`
-only — not `npm run build`, which also drives the Puppeteer/Chromium PDF
-pipeline that has no reason to run for a site deploy and isn't available in
-Cloudflare's build image anyway. The custom domain route is provisioned by
-`wrangler deploy` itself from `wrangler.jsonc`.
+assets, defined in `wrangler.jsonc`.
+
+Deployed by `.github/workflows/pdf.yml`, on the same `push: tags` trigger
+that builds the PDFs — deliberately *not* on every push to `main`. A
+reference gets consulted, not rewritten daily; the live site should only
+move when a version is actually published, in step with the GitHub Release.
+That's unlike `grottenthaler.eu`, which uses Cloudflare's git integration
+(Workers Builds) and redeploys on every push — this repo doesn't use that
+integration, so the two sites deploy differently.
+
+The workflow runs `npm run build` (hugo, then both PDFs), copies
+`dist/*.pdf` into `public/pdf/`, and deploys with `wrangler deploy`
+(`cloudflare/wrangler-action`), authenticated with a `CLOUDFLARE_API_TOKEN`
+repo secret (`CLOUDFLARE_ACCOUNT_ID` too, unless the token is already scoped
+to one account). The custom domain route is provisioned by that same
+`wrangler deploy` from `wrangler.jsonc`.
+
+The interior and cover PDFs are downloadable from the site itself
+(`/pdf/gramatica-romana-interior.pdf`, `/pdf/gramatica-romana-cover.pdf`),
+linked from a short web-only note above the contents — rather than pointed
+at the GitHub Release page, which is a build artifact location, not a
+reader-facing one. That note, and the ?print instructions next to it, are
+stripped from the DOM in book mode (see the script at the bottom of
+`layouts/home.html`) so neither shows up in the print output.
 
 ---
 
