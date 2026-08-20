@@ -9,6 +9,55 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>{{ site.Title }} — {{ site.Params.subtitle }}</title>
+
+{{/* site.Params.url is the real domain (baseURL itself is deliberately just
+     "/" — see the note by disableKinds in hugo.toml — so .Permalink/absURL
+     would come out root-relative, not absolute). Every URL below is built
+     off it by hand for that reason, same as the imprint line on the cover. */}}
+{{ $desc := site.Params.blurb }}
+{{ $ogImage := printf "%s/images/og-cover.png" site.Params.url }}
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ site.Params.url }}/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ site.Title }} — {{ site.Params.subtitle }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ site.Params.url }}/">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:image" content="{{ $ogImage }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ site.Title }} — {{ site.Params.subtitle }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ $ogImage }}">
+
+{{/* Book schema: title, blurb, format and the Lulu offer are all params
+     hugo.toml already carries for the page itself, so the JSON-LD is just
+     those same facts restated structurally. No ISBN — Bookstore-only Lulu
+     projects aren't issued one (see README, "Print decisions"). */}}
+{{ $bookLD := dict
+    "@context" "https://schema.org"
+    "@type" "Book"
+    "name" site.Title
+    "alternateName" site.Params.subtitle
+    "description" $desc
+    "inLanguage" "ro"
+    "url" (printf "%s/" site.Params.url)
+    "image" $ogImage
+    "bookFormat" "https://schema.org/Paperback"
+    "numberOfPages" 38
+    "author" (dict "@type" "Person" "name" "Martin Grottenthaler" "url" "https://grottenthaler.eu")
+    "offers" (dict
+      "@type" "Offer"
+      "url" site.Params.lulu
+      "priceCurrency" "EUR"
+      "price" "9.09"
+      "availability" "https://schema.org/InStock")
+}}
+<script type="application/ld+json">{{ $bookLD | jsonify | safeJS }}</script>
+
 {{ $fonts := resources.Get "css/fonts.css" | resources.Minify }}
 {{ $web := resources.Get "css/web.css" | resources.Minify }}
 {{ $book := resources.Get "css/book.css" | resources.Minify }}
@@ -45,9 +94,9 @@
 </section>
 
 <section class="site-note">
-  <p>Cartea e liberă la citit, descărcat și tipărit — vezi <a href="https://{{ site.Params.repo }}/blob/main/LICENSE-CONTENT">licența</a>. Prin Lulu, 2 € din preț ajung la autor.</p>
-  <p>Conținutul gramatical a fost redactat cu ajutorul inteligenței artificiale și verificat de autor înainte de publicare. Dacă găsești o greșeală, <a href="https://{{ site.Params.repo }}/issues">deschide un issue pe GitHub</a>.</p>
-  <p>Asta e ediția web, cu derulare — nu machetarea de tipar. Pentru pagini exact ca la tipografie, vezi <a href="?print">versiunea de tipar</a>.</p>
+  <p>Cartea poate fi citită, descărcată și tipărită gratuit — vezi <a href="https://{{ site.Params.repo }}/blob/main/LICENSE-CONTENT">licența</a>. Prin Lulu, 2 € din preț ajung la autor.</p>
+  <p>Conținutul a fost redactat cu ajutorul inteligenței artificiale și verificat de autor înainte de publicare. Dacă găsești o greșeală, <a href="https://{{ site.Params.repo }}/issues">deschide un issue pe GitHub</a>.</p>
+  <p>Asta e ediția web, cu derulare — nu macheta de tipar. Pentru pagini exact ca la tipografie, vezi <a href="?print">versiunea de tipar</a>.</p>
   <p>PDF gata de tipar: <a href="{{ "pdf/gramatica-romana-interior.pdf" | relURL }}">interior</a> · <a href="{{ "pdf/gramatica-romana-cover.pdf" | relURL }}">copertă</a></p>
 </section>
 

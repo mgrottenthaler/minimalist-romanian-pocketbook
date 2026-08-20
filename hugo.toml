@@ -3,7 +3,10 @@ locale = "ro"
 defaultContentLanguage = "ro"
 title = "The Minimalist Romanian Pocketbook"
 
-disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT", "section", "404"]
+# robotsTXT stays disabled: static/robots.txt is a plain file instead (it
+# only ever needs one "Allow: /" line, no templating). sitemap stays enabled
+# — layouts/_default/sitemap.xml below emits the single home-page URL.
+disableKinds = ["taxonomy", "term", "RSS", "robotsTXT", "section", "404"]
 
 # The book is a single HTML document assembled by layouts/home.html and paged
 # into a PDF by paged.js. Chapters stay in site.RegularPages (list = always) so

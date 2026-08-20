@@ -1,0 +1,13 @@
+{{/* The default Hugo sitemap builds URLs off .Permalink, which resolves
+     against baseURL — deliberately just "/" here (see hugo.toml), so that
+     Permalink comes out root-relative instead of absolute. A sitemap has to
+     carry the real domain, and this site is one page, so it's simpler to
+     emit that one entry by hand than to fight Permalink for it. site.Params.url
+     is the same real domain used elsewhere (cover imprint line, robots.txt). */}}
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ site.Params.url }}/</loc>
+    <lastmod>{{ now.Format "2006-01-02" }}</lastmod>
+  </url>
+</urlset>

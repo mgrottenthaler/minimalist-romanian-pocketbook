@@ -1,9 +1,9 @@
-.PHONY: pdf html interior cover serve fonts clean
+.PHONY: pdf html interior cover og serve fonts clean
 
-# Both print-ready PDFs into dist/: the interior and the cover. Lulu takes them
-# as two separate uploads, so they stay two files. `html` is a prerequisite of
-# both, and make runs it once.
-pdf: interior cover
+# Both print-ready PDFs into dist/, plus the site's social-share image into
+# public/images/. Lulu takes the PDFs as two separate uploads, so they stay
+# two files. `html` is a prerequisite of all three, and make runs it once.
+pdf: interior cover og
 
 html:
 	hugo --cleanDestinationDir
@@ -15,6 +15,11 @@ interior: html
 # interior's final page count the way a perfect-bound cover would.
 cover: html
 	node scripts/build-cover.mjs
+
+# The og:image / twitter:image card (layouts/og.html), screenshotted straight
+# into public/images/ — see scripts/gen-og-image.mjs.
+og: html
+	node scripts/gen-og-image.mjs
 
 # Live preview in the browser as a normal website (assets/css/web.css).
 # Add ?print to the URL to see the paginated book layout instead, exactly as

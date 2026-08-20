@@ -78,9 +78,10 @@ the front is read from `VERSION`, the file `release.py` bumps and tags.
 ### Build
 
 ```sh
-make pdf       # both PDFs into dist/ — interior and cover
+make pdf       # both PDFs into dist/, plus the og:image — interior, cover, og
 make interior  # hugo + chromium → dist/gramatica-romana-interior.pdf
 make cover     # hugo + chromium → dist/gramatica-romana-cover.pdf
+make og        # hugo + chromium → public/images/og-cover.png (social card)
 make serve     # live preview as a website; add ?print for the paginated book,
                # or open /cover/ (add ?guides for bleed / trim / punch guides)
 make fonts     # re-vendor the fonts from upstream
@@ -106,17 +107,22 @@ Chromium automatically; override with `CHROME_PATH=/path/to/chrome`.
 ```
 content/chapters/*.md    one file per chapter, ordered by `weight`
 content/cover.md         front matter only — gives the cover layout a page
+content/og.md            front matter only — gives the og:image card a page
 layouts/home.html        assembles the whole book into one document
 layouts/cover.html       the cover artwork: back cover left, front cover right
+layouts/og.html          the 1200x630 social-share card (og:image/twitter:image)
+layouts/_default/sitemap.xml  single-entry sitemap (this site is one page)
 assets/css/fonts.css     @font-face rules, shared by all three stylesheets
 assets/css/web.css       the website: normal layout, loaded by default
 assets/css/book.css      the printed book: page geometry, typography, tables
 assets/css/cover.css     the cover: sheet geometry, bleed, safety, colour
 static/fonts/            vendored OFL woff2 subsets + OFL-*.txt (see scripts/fetch-fonts.sh)
 static/vendor/pagedjs/   vendored paged.js polyfill
-scripts/pdf-common.mjs   shared by both builds: local server, Chromium, font check
+static/robots.txt        Allow: / plus a pointer at /sitemap.xml
+scripts/pdf-common.mjs   shared by all three builds: local server, Chromium, font check
 scripts/build-pdf.mjs    serves public/, waits for pagination, prints the interior
 scripts/build-cover.mjs  prints the one-page cover sheet
+scripts/gen-og-image.mjs screenshots layouts/og.html into public/images/og-cover.png
 scripts/fetch-fonts.sh   downloads + subsets the fonts from Adobe upstream
 VERSION                  MAJOR.MINOR, bumped by release.py, printed on the cover
 ```
@@ -131,7 +137,8 @@ Deployed by `.github/workflows/pdf.yml`, on the same `push: tags` trigger
 that builds the PDFs — not on every push to `main`, so the live site only
 moves when a version is actually published, in step with the GitHub Release.
 
-The workflow runs `npm run build` (hugo, then both PDFs), copies
+The workflow runs `npm run build` (hugo, both PDFs, then the og:image),
+copies
 `dist/*.pdf` into `public/pdf/`, and deploys with `wrangler deploy`
 (`cloudflare/wrangler-action`), authenticated with a `CLOUDFLARE_API_TOKEN`
 repo secret (`CLOUDFLARE_ACCOUNT_ID` too, unless the token is already scoped
