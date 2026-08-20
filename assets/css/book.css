@@ -281,7 +281,10 @@ thead { display: table-header-group; }
 tr { break-inside: avoid; }
 table.long { break-inside: auto; }   /* opt in for tables taller than a page */
 
-/* The irregular-verb list is the only table in the book taller than a page. */
+/* The irregular-verb list is the only table in the book taller than a page:
+   64 rows spanning three pages. paged.js does not re-emit <thead> on the
+   later ones (see the break-inside note above) — left as is, the columns
+   are self-evident without a repeated header. */
 #verbe-neregulate table {
   break-inside: auto;
   font-size: 6.9pt;

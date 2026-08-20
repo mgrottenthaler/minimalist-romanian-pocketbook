@@ -1,5 +1,7 @@
 # The Minimalist Romanian Pocketbook
 
+**[romanian.grottenthaler.eu](https://romanian.grottenthaler.eu)**
+
 A pocket-sized Romanian grammar reference: paradigms, endings and tense
 formation, with as little prose as possible. Built with Hugo, paginated by
 paged.js, printed to PDF by headless Chromium, and produced as a coil-bound
@@ -249,25 +251,12 @@ supin (*am ceva de făcut*, heavily used and often skipped by textbooks).
 
 Lulu package id for this spec: `0425X0687.BW.PRE.CO.060UC444.MXX`
 (`TRIM.INK.QUALITY.BINDING.PAPER.FINISH`). To check current pricing or
-eligibility without an account, Lulu's product catalogue is a public GraphQL
-endpoint:
-
-```sh
-curl -sG https://api.lulu.com/graphql/ \
-  --data-urlencode 'operationName=podPackages' \
-  --data-urlencode 'variables={"printableType":"BOOK"}' \
-  --data-urlencode 'query=query podPackages($printableType: PrintableTypeEnum) {
-    podPackages(printableType: $printableType) {
-      id distributionEligible minPages maxPages interiorInkColor printQuality
-      trimSize { key } bindingType { key } } }' |
-  python3 -m json.tool | grep -A2 '"0425X0687\.[A-Z]*\.[A-Z]*\.CO\.'
-```
+eligibility without an account, run `scripts/check-lulu-pricing.sh`, which
+queries Lulu's public `podPackages` GraphQL endpoint and greps out this spec's
+package rows.
 
 `distributionEligible` is false for every coil package — coil is Lulu
-Bookstore only, not Global Distribution (Amazon, Ingram, B&N). Prices aren't
-in that endpoint; the project wizard at lulu.com is the authoritative number
-(it has disagreed with the public pricing calculator at lulu.com/pricing by
-tens of cents on an identical spec).
+Bookstore only, not Global Distribution (Amazon, Ingram, B&N).
 
 ### Selling
 
@@ -313,16 +302,6 @@ The back carries the blurb, the fifteen chapters generated from
 `content/chapters/`, the typographic legend, the site
 (`romanian.grottenthaler.eu`) and the repo. All copy lives in `[params]` in
 `hugo.toml`.
-
-### Known quirks of the output
-
-- Chromium writes some italic runs as **Type 3** fonts. They are embedded and
-  path-based — checked at 600 dpi, they print as clean vector outlines — so
-  this is cosmetic. If Lulu's preflight ever objects, a Ghostscript pass
-  (`gs -sDEVICE=pdfwrite`) normalises them.
-- The 64-row irregular-verb table spans three pages and paged.js does not
-  re-emit the `<thead>` on the later ones. Left as is — the columns are
-  self-evident.
 
 Coil at Pocketbook trim is confirmed available, 2–470 pages. Should that ever
 change, the nearest fallbacks are A5 (5.83 × 8.27 in) or US Trade (6 × 9 in):

@@ -62,6 +62,12 @@ export function requireInputs(htmlRelPath) {
  * The whole font-vendoring pipeline exists to stop a glyph falling back to a
  * system face mid-word. That failure is invisible on screen, so assert it here
  * rather than leaving it to a manual check before ordering.
+ *
+ * Chromium writes some italic runs as Type 3 fonts rather than the source
+ * OpenType outlines. pdffonts reports those as embedded, path-based faces —
+ * not a fallback — and at 600dpi they print as clean vector outlines, so
+ * this is cosmetic and passes here as-is. If Lulu's preflight ever objects,
+ * a Ghostscript pass (`gs -sDEVICE=pdfwrite`) normalises them.
  */
 export function checkFonts(pdf) {
   const fonts = spawnSync("pdffonts", [pdf], { encoding: "utf8" });
