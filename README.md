@@ -121,6 +121,9 @@ assets/css/cover.css     the cover: sheet geometry, bleed, safety, colour
 static/fonts/            vendored OFL woff2 subsets + OFL-*.txt (see scripts/fetch-fonts.sh)
 static/vendor/pagedjs/   vendored paged.js polyfill
 static/robots.txt        Allow: / plus a pointer at /sitemap.xml
+static/manifest.webmanifest  PWA manifest — installable, standalone display
+static/sw.js             service worker: precaches the app shell, serves it offline
+scripts/gen-favicon.mjs  rasterizes favicon.svg into favicon.ico, apple-touch-icon.png, icon-192/512.png
 scripts/pdf-common.mjs   shared by all three builds: local server, Chromium, font check
 scripts/build-pdf.mjs    serves public/, waits for pagination, prints the interior
 scripts/build-cover.mjs  prints the one-page cover sheet
@@ -146,6 +149,13 @@ copies
 repo secret (`CLOUDFLARE_ACCOUNT_ID` too, unless the token is already scoped
 to one account). The custom domain route is provisioned by that same
 `wrangler deploy` from `wrangler.jsonc`.
+
+Installable as a PWA and readable fully offline after the first visit:
+`static/sw.js` precaches the app shell (the page, its CSS/JS/fonts, the
+icons) and serves it from cache whenever the network is unreachable, staying
+in sync with the live content on every online visit. Regenerate the icons
+with `node scripts/gen-favicon.mjs static/favicon.svg static` whenever
+`favicon.svg` changes.
 
 The interior and cover PDFs are downloadable from the site itself
 (`/pdf/gramatica-romana-interior.pdf`, `/pdf/gramatica-romana-cover.pdf`),

@@ -8,6 +8,8 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#fbfaf8">
 <title>{{ site.Title }} — {{ site.Params.subtitle }}</title>
 
 {{/* site.Params.url is the real domain (baseURL itself is deliberately just
@@ -94,7 +96,7 @@
 </section>
 
 <section class="site-note">
-  <p>Cartea poate fi citită, descărcată și tipărită gratuit — vezi <a href="https://{{ site.Params.repo }}/blob/main/LICENSE-CONTENT">licența</a>. Prin Lulu, 2 € din preț ajung la autor.</p>
+  <p>Cartea poate fi citită, descărcată și tipărită gratuit — vezi <a href="https://{{ site.Params.repo }}/blob/main/LICENSE-CONTENT">licența</a>. Prin Lulu, 2 € din preț ajung la autor. Site-ul poate fi instalat ca aplicație pe telefon și citit offline, din meniul browserului.</p>
   <p>Conținutul a fost redactat cu ajutorul inteligenței artificiale și verificat de autor înainte de publicare. Dacă găsești o greșeală, <a href="https://{{ site.Params.repo }}/issues">deschide un issue pe GitHub</a>.</p>
   <p>Asta e ediția web, cu derulare — nu macheta de tipar. Pentru pagini exact ca la tipografie, vezi <a href="?print">versiunea de tipar</a>.</p>
   <p>PDF gata de tipar: <a href="{{ "pdf/gramatica-romana-interior.pdf" | relURL }}">interior</a> · <a href="{{ "pdf/gramatica-romana-cover.pdf" | relURL }}">copertă</a></p>
@@ -141,6 +143,7 @@
      trailing) page. See static/js/book-mode-strip.js. */}}
 <script src="{{ "js/book-mode-strip.js" | relURL }}"></script>
 <script src="{{ "js/theme-toggle.js" | relURL }}"></script>
+<script src="{{ "js/sw-register.js" | relURL }}"></script>
 <script src="{{ "vendor/pagedjs/paged.polyfill.js" | relURL }}"></script>
 </body>
 </html>

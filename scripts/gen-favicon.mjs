@@ -1,9 +1,15 @@
 /**
  * One-off dev tool: rasterizes a hand-authored favicon.svg into the actual
  * files browsers/OSes fall back to when they don't use SVG favicons —
- * favicon.ico (16/32/48, packed as one multi-res icon) and a 180px
- * apple-touch-icon.png. Not part of `npm run build`; run manually whenever
- * the source SVG changes, same category as scripts/fetch-fonts.sh.
+ * favicon.ico (16/32/48, packed as one multi-res icon), a 180px
+ * apple-touch-icon.png, and the 192/512px PNGs the web app manifest points
+ * at (manifest icons have to be real files — no browser rasterizes an SVG
+ * for the install-prompt/home-screen icon). The source SVG already paints
+ * its background edge to edge, so the same 512px render doubles as the
+ * maskable icon (manifest.webmanifest lists it under both purposes rather
+ * than generating a separately-padded variant). Not part of `npm run
+ * build`; run manually whenever the source SVG changes, same category as
+ * scripts/fetch-fonts.sh.
  *
  * Usage: node scripts/gen-favicon.mjs <svg-path> <output-dir>
  *
@@ -21,6 +27,7 @@ import { CHROME } from "./pdf-common.mjs";
 
 const ICO_SIZES = [16, 32, 48];
 const APPLE_TOUCH_SIZE = 180;
+const PWA_ICON_SIZES = [192, 512];
 
 async function renderPng(browser, svg, size) {
   const page = await browser.newPage();
@@ -84,15 +91,25 @@ async function main() {
     icoImages.push({ size, png: await renderPng(browser, svg, size) });
   }
   const touchIcon = await renderPng(browser, svg, APPLE_TOUCH_SIZE);
+  const pwaIcons = [];
+  for (const size of PWA_ICON_SIZES) {
+    pwaIcons.push({ size, png: await renderPng(browser, svg, size) });
+  }
 
   await browser.close();
 
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, "favicon.ico"), packIco(icoImages));
   fs.writeFileSync(path.join(outDir, "apple-touch-icon.png"), touchIcon);
+  for (const { size, png } of pwaIcons) {
+    fs.writeFileSync(path.join(outDir, `icon-${size}.png`), png);
+  }
 
   console.log(`Wrote ${path.join(outDir, "favicon.ico")} (${ICO_SIZES.join("/")}px)`);
   console.log(`Wrote ${path.join(outDir, "apple-touch-icon.png")} (${APPLE_TOUCH_SIZE}px)`);
+  for (const size of PWA_ICON_SIZES) {
+    console.log(`Wrote ${path.join(outDir, `icon-${size}.png`)}`);
+  }
 }
 
 main();
