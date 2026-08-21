@@ -21,6 +21,14 @@ The grammar content was drafted with AI assistance and reviewed by the
 author before publishing. If you spot an error, please
 [open an issue](https://github.com/mgrottenthaler/minimalist-romanian-pocketbook/issues).
 
+This is the first book in the *Minimalist Pocketbook* series. The layouts,
+stylesheets, PWA shell and PDF build pipeline are shared across every book in
+the series and live in
+[minimalist-pocketbook-theme](https://github.com/mgrottenthaler/minimalist-pocketbook-theme),
+included here as a git submodule at `themes/pocketbook-theme`. This repo is
+everything specific to the Romanian book: content, config, and product
+identity (domain, Lulu listing, cover copy).
+
 ---
 
 ## Production specs
@@ -43,10 +51,12 @@ The inner margin is oversized because coil binding punches through the
 gutter and Lulu requires ≥ 0.5 in clearance from the punched edge. Margins
 mirror between recto and verso via `@page :left` / `@page :right`.
 
-Both fonts are OFL-licensed and vendored into `static/fonts/` by
-`scripts/fetch-fonts.sh`, which pulls Adobe's upstream releases, subsets them
-with `fonttools`, and fetches each family's `LICENSE.md` alongside (OFL 1.1
-requires the licence travel with redistributed fonts). Re-run it to refresh.
+Both fonts are OFL-licensed and vendored into the shared theme's
+`static/fonts/` by its `scripts/fetch-fonts.sh`, which pulls Adobe's upstream
+releases, subsets them with `fonttools`, and fetches each family's
+`LICENSE.md` alongside (OFL 1.1 requires the licence travel with
+redistributed fonts). Shared across the whole series, so it's re-run and
+committed in the theme repo, not here.
 
 Do not swap in the `@fontsource` builds: their subsets omit `U+2192 →`, used
 on nearly every page, so arrows silently fall back to Times New Roman. The
@@ -61,34 +71,48 @@ content/cover.md      ──hugo──> public/cover/index.html
                                                   ──chromium──> dist/…-cover.pdf
 ```
 
-Hugo assembles every chapter into **one** HTML document (`layouts/home.html`);
-chapter pages are never rendered individually. That document ships two
-stylesheets and picks one: a normal `web.css` for browsing, and `book.css` +
-paged.js for the printed layout, which does what Chrome's print engine
-cannot — mirrored margins, running heads, folios, and a table of contents
-with real page numbers (`target-counter`). A plain visit gets the website;
-appending `?print` to the URL (or building the PDF) switches to the
-paginated book preview.
+Hugo assembles every chapter into **one** HTML document
+(`themes/pocketbook-theme/layouts/home.html`); chapter pages are never
+rendered individually. That document ships two stylesheets and picks one: a
+normal `web.css` for browsing, and `book.css` + paged.js for the printed
+layout, which does what Chrome's print engine cannot — mirrored margins,
+running heads, folios, and a table of contents with real page numbers
+(`target-counter`). A plain visit gets the website; appending `?print` to the
+URL (or building the PDF) switches to the paginated book preview.
 
-The cover is a second document with its own layout (`layouts/cover.html`), its
-own stylesheet (`assets/css/cover.css`) and its own build script. It skips
+The cover is a second document with its own layout (`cover.html`), its own
+stylesheet (`cover.css`) and its own build script, all in the theme. It skips
 paged.js entirely — it is exactly one page — and is the only artwork in the
 project with bleed. Its back-cover contents list is generated from the same
 chapter pages the book is, so it can't drift out of date, and the version on
 the front is read from `VERSION`, the file `release.py` bumps and tags.
 
+All of the above — layouts, stylesheets, PWA shell, PDF build scripts and the
+vendored fonts — live in
+[minimalist-pocketbook-theme](https://github.com/mgrottenthaler/minimalist-pocketbook-theme),
+shared with every other book in the series and included here as a git
+submodule at `themes/pocketbook-theme`. This repo supplies content, the
+`hugo.toml` `[params]` and `i18n/ro.toml` the theme's layouts read from, and
+the product-specific bits (domain, Lulu listing, release process). See that
+theme's README for the full params/i18n contract a book repo has to fill in.
+
 ### Build
 
 ```sh
+git submodule update --init   # first time only — pulls in themes/pocketbook-theme
+
 make pdf       # both PDFs into dist/, plus the og:image — interior, cover, og
 make interior  # hugo + chromium → dist/gramatica-romana-interior.pdf
 make cover     # hugo + chromium → dist/gramatica-romana-cover.pdf
 make og        # hugo + chromium → public/images/og-cover.png (social card)
 make serve     # live preview as a website; add ?print for the paginated book,
                # or open /cover/ (add ?guides for bleed / trim / punch guides)
-make fonts     # re-vendor the fonts from upstream
 make clean
 ```
+
+Fonts are vendored once in the shared theme, not per book — see
+[minimalist-pocketbook-theme](https://github.com/mgrottenthaler/minimalist-pocketbook-theme)'s
+own `make fonts` to refresh them, then bump the submodule pointer here.
 
 `make interior` prints the extent and the measured trim size, appends a blank
 leaf if the count came out odd, and snaps every page box to exactly
@@ -106,10 +130,26 @@ Chromium automatically; override with `CHROME_PATH=/path/to/chrome`.
 
 ### Layout
 
+This repo:
+
 ```
 content/chapters/*.md    one file per chapter, ordered by `weight`
 content/cover.md         front matter only — gives the cover layout a page
 content/og.md            front matter only — gives the og:image card a page
+i18n/ro.toml             UI-chrome strings the theme's layouts read via {{ i18n }}
+hugo.toml                site title + [params] contract the theme's layouts read
+static/robots.txt        Allow: / plus a pointer at /sitemap.xml
+static/manifest.webmanifest  PWA manifest — installable, standalone display
+static/favicon.svg       source icon; static/favicon.ico, apple-touch-icon.png,
+                         icon-192/512.png are generated from it (see below)
+themes/pocketbook-theme/ git submodule — layouts, CSS, JS, fonts, build scripts
+VERSION                  MAJOR.MINOR, bumped by release.py, printed on the cover
+```
+
+`themes/pocketbook-theme/` (shared with every book in the series — see its
+own README for the full contract):
+
+```
 layouts/home.html        assembles the whole book into one document
 layouts/cover.html       the cover artwork: back cover left, front cover right
 layouts/og.html          the 1200x630 social-share card (og:image/twitter:image)
@@ -120,16 +160,13 @@ assets/css/book.css      the printed book: page geometry, typography, tables
 assets/css/cover.css     the cover: sheet geometry, bleed, safety, colour
 static/fonts/            vendored OFL woff2 subsets + OFL-*.txt (see scripts/fetch-fonts.sh)
 static/vendor/pagedjs/   vendored paged.js polyfill
-static/robots.txt        Allow: / plus a pointer at /sitemap.xml
-static/manifest.webmanifest  PWA manifest — installable, standalone display
 static/sw.js             service worker: precaches the app shell, serves it offline
-scripts/gen-favicon.mjs  rasterizes favicon.svg into favicon.ico, apple-touch-icon.png, icon-192/512.png
+scripts/gen-favicon.mjs  rasterizes an svg into favicon.ico, apple-touch-icon.png, icon-192/512.png
 scripts/pdf-common.mjs   shared by all three builds: local server, Chromium, font check
 scripts/build-pdf.mjs    serves public/, waits for pagination, prints the interior
 scripts/build-cover.mjs  prints the one-page cover sheet
 scripts/gen-og-image.mjs screenshots layouts/og.html into public/images/og-cover.png
 scripts/fetch-fonts.sh   downloads + subsets the fonts from Adobe upstream
-VERSION                  MAJOR.MINOR, bumped by release.py, printed on the cover
 ```
 
 ### Website
@@ -150,19 +187,19 @@ repo secret (`CLOUDFLARE_ACCOUNT_ID` too, unless the token is already scoped
 to one account). The custom domain route is provisioned by that same
 `wrangler deploy` from `wrangler.jsonc`.
 
-Installable as a PWA and readable fully offline after the first visit:
-`static/sw.js` precaches the app shell (the page, its CSS/JS/fonts, the
-icons) and serves it from cache whenever the network is unreachable, staying
-in sync with the live content on every online visit. Regenerate the icons
-with `node scripts/gen-favicon.mjs static/favicon.svg static` whenever
-`favicon.svg` changes.
+Installable as a PWA and readable fully offline after the first visit: the
+theme's `static/sw.js` precaches the app shell (the page, its CSS/JS/fonts,
+the icons) and serves it from cache whenever the network is unreachable,
+staying in sync with the live content on every online visit. Regenerate the
+icons with `node themes/pocketbook-theme/scripts/gen-favicon.mjs static/favicon.svg static`
+whenever `favicon.svg` changes.
 
 The interior and cover PDFs are downloadable from the site itself
 (`/pdf/gramatica-romana-interior.pdf`, `/pdf/gramatica-romana-cover.pdf`),
 linked from a short web-only note above the contents. That note, and the
 ?print instructions next to it, are stripped from the DOM in book mode (see
-the script at the bottom of `layouts/home.html`) so neither shows up in the
-print output.
+the script at the bottom of the theme's `layouts/home.html`) so neither
+shows up in the print output.
 
 ---
 
@@ -193,8 +230,8 @@ table of contents.
 Plus the table of contents on page 1: **37 pages** of content, and the build
 appends one blank leaf for an even **38**. The book has no title page — it would
 only repeat the cover, which carries the same title and subtitle and has no
-publisher or imprint to add. `layouts/home.html` drops the `.titlepage`
-section from the DOM in book mode; the website still shows it.
+publisher or imprint to add. The theme's `layouts/home.html` drops the
+`.titlepage` section from the DOM in book mode; the website still shows it.
 
 Every chapter starts on a fresh page (`break-before: page` on `.chapter`), and
 no table is split across a page turn (`break-inside: avoid` on `table`). Type
@@ -261,8 +298,9 @@ supin (*am ceva de făcut*, heavily used and often skipped by textbooks).
 
 Lulu package id for this spec: `0425X0687.BW.PRE.CO.060UC444.MXX`
 (`TRIM.INK.QUALITY.BINDING.PAPER.FINISH`). To check current pricing or
-eligibility without an account, run `scripts/check-lulu-pricing.sh`, which
-queries Lulu's public `podPackages` GraphQL endpoint and greps out this spec's
+eligibility without an account, run
+`themes/pocketbook-theme/scripts/check-lulu-pricing.sh`, which queries
+Lulu's public `podPackages` GraphQL endpoint and greps out this spec's
 package rows.
 
 `distributionEligible` is false for every coil package — coil is Lulu
@@ -294,8 +332,8 @@ No ISBN involved or needed — Bookstore-only projects aren't offered one.
 - **Bleed** 0.125 in on the four outside edges, so the sheet is 8.75 × 7.125 in.
 - **No spine.** A coil-bound cover is two punched boards; the halves meet in the
   middle of the sheet. If the binding ever changed to perfect bound, `SPINE` in
-  `scripts/build-cover.mjs` takes the width from Lulu's template and
-  `cover.css` needs a spine panel to match.
+  the theme's `scripts/build-cover.mjs` takes the width from Lulu's template
+  and `cover.css` needs a spine panel to match.
 - **Keep-out** 0.56 in either side of the centre, where the coil punches
   through both boards — Lulu's own minimum is 0.5 in. Outside edges stay
   0.315 in in from trim (0.44 in from the sheet edge, including bleed),
@@ -310,23 +348,25 @@ The front carries the title, the subtitle from `hugo.toml`, one specimen word
 so a cover built from a tagged tree always matches the release it ships with.
 The back carries the blurb, the fifteen chapters generated from
 `content/chapters/`, the typographic legend, the site
-(`romanian.grottenthaler.eu`) and the repo. All copy lives in `[params]` in
-`hugo.toml`.
+(`romanian.grottenthaler.eu`) and the repo. The copy itself is split between
+`[params]` in `hugo.toml` (subtitle, blurb, specimen word, Lulu link, …) and
+`i18n/ro.toml` (the fixed legend/label text the theme's layouts wrap it in).
 
 Coil at Pocketbook trim is confirmed available, 2–470 pages. Should that ever
 change, the nearest fallbacks are A5 (5.83 × 8.27 in) or US Trade (6 × 9 in):
-change the `@page` blocks at the top of `assets/css/book.css` and nothing
-else, then re-measure the extent.
+change the `@page` blocks at the top of the theme's `assets/css/book.css`
+and nothing else, then re-measure the extent.
 
 ## Licence
 
-Code (`layouts/`, `assets/css/`, `scripts/`): MIT — see `LICENSE`. Book text
-and cover copy (`content/chapters/`, the copy in `hugo.toml`'s `[params]`):
+Code: MIT — see `LICENSE`. The theme (`themes/pocketbook-theme/`: layouts,
+CSS, JS, build scripts) carries its own matching MIT `LICENSE`. Book text and
+cover copy (`content/chapters/`, `hugo.toml`'s `[params]`, `i18n/ro.toml`):
 **CC BY-NC-ND 4.0** — see `LICENSE-CONTENT`. Free to copy and print for
 personal use with attribution; no unauthorised commercial resale, no
 redistributing a modified version. Buy a printed copy through the store to
 support the project.
 
-Fonts: SIL Open Font License 1.1 — full text shipped with the subsets in
-`static/fonts/OFL-source-serif.txt` and `static/fonts/OFL-source-sans.txt`.
+Fonts: SIL Open Font License 1.1 — full text shipped with the subsets in the
+theme's `static/fonts/OFL-source-serif.txt` and `OFL-source-sans.txt`.
 paged.js: MIT.

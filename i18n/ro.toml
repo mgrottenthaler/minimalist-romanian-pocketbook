@@ -1,0 +1,49 @@
+# UI-chrome strings read by the shared theme's layouts (themes/pocketbook-theme)
+# via {{ i18n "key" }}. Book content itself (chapters, blurb, omits, subtitle)
+# stays in content/ and hugo.toml [params] — this file is only the fixed
+# wrapper text every page has regardless of which chapters it contains.
+#
+# A paragraph that contains a link is split at the link boundary (xPre, the
+# link's own label, xPost) so the href stays in the template and only plain
+# text lives here — see themes/pocketbook-theme/README.md for the full
+# contract and where each piece lands on the page.
+
+themeToggleLabel = "Comută tema"
+themeToggleToLight = "Comută la tema deschisă"
+themeToggleToDark = "Comută la tema închisă"
+
+versionLabel = "Versiune"
+
+buyPrimary = "Comandă un exemplar tipărit"
+buySecondary = "Order a printed copy — via Lulu"
+
+noteLicensePre = "Cartea poate fi citită, descărcată și tipărită gratuit — vezi"
+noteLicenseLink = "licența"
+noteLicensePost = ". Prin Lulu, 2 € din preț ajung la autor. Site-ul poate fi instalat ca aplicație pe telefon și citit offline, din meniul browserului."
+
+noteAiPre = "Conținutul a fost redactat cu ajutorul inteligenței artificiale și verificat de autor înainte de publicare. Dacă găsești o greșeală,"
+noteAiLink = "deschide un issue pe GitHub"
+noteAiPost = "."
+
+notePrintPre = "Asta e ediția web, cu derulare — nu macheta de tipar. Pentru pagini exact ca la tipografie, vezi"
+notePrintLink = "versiunea de tipar"
+notePrintPost = "."
+
+notePdfLabel = "PDF gata de tipar:"
+notePdfInterior = "interior"
+notePdfCover = "copertă"
+
+toc = "Cuprins"
+
+legendBold = "aldin"
+legendBoldDesc = "terminația"
+legendItalic = "cursiv"
+legendItalicDesc = "exemple"
+legendBox = "casetă"
+legendBoxDesc = "excepții"
+
+chaptersWord = "capitole"
+bindingLine = "format de buzunar · legare cu spirală"
+
+coverWord = "copertă"
+socialCardWord = "card social"

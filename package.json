@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "hugo --cleanDestinationDir && node scripts/build-pdf.mjs && node scripts/build-cover.mjs && node scripts/gen-og-image.mjs",
+    "build": "hugo --cleanDestinationDir && PDF_BASENAME=gramatica-romana node themes/pocketbook-theme/scripts/build-pdf.mjs && PDF_BASENAME=gramatica-romana node themes/pocketbook-theme/scripts/build-cover.mjs && node themes/pocketbook-theme/scripts/gen-og-image.mjs",
     "serve": "hugo server --disableFastRender --baseURL http://localhost:1313/"
   },
   "dependencies": {

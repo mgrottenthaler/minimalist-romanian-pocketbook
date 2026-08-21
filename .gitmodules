@@ -1,0 +1,3 @@
+[submodule "themes/pocketbook-theme"]
+	path = themes/pocketbook-theme
+	url = https://github.com/mgrottenthaler/minimalist-pocketbook-theme

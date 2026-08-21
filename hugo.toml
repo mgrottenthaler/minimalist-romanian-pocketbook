@@ -3,6 +3,11 @@ locale = "ro"
 defaultContentLanguage = "ro"
 title = "The Minimalist Romanian Pocketbook"
 
+# Layouts, CSS, PWA shell and the PDF build scripts live in the shared theme
+# (git submodule at themes/pocketbook-theme) — see its README for the
+# [params] and i18n contract this book fills in below.
+theme = ["pocketbook-theme"]
+
 # robotsTXT stays disabled: static/robots.txt is a plain file instead (it
 # only ever needs one "Allow: /" line, no templating). sitemap stays enabled
 # — layouts/_default/sitemap.xml below emits the single home-page URL.
@@ -20,13 +25,28 @@ disableKinds = ["taxonomy", "term", "RSS", "robotsTXT", "section", "404"]
 
 [params]
   subtitle = "gramatică esențială"
-  # Back-cover copy and imprint line — see layouts/cover.html. In Romanian,
-  # like the book itself; only the README is in English.
+  # Back-cover copy and imprint line — see the theme's layouts/cover.html. In
+  # Romanian, like the book itself; only the README is in English.
   blurb = "Paradigme, terminații și formarea timpurilor, cu cât mai puțină proză. O recapitulare pentru nivelul B2, nu un curs."
   omits = "Fără exerciții, fără vocabular, fără fonetică — numai formele."
   url = "https://romanian.grottenthaler.eu"
   repo = "github.com/mgrottenthaler/minimalist-romanian-pocketbook"
   lulu = "https://www.lulu.com/shop/martin-grottenthaler/the-minimalist-romanian-pocketbook/paperback/product-v82vvpy.html"
+
+  # The theme's [params] contract — see themes/pocketbook-theme/README.md.
+  lang = "ro"
+  ogLocale = "ro_RO"
+  pages = 38
+  price = "9.09"
+  currency = "EUR"
+  # Must match PDF_BASENAME in the Makefile and .github/workflows/pdf.yml.
+  pdfBasename = "gramatica-romana"
+  # The cover/og:image specimen word, învățăm ("we learn"): stem plain,
+  # ending highlighted.
+  specimenStem = "învăț"
+  specimenEnding = "ăm"
+  specimenCaption = "indicativ prezent · pers. 1 pl."
+  ogCaption = "gramatică esențială · nivel B2"
 
 [markup]
   [markup.goldmark.renderer]

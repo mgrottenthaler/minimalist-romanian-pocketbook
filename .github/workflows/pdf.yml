@@ -1,10 +1,11 @@
 name: Build PDF and deploy site
 
 # Same toolchain as `make pdf` (see README): hugo assembles content into
-# public/index.html and public/cover/index.html, scripts/build-pdf.mjs
-# paginates the interior with paged.js and prints it with headless Chromium,
-# and scripts/build-cover.mjs prints the cover sheet. Fonts are vendored in
-# static/fonts/, so fetch-fonts.sh does not need to run here.
+# public/index.html and public/cover/index.html, then the shared theme's
+# scripts/build-pdf.mjs (themes/pocketbook-theme, a git submodule) paginates
+# the interior with paged.js and prints it with headless Chromium, and
+# scripts/build-cover.mjs prints the cover sheet. Fonts are vendored in the
+# theme, so fetch-fonts.sh does not need to run here.
 #
 # This also deploys romanian.grottenthaler.eu, on the same trigger: the site
 # is only meant to move when a version is actually published, not on every
@@ -18,12 +19,19 @@ on:
 permissions:
   contents: write
 
+env:
+  PDF_BASENAME: gramatica-romana
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Layouts, CSS and the build scripts live in the shared theme
+          # (themes/pocketbook-theme) — without this it checks out empty.
+          submodules: true
 
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v3
@@ -55,7 +63,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: gramatica-romana
+          name: ${{ env.PDF_BASENAME }}
           path: dist/*.pdf
 
       # Interior and cover are two separate uploads at Lulu, so they ship as
@@ -64,8 +72,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/gramatica-romana-interior.pdf
-            dist/gramatica-romana-cover.pdf
+            dist/${{ env.PDF_BASENAME }}-interior.pdf
+            dist/${{ env.PDF_BASENAME }}-cover.pdf
 
       # Also serve them from the site itself rather than pointing readers at
       # a GitHub Release page. `npm run build` (above) already regenerated
@@ -74,7 +82,7 @@ jobs:
       - name: Copy PDFs into the site
         run: |
           mkdir -p public/pdf
-          cp dist/gramatica-romana-interior.pdf dist/gramatica-romana-cover.pdf public/pdf/
+          cp dist/${{ env.PDF_BASENAME }}-interior.pdf dist/${{ env.PDF_BASENAME }}-cover.pdf public/pdf/
 
       - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
