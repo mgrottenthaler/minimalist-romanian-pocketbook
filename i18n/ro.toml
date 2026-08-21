@@ -33,6 +33,10 @@ notePdfLabel = "PDF gata de tipar:"
 notePdfInterior = "interior"
 notePdfCover = "copertă"
 
+notePracticePre = "Vrei să exersezi formele astea? Încearcă"
+notePracticeLink = "VidraGram"
+notePracticePost = " — exerciții scurte, corectate pe loc, merge și offline."
+
 toc = "Cuprins"
 
 legendBold = "aldin"
@@ -44,6 +48,7 @@ legendBoxDesc = "excepții"
 
 chaptersWord = "capitole"
 bindingLine = "format de buzunar · legare cu spirală"
+practiceLabel = "exersează:"
 
 coverWord = "copertă"
 socialCardWord = "card social"

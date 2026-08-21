@@ -30,6 +30,7 @@ disableKinds = ["taxonomy", "term", "RSS", "robotsTXT", "section", "404"]
   blurb = "Paradigme, terminații și formarea timpurilor, cu cât mai puțină proză. O recapitulare pentru nivelul B2, nu un curs."
   omits = "Fără exerciții, fără vocabular, fără fonetică — numai formele."
   url = "https://romanian.grottenthaler.eu"
+  practiceUrl = "https://vidragram.grottenthaler.eu"
   repo = "github.com/mgrottenthaler/minimalist-romanian-pocketbook"
   lulu = "https://www.lulu.com/shop/martin-grottenthaler/the-minimalist-romanian-pocketbook/paperback/product-v82vvpy.html"
 
