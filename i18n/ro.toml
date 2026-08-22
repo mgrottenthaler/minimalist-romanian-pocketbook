@@ -17,6 +17,11 @@ versionLabel = "Versiune"
 buyPrimary = "Comandă un exemplar tipărit"
 buySecondary = "Order a printed copy — via Lulu"
 
+# Shown instead of buyPrimary/buySecondary while hugo.toml's params.lulu is
+# still the "#TODO-lulu-listing" placeholder.
+buyUnavailablePrimary = "Disponibil în curând"
+buyUnavailableSecondary = "Încă nu este disponibil pe Lulu"
+
 noteLicensePre = "Cartea poate fi citită, descărcată și tipărită gratuit — vezi"
 noteLicenseLink = "licența"
 noteLicensePost = ". Prin Lulu, 2 € din preț ajung la autor. Site-ul poate fi instalat ca aplicație pe telefon și citit offline, din meniul browserului."
@@ -36,6 +41,20 @@ notePdfCover = "copertă"
 notePracticePre = "Vrei să exersezi formele astea? Încearcă"
 notePracticeLink = "VidraGram"
 notePracticePost = " — exerciții scurte, corectate pe loc, merge și offline."
+
+# Shown instead of notePractice* while data/vidragram.yaml (in the shared
+# theme) doesn't list this book's params.lang yet.
+notePracticeMissingPre = "VidraGram nu oferă încă exerciții în această limbă."
+notePracticeMissingLink = "Spune-mi"
+notePracticeMissingPost = " ca să afli când va fi gata."
+
+# The sibling-book list built from data/series.yaml (in the shared theme),
+# plus a fixed "missing a language" contact line.
+noteSeriesPre = "Această colecție există și în:"
+noteSeriesPost = "."
+noteSeriesMissingPre = "Lipsește o limbă?"
+noteSeriesMissingLink = "Scrie-mi"
+noteSeriesMissingPost = " ca s-o ceri."
 
 toc = "Cuprins"
 
