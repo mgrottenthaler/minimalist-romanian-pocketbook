@@ -38,6 +38,11 @@ notePdfLabel = "PDF gata de tipar:"
 notePdfInterior = "interior"
 notePdfCover = "copertă"
 
+# Uppercase eyebrow labels on the two cross-sell cards in the .cross-sell
+# section (VidraGram + sibling-book list) — see the theme's home.html.
+crossPracticeKicker = "Exerciții"
+crossSeriesKicker = "Colecția"
+
 notePracticePre = "Vrei să exersezi formele astea? Încearcă"
 notePracticeLink = "VidraGram"
 notePracticePost = " — exerciții scurte, corectate pe loc, merge și offline."
