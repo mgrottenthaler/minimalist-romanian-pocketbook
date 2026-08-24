@@ -36,7 +36,7 @@ disableKinds = ["taxonomy", "term", "RSS", "robotsTXT", "section", "404"]
   # The theme's [params] contract — see themes/pocketbook-theme/README.md.
   lang = "ro"
   ogLocale = "ro_RO"
-  pages = 38
+  pages = 40
   price = "9.09"
   currency = "EUR"
   # Must match PDF_BASENAME in the Makefile and .github/workflows/pdf.yml.

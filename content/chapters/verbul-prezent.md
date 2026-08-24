@@ -36,7 +36,7 @@ Se recunosc după terminația infinitivului.
 | voi | ved**eți** | merg**eți** |
 | ei / ele | văd | merg |
 
-La aceste două conjugări, **persoana 3 plural este identică cu persoana 1 singular**.
+La conjugările II, III și IV, **persoana 3 plural este identică cu persoana 1 singular**: *merg → merg*, *dorm → dorm*, *citesc → citesc*. La conjugarea I este identică cu persoana 3 singular: *cântă → cântă*.
 
 ## Conjugarea IV
 
@@ -62,7 +62,7 @@ Cele trei verbe de care atârnă restul sistemului. Se învață integral.
 | voi | **sunteți** | **aveți** | **vreți** |
 | ei / ele | **sunt** | **au** | **vor** |
 
-> Formele de auxiliar **nu** sunt aceleași cu cele de verb plin. La perfectul compus, *a avea* se scurtează și persoana 3 este ***a***, nu *are*: *el **a** cântat*. La viitor, *a vrea* dă *voi, vei, va, vom, veți, vor*.
+> Formele de auxiliar **nu** sunt aceleași cu cele de verb plin. La perfectul compus, *a avea* se scurtează peste tot: *am, ai, **a**, am, ați, au* — nu *are*, nu *avem*, nu *aveți*: *el **a** cântat*, *noi **am** cântat*. La viitor, *a vrea* dă *voi, vei, va, vom, veți, vor*.
 
 ## Sufixele -ez, -esc, -ăsc
 

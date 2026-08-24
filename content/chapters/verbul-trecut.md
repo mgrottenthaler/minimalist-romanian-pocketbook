@@ -19,7 +19,14 @@ Două seturi de terminații, după conjugare.
 
 La fel: *coboram, hotăram* (ca *cântam*); *vedeam, dormeam, citeam* (ca *mergeam*).
 
-**a fi**: eram, erai, era, eram, erați, erau.
+Neregulate:
+
+| | |
+|---|---|
+| radical în vocală | a scrie → **scriam**, a ști → **știam**, a bea → **beam** |
+| conjugarea I, dar cu *-eam* | a da → **dădeam**, a sta → **stăteam** |
+| a vrea | **voiam** (nu *vroiam*) |
+| a fi | **eram**, erai, era, eram, erați, erau |
 
 > Persoana 1 singular și 1 plural au aceeași formă: *cântam* = *eu* sau *noi*. Contextul decide.
 

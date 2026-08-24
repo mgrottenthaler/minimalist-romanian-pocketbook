@@ -1,5 +1,5 @@
 ---
-title: "Conjunctivul, condiționalul, imperativul"
+title: "Verbul: conjunctivul, condiționalul, imperativul"
 weight: 90
 ---
 
@@ -18,7 +18,7 @@ weight: 90
 | IV, -î | coboară | să cob**oare** |
 | IV, -ăsc | hotărăște | să hotăr**ască** |
 
-Regula scurtă: conjugarea I face **-e**, toate celelalte fac **-ă** (sau <span class="nb">**-ească / -ască**</span> când verbul are sufix).
+Regula scurtă: conjugarea I face **-e**, celelalte fac **-ă** (sau <span class="nb">**-ească / -ască**</span> când verbul are sufix). Câteva verbe din afara conjugării I fac totuși **-e**: *să scrie*, *să știe*, *să taie*, *să umple*, *să coboare*.
 
 Neregulate: *să fiu / să fie*, *să am / să aibă*, *să dau / să dea*, *să stau / să stea*, *să iau / să ia*, *să beau / să bea*, *să vreau / să vrea*, *să știu / să știe*.
 
@@ -26,7 +26,7 @@ Neregulate: *să fiu / să fie*, *să am / să aibă*, *să dau / să dea*, *să
 
 **să fi** + participiu, identic la toate persoanele: *să fi cântat*, *să fi mers*.
 
-*Sper **să fi înțeles**.* — *Îmi pare rău că nu ai venit; ar fi trebuit **să fi insistat**.*
+*Sper **să fi înțeles**.* — *Trebuie **să fi plecat** deja.* — *Îmi pare rău că n-ai venit; puteai **să fi insistat**.*
 
 ### Unde apare conjunctivul
 

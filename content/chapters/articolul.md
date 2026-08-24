@@ -37,10 +37,10 @@ Se lipește la sfârșitul cuvântului.
 | ai (m. pl.) | doi prieteni **ai** noștri |
 | ale (f./n. pl.) | cărți **ale** lui / omul **ale** cărui idei... |
 
-Se folosește când între posedat și posesor se intercalează ceva, sau când posedatul e nearticulat:
+Se folosește când posedatul e nearticulat, sau când între posedat și posesor se intercalează ceva:
 
-- casa fetei → o casă **a** fetei
-- cartea mea → o carte **a** mea
+- nearticulat: casa fetei → o casă **a** fetei; cartea mea → o carte **a** mea
+- cu element intercalat: casa fetei → casa cea nouă **a** fetei; cartea mea → cartea aceasta **a** mea
 
 ## Articolul demonstrativ
 

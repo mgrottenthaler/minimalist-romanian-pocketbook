@@ -1,5 +1,5 @@
 ---
-title: "Forme nepersonale și diateze"
+title: "Verbul: forme nepersonale și diateze"
 weight: 100
 ---
 

@@ -73,11 +73,11 @@ Dativul stă înaintea acuzativului.
 
 | | Ac. | D. |
 |---|---|---|
-| 1 sg. | mă | îmi |
-| 2 sg. | te | îți |
-| 3 sg./pl. | **se, s-** | **își, și-** |
-| 1 pl. | ne | ne |
-| 2 pl. | vă | vă |
+| 1 sg. | mă, m- | îmi, mi |
+| 2 sg. | te | îți, ți |
+| 3 sg./pl. | **se, s-** | **își, și** |
+| 1 pl. | ne | ne, ni |
+| 2 pl. | vă, v- | vă, vi |
 
 Accentuat: **sine**, **sieși** — *are încredere în sine*.
 

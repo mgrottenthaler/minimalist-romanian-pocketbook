@@ -11,7 +11,7 @@ Trei genuri. Testul sigur este numărătoarea, nu terminația.
 |---|---|---|---|
 | masculin | **un** – **doi** | — | un pom, doi pomi |
 | feminin | — | **o** – **două** | o casă, două case |
-| neutru | **un** – | – **două** | un tren, două trenuri |
+| neutru | **un** | **două** | un tren, două trenuri |
 
 Neutrul nu are formă proprie: e masculin la singular și feminin la plural.
 
@@ -50,6 +50,19 @@ Neutrul nu are formă proprie: e masculin la singular și feminin la plural.
 | -ou | **-ouri** | birou → biro**uri** |
 
 > Nu există regulă pentru **-uri** față de **-e** la neutru, nici după consoană, nici după *-u*. Se învață cu cuvântul: *tren**uri*** dar *scaun**e***; *lucr**uri*** dar *exempl**e***.
+
+### Plurale neregulate
+
+Puține, dar dintre cele mai frecvente cuvinte ale limbii.
+
+| Singular | Plural |
+|---|---|
+| om | **oameni** |
+| mână | **mâini** |
+| soră | **surori** |
+| noră | **nurori** |
+| cap (al omului) | **capete** |
+| ou | **ouă** |
 
 ## Alternanțe fonetice
 
@@ -95,9 +108,9 @@ Numele proprii și termenii de rudenie folosiți ca nume nu primesc terminație:
 |---|---|
 | nume masculin | cartea **lui** Ion, îi dau **lui** Ion |
 | nume feminin | cartea **lui** Maria (și: cartea Mari**ei**) |
-| rudenie ca nume | mașina **lui** tata, i-am spus **lui** mama |
+| rudenie ca nume | mașina **lui** tata, i-am spus **lui** mama (și: **mamei**) |
 
-La feminin sunt corecte amândouă: *lui Maria* în vorbire, *Mariei* în scris îngrijit. La masculin, numai *lui Ion*.
+La feminin sunt corecte amândouă, și la nume proprii, și la termeni de rudenie: *lui Maria*, *lui mama* în vorbire; *Mariei*, *mamei* în scris îngrijit. La masculin, numai *lui Ion*, *lui tata*.
 
 ## Vocativul
 

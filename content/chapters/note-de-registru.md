@@ -8,7 +8,20 @@ weight: 150
 - **â** în interiorul cuvântului, **î** la început și la sfârșit: *înțelege*, *coborî*, *a **reî**ncepe* (păstrat în compuse).
 - **sunt, suntem, sunteți** — nu *sînt*, formă abandonată în 1993.
 - **ș, ț** se scriu cu **virgulă** dedesubt, nu cu sedilă (*ş, ţ*).
-- Formele *niciun, nicio* se scriu legat; *nici un* se folosește doar cu sensul „nici măcar unul”.
+- *niciun, nicio* se scriu legat. Separat numai când *nici* este conjuncție: *nu vreau **nici un** măr, **nici o** pară*.
+- *o dată* = o singură dată; *odată* = cândva (*odată cu* = în același timp cu).
+
+### Cratima la clitice
+
+Formele scurte se leagă cu **cratimă** de cuvântul vecin: *m-am dus*, *nu-l văd*, *mi-a spus*, *într-o zi*, *dându-mi*. Fără cratimă iese alt cuvânt:
+
+| Cu cratimă | Fără cratimă |
+|---|---|
+| **s-a** dus (*se* + *a*) | cartea **sa** (posesiv) |
+| **l-a** văzut (*îl* + *a*) | **la** școală (prepoziție) |
+| **i-a** dat (*îi* + *a*) | **ia** cartea! (imperativ) |
+| **v-a** spus (*vă* + *a*) | **va** cânta (auxiliar) |
+| **ne-am** dus (*ne* + *am*) | un **neam** (substantiv) |
 
 ## Aceeași idee, patru registre
 

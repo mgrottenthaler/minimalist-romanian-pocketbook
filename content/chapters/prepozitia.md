@@ -9,17 +9,19 @@ Aproape toate prepozițiile.
 
 la, în, pe, cu, de, din, pentru, spre, către, până, fără, despre, prin, peste, sub, lângă, între, printre, dintre, după.
 
-(*ca* și *decât* introduc tot acuzativul, dar sunt conjuncții comparative, nu prepoziții. Pentru *într-un*, *dintr-un*, *printr-un*, vezi *Contragerile*, mai jos.)
+(*ca* și *decât* introduc tot acuzativul, dar sunt conjuncții comparative, nu prepoziții. Pentru *într-un*, *dintr-un*, *printr-un*, vezi *Contrageri*, mai jos.)
 
 După o prepoziție simplă, substantivul rămâne de obicei **nearticulat** — vezi *Când nu se articulează*, în capitolul **Articolul**.
 
 ## Cu genitivul
 
-asupra, contra, împotriva, deasupra, dedesubtul, înaintea, înapoia, împrejurul, în jurul, în fața, în spatele, în locul, de-a lungul, în urma.
+Prepoziții: asupra, contra, împotriva, deasupra, dedesubtul, înaintea, înapoia, împrejurul.
+
+Locuțiuni prepoziționale: în jurul, în fața, în spatele, în locul, în urma, în ciuda, din cauza, de-a lungul.
 
 Substantivul stă **articulat**: *deasupra **mesei***, *în fața **casei***, *împotriva **legii***.
 
-> Cu pronumele personal, aceste prepoziții cer forma **posesivă**, nu genitivul: *în fața **mea***, *asupra **noastră***, *împotriva **lor***.
+> Cu pronumele personal, persoanele 1 și 2 cer forma **posesivă**: *în fața **mea***, *asupra **noastră***, *împotriva **ta***. Persoana 3 cere genitivul: *în fața **lui** / **ei** / **lor***.
 
 ## Cu dativul
 

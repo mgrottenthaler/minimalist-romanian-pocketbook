@@ -46,7 +46,7 @@ Răspunsuri: **da**, **nu**, și **ba da / ba nu** pentru a contrazice o întreb
 
 ## Dublarea clitică
 
-Când complementul stă înaintea verbului, sau când este introdus cu *pe*, verbul primește obligatoriu și pronumele neaccentuat.
+Când complementul stă înaintea verbului, sau când este introdus cu *pe*, verbul primește și pronumele neaccentuat — dar nu la interogative și negative: ***Pe cine** aștepți?*, *Nu cunosc **pe** nimeni.*
 
 | | |
 |---|---|
