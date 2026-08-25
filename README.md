@@ -42,7 +42,7 @@ identity (domain, Lulu listing, cover copy).
 | Margins | top .38 / bottom .34 / **inner .56** / outer .28 in, mirrored |
 | Body face | Source Serif 4 **SmText** (OFL), 8.3 pt / 10.8 pt |
 | Display face | Source Sans 3 (OFL) |
-| Extent | **38 pages** — 37 of content incl. the contents page, plus a blank leaf to reach an even count |
+| Extent | **40 pages** — 38 of chapter content, plus the cross-sell page and the contents page; even already, so no blank leaf |
 | Version on the cover | read from `VERSION` at build time |
 | Sold as | Lulu Bookstore listing, no ISBN |
 | Print cost | ~€6.59/copy (Lulu project wizard, coil, checked 2026-08-19) |
@@ -211,7 +211,7 @@ table of contents.
 
 | # | Chapter | pp. |
 |---|---|---|
-| 1 | Substantivul — gen, plural, alternanțe, cazuri, vocativ | 3 |
+| 1 | Substantivul — gen, plural, alternanțe, cazuri, vocativ | 4 |
 | 2 | Articolul — nehotărât, hotărât enclitic, posesiv, demonstrativ | 2 |
 | 3 | Adjectivul — clase de forme, poziție, comparație | 2 |
 | 4 | Pronumele — personal, adresare, clitice, reflexiv, posesiv, demonstrativ, relativ | 5 |
@@ -219,19 +219,21 @@ table of contents.
 | 6 | Verbul: indicativ prezent — 4 conjugări, sufixele -ez / -esc / -ăsc | 3 |
 | 7 | Verbul: timpurile trecutului — imperfect, perfect compus, m.m.c.p. | 3 |
 | 8 | Verbul: viitorul — literar, curent, prezent cu valoare de viitor | 1 |
-| 9 | Conjunctivul, condiționalul, imperativul | 3 |
-| 10 | Forme nepersonale și diateze — infinitiv, participiu, gerunziu, supin | 2 |
+| 9 | Verbul: conjunctivul, condiționalul, imperativul | 3 |
+| 10 | Verbul: forme nepersonale și diateze — infinitiv, participiu, gerunziu, supin | 2 |
 | 11 | Verbe neregulate — tabel de 64 de verbe | 3 |
 | 12 | Adverbul — formare, comparație, poziție | 2 |
 | 13 | Prepoziția și cazul — Ac / G / D | 2 |
 | 14 | Sintaxa propoziției — topică, negație, `pe`, dublare clitică | 2 |
-| 15 | Ortografie, registru și forme rare | 1 |
+| 15 | Ortografie, registru și forme rare | 2 |
 
-Plus the table of contents on page 1: **37 pages** of content, and the build
-appends one blank leaf for an even **38**. The book has no title page — it would
-only repeat the cover, which carries the same title and subtitle and has no
-publisher or imprint to add. The theme's `layouts/home.html` drops the
-`.titlepage` section from the DOM in book mode; the website still shows it.
+Plus the cross-sell cards on page 1 and the table of contents on page 2:
+**38 pages** of chapter content, **40** in all. The count is already even, so
+the build appends no blank leaf — it adds one only when the total would come
+out odd. The book has no title page — it would only repeat the cover, which
+carries the same title and subtitle and has no publisher or imprint to add.
+The theme's `layouts/home.html` drops the `.titlepage` section from the DOM in
+book mode; the website still shows it.
 
 Every chapter starts on a fresh page (`break-before: page` on `.chapter`), and
 no table is split across a page turn (`break-inside: avoid` on `table`). Type

@@ -36,8 +36,6 @@ Se recunosc după terminația infinitivului.
 | voi | ved**eți** | merg**eți** |
 | ei / ele | văd | merg |
 
-La conjugările II, III și IV, **persoana 3 plural este identică cu persoana 1 singular**: *merg → merg*, *dorm → dorm*, *citesc → citesc*. La conjugarea I este identică cu persoana 3 singular: *cântă → cântă*.
-
 ## Conjugarea IV
 
 | | a dormi | a citi (**-esc**) | a coborî | a hotărî (**-ăsc**) |
@@ -48,6 +46,8 @@ La conjugările II, III și IV, **persoana 3 plural este identică cu persoana 1
 | noi | dorm**im** | cit**im** | cobor**âm** | hotăr**âm** |
 | voi | dorm**iți** | cit**iți** | cobor**âți** | hotăr**âți** |
 | ei / ele | dorm | cit**esc** | coboar**ă** | hotăr**ăsc** |
+
+La conjugările II, III și IV, **persoana 3 plural este identică cu persoana 1 singular**: *merg → merg*, *dorm → dorm*, *citesc → citesc* — nu însă la verbele în *-î* fără sufix: *cobor → coboară*. La conjugarea I este identică cu persoana 3 singular: *cântă → cântă*.
 
 ## Auxiliarele: a fi, a avea, a vrea
 
@@ -62,7 +62,7 @@ Cele trei verbe de care atârnă restul sistemului. Se învață integral.
 | voi | **sunteți** | **aveți** | **vreți** |
 | ei / ele | **sunt** | **au** | **vor** |
 
-> Formele de auxiliar **nu** sunt aceleași cu cele de verb plin. La perfectul compus, *a avea* se scurtează peste tot: *am, ai, **a**, am, ați, au* — nu *are*, nu *avem*, nu *aveți*: *el **a** cântat*, *noi **am** cântat*. La viitor, *a vrea* dă *voi, vei, va, vom, veți, vor*.
+> Formele de auxiliar **nu** sunt aceleași cu cele de verb plin. La perfectul compus, *a avea* are forme scurte care diferă la persoanele 3 sg., 1 pl. și 2 pl.: *am, ai, **a**, am, ați, au* — nu *are*, nu *avem*, nu *aveți*: *el **a** cântat*, *noi **am** cântat*. La viitor, *a vrea* dă *voi, vei, va, vom, veți, vor*.
 
 ## Sufixele -ez, -esc, -ăsc
 

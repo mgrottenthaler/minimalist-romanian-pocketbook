@@ -18,7 +18,7 @@ weight: 90
 | IV, -î | coboară | să cob**oare** |
 | IV, -ăsc | hotărăște | să hotăr**ască** |
 
-Regula scurtă: conjugarea I face **-e**, celelalte fac **-ă** (sau <span class="nb">**-ească / -ască**</span> când verbul are sufix). Câteva verbe din afara conjugării I fac totuși **-e**: *să scrie*, *să știe*, *să taie*, *să umple*, *să coboare*.
+Regula scurtă: conjugarea I face **-e**, celelalte fac **-ă** (sau <span class="nb">**-ească / -ască**</span> când verbul are sufix). Câteva verbe din afara conjugării I fac totuși **-e**: *să scrie*, *să umple*, *să coboare*, *să omoare*.
 
 Neregulate: *să fiu / să fie*, *să am / să aibă*, *să dau / să dea*, *să stau / să stea*, *să iau / să ia*, *să beau / să bea*, *să vreau / să vrea*, *să știu / să știe*.
 

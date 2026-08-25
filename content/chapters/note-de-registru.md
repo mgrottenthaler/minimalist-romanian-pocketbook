@@ -13,7 +13,7 @@ weight: 150
 
 ### Cratima la clitice
 
-Formele scurte se leagă cu **cratimă** de cuvântul vecin: *m-am dus*, *nu-l văd*, *mi-a spus*, *într-o zi*, *dându-mi*. Fără cratimă iese alt cuvânt:
+Formele scurte se leagă cu **cratimă** de cuvântul vecin: *m-am dus*, *nu-l văd*, *mi-a spus*, *dându-mi*. Fără cratimă iese alt cuvânt:
 
 | Cu cratimă | Fără cratimă |
 |---|---|
