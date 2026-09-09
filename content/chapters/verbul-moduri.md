@@ -77,11 +77,15 @@ La condiția **reală**, ambele stau la indicativ:
 
 | | Afirmativ | Negativ |
 |---|---|---|
-| 2 sg., conj. I și verbele cu sufix | cânt**ă**! lucr**ează**! cit**ește**! vorb**ește**!<br>*(= pers. 3 sg.)* | nu cânta! nu citi!<br>*(= infinitiv fără a)* |
-| 2 sg., celelalte | merg**i**! dorm**i**! vez**i**!<br>*(= pers. 2 sg.)* | nu merge! nu dormi!<br>nu vedea! |
+| 2 sg., conj. I și verbele cu sufix | cânt**ă**! lucr**ează**! cit**ește**! cob**oară**!<br>*(= pers. 3 sg.)* | nu cânta! nu citi!<br>*(= infinitiv fără a)* |
+| 2 sg., conj. II și III, tranzitive | deschid**e**! pun**e**! aleg**e**! scri**e**!<br>*(= pers. 3 sg.)* | nu deschide! nu pune! |
+| 2 sg., conj. II și III, intranzitive | merg**i**! trec**i**! râz**i**! caz**i**!<br>*(= pers. 2 sg.)* | nu merge! nu trece! |
+| 2 sg., conj. IV în -i fără sufix | dorm**i**! fug**i**! auz**i**! simț**i**!<br>*(= pers. 2 sg.)* | nu dormi! nu fugi! |
 | 2 pl., toate | cânt**ați**! merg**eți**!<br>*(= pers. 2 pl.)* | nu cântați! nu mergeți! |
 
-Negativul de la persoana 2 singular este **întotdeauna infinitivul fără *a***. Aceasta este singura neregularitate reală a imperativului.
+Tranzitivitatea decide numai la conjugările II și III. Excepții: *a vedea* și *a ști*, tranzitive, dar cu forma persoanei 2 — **vezi!**, **știi!**
+
+Negativul de la persoana 2 singular este **întotdeauna infinitivul fără *a***, oricare ar fi forma afirmativă: *nu deschide!*, *nu coborî!*, *nu vedea!*
 
 ### Imperative neregulate, persoana 2 sg.
 

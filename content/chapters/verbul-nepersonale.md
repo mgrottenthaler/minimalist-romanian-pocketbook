@@ -67,7 +67,7 @@ Mai frecvent decât pasivul propriu-zis, mai ales fără agent:
 |---|---|
 | propriu-zis | mă spăl, se îmbracă |
 | reciproc | ne vedem, se ceartă |
-| verbe obligatoriu pronominale | a-și aminti, a se gândi, a se teme, a se naște, a se plimba |
+| verbe obligatoriu pronominale | a-și aminti, a se gândi, a se teme, a se răzgândi, a se strădui |
 
 ### Construcții impersonale
 
