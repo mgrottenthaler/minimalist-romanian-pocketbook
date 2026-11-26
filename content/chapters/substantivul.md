@@ -118,7 +118,7 @@ La feminin sunt corecte amândouă, și la nume proprii, și la termeni de ruden
 |---|---|
 | -e (m. sg.) | Ioan**e**! băiet**e**! frat**e**! |
 | -ule (m. sg.) | băiat**ule**! prieten**ule**! |
-| -o (f. sg.) | Mari**o**! fat**o**! doamn**o**! |
+| -o (f. sg.) | Mari**o**! An**o**! fat**o**! |
 | -lor (pl.) | domni**lor**! copii**lor**! |
 
 Formele în **-ule** și **-o** sunt curente; cele în **-e** sunt mai puține și fixe. La feminin, forma nemarcată (*Maria!*) e la fel de acceptabilă în vorbire.
